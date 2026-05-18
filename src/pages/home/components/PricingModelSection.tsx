@@ -28,23 +28,25 @@ const TCO_DATA = [
 
 const CONTRACT_OPTIONS = [
   {
-    tag: '구독',
-    title: '월 단위 구독',
-    period: '월 · 12 · 24 · 36개월',
-    desc: '기본 월 단위 구독에서 12/24/36개월 장기 옵션까지 비즈니스 계획에 맞는 다양한 계약 기간을 선택할 수 있습니다.',
-  },
-  {
     tag: '혜택',
     title: '자체 프로모션',
     period: '스파로스원 고객은 특별하게',
     desc: '초기 도입 프로모션, 계약 기간별 차등 할인, 서비스 추가 시 결합 할인 등 다양한 비용 절감 혜택을 누릴 수 있습니다.',
-    highlight: true,
+    bg: '#5BA4F5',
+  },
+  {
+    tag: '구독',
+    title: '월 단위 구독',
+    period: '월 · 12 · 24 · 36개월',
+    desc: '기본 월 단위 구독에서 12/24/36개월 장기 옵션까지 비즈니스 계획에 맞는 다양한 계약 기간을 선택할 수 있습니다.',
+    bg: '#EFF6FF',
   },
   {
     tag: '편의',
     title: '간소화된 관리',
     period: '변경 · 연장 · 해지',
     desc: '서비스 변경, 계약 연장, 해지 프로세스가 간소화되어 복잡한 절차 없이 계약 조건을 관리할 수 있습니다.',
+    bg: '#DBEAFE',
   },
 ];
 
@@ -290,7 +292,7 @@ export default function PricingModelSection() {
         <div style={{ marginBottom: '64px' }}>
           <span style={{ fontSize: 'var(--fs-label)', color: '#5BA4F5', fontWeight: 600 }}>비즈니스 혜택</span>
           <h2 style={{ fontSize: 'var(--fs-display)', fontWeight: 800, color: '#111111', lineHeight: 1.2, margin: '8px 0 0' }}>
-            선납금 0원, 위약금 0원<br />구독형으로 비즈니스 혜택을 누리세요
+            선납금 0원, 위약금 0원<br />구독으로 비즈니스 혜택을 누리세요
           </h2>
         </div>
 
@@ -343,43 +345,46 @@ export default function PricingModelSection() {
         </h3>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '20px' }}>
-          {CONTRACT_OPTIONS.map((opt) => (
-            <div
-              key={opt.title}
-              style={{
-                background: opt.highlight ? '#5BA4F5' : '#EFF6FF',
-                borderRadius: '20px',
-                padding: '36px 32px',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '12px',
-                boxShadow: opt.highlight ? '0 8px 32px rgba(91,164,245,0.35)' : '0 2px 16px rgba(0,0,0,0.07)',
-              }}
-            >
-              <span
+          {CONTRACT_OPTIONS.map((opt) => {
+            const isDark = opt.bg === '#5BA4F5';
+            return (
+              <div
+                key={opt.title}
                 style={{
-                  fontSize: '13px',
-                  fontWeight: 700,
-                  color: opt.highlight ? '#fff' : '#5BA4F5',
-                  background: opt.highlight ? 'rgba(255,255,255,0.25)' : 'rgba(91,164,245,0.12)',
-                  padding: '4px 12px',
+                  background: opt.bg,
                   borderRadius: '20px',
-                  alignSelf: 'flex-start',
+                  padding: '36px 32px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px',
+                  boxShadow: isDark ? '0 8px 32px rgba(91,164,245,0.35)' : '0 2px 16px rgba(0,0,0,0.07)',
                 }}
               >
-                {opt.tag}
-              </span>
-              <p style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: opt.highlight ? '#fff' : '#111', margin: 0 }}>
-                {opt.title}
-              </p>
-              <p style={{ fontSize: '20px', fontWeight: 600, color: opt.highlight ? 'rgba(255,255,255,0.85)' : '#5BA4F5', margin: 0 }}>
-                {opt.period}
-              </p>
-              <p style={{ fontSize: 'var(--fs-body)', color: opt.highlight ? 'rgba(255,255,255,0.80)' : '#666', lineHeight: 1.7, margin: 0 }}>
-                {opt.desc}
-              </p>
-            </div>
-          ))}
+                <span
+                  style={{
+                    fontSize: '13px',
+                    fontWeight: 700,
+                    color: isDark ? '#fff' : '#5BA4F5',
+                    background: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(91,164,245,0.12)',
+                    padding: '4px 12px',
+                    borderRadius: '20px',
+                    alignSelf: 'flex-start',
+                  }}
+                >
+                  {opt.tag}
+                </span>
+                <p style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: isDark ? '#fff' : '#111', margin: 0 }}>
+                  {opt.title}
+                </p>
+                <p style={{ fontSize: '20px', fontWeight: 600, color: isDark ? 'rgba(255,255,255,0.85)' : '#5BA4F5', margin: 0 }}>
+                  {opt.period}
+                </p>
+                <p style={{ fontSize: 'var(--fs-body)', color: isDark ? 'rgba(255,255,255,0.80)' : '#666', lineHeight: 1.7, margin: 0 }}>
+                  {opt.desc}
+                </p>
+              </div>
+            );
+          })}
         </div>
 
       </div>
