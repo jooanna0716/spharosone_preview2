@@ -128,7 +128,15 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
     <section
       className="relative w-full flex flex-col"
       style={{
-        background: '#0d0d0d',
+        background: `
+          linear-gradient(to bottom, transparent 42%, #0d0d0d 84%),
+          radial-gradient(ellipse 58% 68% at 4% 8%,  rgba(112,22,220,1.00) 0%, rgba(85,15,180,0.55) 40%, transparent 68%),
+          radial-gradient(ellipse 42% 50% at 36% -2%, rgba(55,75,225,0.90) 0%, rgba(40,60,200,0.50) 40%, transparent 62%),
+          radial-gradient(ellipse 55% 65% at 96% 8%,  rgba(0,190,180,1.00) 0%, rgba(0,155,165,0.55) 38%, transparent 66%),
+          radial-gradient(ellipse 38% 45% at 68% 3%,  rgba(10,160,210,0.80) 0%, transparent 55%),
+          radial-gradient(ellipse 30% 35% at 50% 0%,  rgba(80,60,200,0.60) 0%, transparent 50%),
+          #060608
+        `,
         paddingTop: '88px',
         paddingBottom: '0',
       }}
@@ -140,24 +148,14 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
         <div
           className="relative w-full overflow-hidden"
           style={{
-            borderRadius: '32px',
             height: isMdUp ? '62vh' : '55vh',
             minHeight: isMdUp ? '420px' : '320px',
-            backgroundImage: `url('${current.imgSrc}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            boxShadow: '0 12px 40px rgba(0,0,0,0.12)',
+            background: 'transparent',
           }}
         >
-          <div
-            className="absolute inset-0"
-            style={{
-              background: 'linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55))',
-            }}
-          />
 
           {/* 이미지 내부 상단 바 */}
-          <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-start lg:flex-row lg:items-baseline lg:justify-between gap-4 lg:gap-0 px-8 md:px-16 pt-8 md:pt-12">
+          <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-start lg:flex-row lg:items-baseline lg:justify-between gap-4 lg:gap-0 px-8 md:px-16 pt-16 md:pt-20">
             <h3
               className="font-bold leading-tight shrink-0"
               style={{
@@ -187,11 +185,11 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       style={{ marginBottom: '-1px' }}
                     >
                       <span
-                        className="font-bold leading-tight transition-all duration-300"
+                        className={`font-bold leading-tight transition-all duration-300${isActive ? ' acc' : ''}`}
                         style={{
                           fontSize: isMdUp ? '30px' : '14px',
                           fontFamily: "'Poppins', sans-serif",
-                          color: isActive ? '#5BA4F5' : 'rgba(255,255,255,0.45)',
+                          color: isActive ? undefined : 'rgba(255,255,255,0.45)',
                           letterSpacing: '0.1em',
                         }}
                       >
@@ -214,7 +212,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             </div>
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-center px-8 md:px-16">
+          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px' }}>
             <div className="mb-3 md:mb-6">
               <h2
                 className="font-bold leading-tight transition-all duration-500"
@@ -240,6 +238,9 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
           </div>
         </div>
 
+        {/* 제목 영역 하단 구분선 */}
+        <div style={{ height: '1px', background: 'rgba(255,255,255,0.12)', margin: '0 8px' }} />
+
         {/* Below image — text section */}
         {(current.belowLine1 || current.belowLine2) && (
           <div style={{ padding: isMdUp ? '80px 8px 80px' : '40px 4px 60px', textAlign: 'center' }}>
@@ -261,7 +262,10 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                 className="font-extrabold"
                 style={{
                   fontSize: isMdUp ? '50px' : '28px',
-                  color: '#5BA4F5',
+                  background: 'linear-gradient(90deg, #7016DC 0%, #3B6EF0 45%, #00C4B4 100%)',
+                  WebkitBackgroundClip: 'text',
+                  WebkitTextFillColor: 'transparent',
+                  backgroundClip: 'text',
                   lineHeight: 1.2,
                   margin: 0,
                 }}

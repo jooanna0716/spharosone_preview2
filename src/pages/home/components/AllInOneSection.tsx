@@ -27,7 +27,7 @@ export default function AllInOneSection() {
         }}
       >
         <span style={{ color: '#ffffff' }}>All-in-One. </span>
-        <span style={{ color: '#5BA4F5' }}>One for All.</span>
+        <span className="acc">One for All.</span>
       </h2>
       <p
         style={{

@@ -20,6 +20,26 @@ export default function HomePage() {
   const bridgeRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
+  // 히어로 dead zone(sticky 해제 후 빈 검정 구간) 진입 시 자동 앵커
+  useEffect(() => {
+    let snapLocked = false;
+    const checkDeadZone = () => {
+      if (snapLocked) return;
+      const hero = heroRef.current;
+      const story = storyRef.current;
+      if (!hero || !story) return;
+      const heroScrollable = hero.offsetHeight - window.innerHeight;
+      const storyTop = story.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY > heroScrollable && window.scrollY < storyTop) {
+        snapLocked = true;
+        window.scrollTo({ top: storyTop, behavior: 'smooth' });
+        setTimeout(() => { snapLocked = false; }, 1500);
+      }
+    };
+    window.addEventListener('scroll', checkDeadZone, { passive: true });
+    return () => window.removeEventListener('scroll', checkDeadZone);
+  }, []);
+
   useEffect(() => {
     let locked = false;
 
@@ -56,8 +76,19 @@ export default function HomePage() {
         return;
       }
 
-      // 2. 스토리 전체(카드 1·2·3): 자연 스크롤
+      // 2. 스토리: 카드 1·2 자연 스크롤, 카드 3 이후 → 브릿지 앵커
       if (scrollY >= storyTop && scrollY < bridgeTop) {
+        const NAVBAR_H = 64;
+        const stickyPanelH = vh - NAVBAR_H;
+        const totalScrollable = story.offsetHeight - stickyPanelH;
+        const progress = totalScrollable > 0
+          ? Math.max(0, Math.min(1, (scrollY - storyTop) / totalScrollable))
+          : 0;
+        if (progress >= 2 / 3) {
+          e.preventDefault();
+          snapTo(bridge);
+          return;
+        }
         return;
       }
 
@@ -122,7 +153,6 @@ export default function HomePage() {
     <main className="min-h-screen">
       <Navbar />
       <div ref={heroRef}><HeroSection /></div>
-      <div style={{ height: '80px', background: '#000000' }} />
       <div ref={storyRef}><SpharosOneStorySection /></div>
       <div ref={bridgeRef}><StoryBridgeSection /></div>
       <div ref={showcaseRef} id="showcase-section"><CouponShowcase /></div>

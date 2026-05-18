@@ -42,7 +42,7 @@ export default function ContactPage() {
       {/* Hero */}
       <section className="relative pt-32 pb-16 px-6 md:px-[120px] overflow-hidden" style={{ background: '#0d0d0d' }}>
         <div className="w-full text-center">
-          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full mb-4" style={{ background: 'rgba(91,164,245,0.15)', border: '1px solid rgba(91,164,245,0.3)', color: '#5BA4F5' }}>
+          <span className="acc inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full mb-4" style={{ background: 'rgba(91,164,245,0.15)', border: '1px solid rgba(91,164,245,0.3)' }}>
             Contact
           </span>
           <h1 className="text-4xl md:text-5xl font-extrabold" style={{ color: '#f0f0f0' }}>

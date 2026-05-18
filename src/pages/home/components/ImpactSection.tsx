@@ -66,7 +66,7 @@ function DesktopImpactSection() {
           top: '64px',
           height: 'calc(100vh - 64px)',
           overflow: 'hidden',
-          backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/도입 효과.png')`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)), url('/images/도입 효과.png')`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           backgroundRepeat: 'no-repeat',
@@ -85,10 +85,10 @@ function DesktopImpactSection() {
           {/* 헤더 */}
           <div style={{ paddingTop: 'clamp(40px, 6vh, 80px)', flexShrink: 0 }}>
             <span
+              className="acc"
               style={{
                 fontSize: 'var(--fs-label)',
                 fontWeight: 700,
-                color: '#5BA4F5',
                 letterSpacing: '0.12em',
                 display: 'block',
                 marginBottom: '14px',
@@ -156,7 +156,7 @@ function DesktopImpactSection() {
                     {is247 ? (
                       <div style={{ display: 'flex', alignItems: 'flex-end', lineHeight: 1 }}>
                         <span style={{ fontSize: 'clamp(100px, 21.875vw, 280px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>24</span>
-                        <span style={{ fontSize: 'clamp(50px, 10.9375vw, 140px)', fontWeight: 900, color: '#5BA4F5', lineHeight: 1, marginBottom: '18px', marginLeft: '-18px' }}>/</span>
+                        <span className="acc" style={{ fontSize: 'clamp(50px, 10.9375vw, 140px)', fontWeight: 900, lineHeight: 1, marginBottom: '18px', marginLeft: '-18px' }}>/</span>
                         <span style={{ fontSize: 'clamp(100px, 21.875vw, 280px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1, marginLeft: '-18px' }}>7</span>
                       </div>
                     ) : (
@@ -176,11 +176,11 @@ function DesktopImpactSection() {
                           }}
                         >
                           <span
+                            className="acc"
                             style={{
                               fontSize: 'clamp(44px, 9.375vw, 120px)',
                               fontWeight: 700,
                               lineHeight: 1,
-                              color: '#5BA4F5',
                             }}
                           >
                             {slide.arrow}
@@ -238,12 +238,12 @@ function DesktopImpactSection() {
 /* ─── 모바일 ─── */
 function MobileImpactSection() {
   return (
-    <section style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/도입 효과.png')`, backgroundSize: 'cover', backgroundPosition: 'center', padding: '64px 24px' }}>
+    <section style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)), url('/images/도입 효과.png')`, backgroundSize: 'cover', backgroundPosition: 'center', padding: '64px 24px' }}>
       <span
+        className="acc"
         style={{
           fontSize: '30px',
           fontWeight: 700,
-          color: '#5BA4F5',
           letterSpacing: '0.12em',
           display: 'block',
           marginBottom: '10px',
@@ -272,14 +272,14 @@ function MobileImpactSection() {
                 {is247 ? (
                   <>
                     <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>24</span>
-                    <span style={{ fontSize: '44px', fontWeight: 900, color: '#5BA4F5', lineHeight: 1, marginBottom: '8px' }}>/</span>
+                    <span className="acc" style={{ fontSize: '44px', fontWeight: 900, lineHeight: 1, marginBottom: '8px' }}>/</span>
                     <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>7</span>
                   </>
                 ) : (
                   <>
                     <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>{slide.number}</span>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: '4px', marginBottom: '8px' }}>
-                      <span style={{ fontSize: '32px', fontWeight: 700, lineHeight: 1, color: '#5BA4F5' }}>{slide.arrow}</span>
+                      <span className="acc" style={{ fontSize: '32px', fontWeight: 700, lineHeight: 1 }}>{slide.arrow}</span>
                       <span style={{ fontSize: '36px', fontWeight: 700, lineHeight: 1, color: '#FFFFFF' }}>{slide.symbol}</span>
                     </div>
                   </>

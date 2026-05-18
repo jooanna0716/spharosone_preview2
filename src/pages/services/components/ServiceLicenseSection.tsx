@@ -406,10 +406,11 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                       onMouseEnter={() => setBtnHovered(true)}
                       onMouseLeave={() => setBtnHovered(false)}
                       onClick={() => setPopupOpen(true)}
+                      className={btnHovered ? undefined : 'acc'}
                       style={{
                         fontSize: '18px',
                         fontWeight: 600,
-                        color: btnHovered ? '#3a87e0' : '#5BA4F5',
+                        color: btnHovered ? '#3a87e0' : undefined,
                         background: 'none',
                         border: 'none',
                         cursor: 'pointer',

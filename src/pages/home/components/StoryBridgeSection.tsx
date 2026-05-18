@@ -3,60 +3,100 @@ export default function StoryBridgeSection() {
     <section
       style={{
         height: '100vh',
+        background: '#0a0a0a',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center',
         position: 'relative',
         overflow: 'hidden',
+        textAlign: 'center',
         padding: '80px 24px',
       }}
     >
-      {/* 배경 이미지 */}
+      {/* 블롭 키프레임 */}
+      <style>{`
+        @keyframes bB1 {
+          0%,100% { transform: translate(0,    0)   scale(1.00); }
+          25%     { transform: translate(7vw, -5vh) scale(1.12); }
+          60%     { transform: translate(-5vw, 8vh) scale(0.92); }
+        }
+        @keyframes bB2 {
+          0%,100% { transform: translate(0,    0)    scale(1.00); }
+          35%     { transform: translate(-8vw, 6vh)  scale(1.10); }
+          70%     { transform: translate(6vw, -7vh)  scale(0.90); }
+        }
+        @keyframes bB3 {
+          0%,100% { transform: translate(0,    0)    scale(1.00); }
+          40%     { transform: translate(9vw,  6vh)  scale(1.14); }
+          75%     { transform: translate(-6vw,-5vh)  scale(0.94); }
+        }
+        @keyframes bB4 {
+          0%,100% { transform: translate(0,    0)    scale(1.00); }
+          30%     { transform: translate(-9vw, 5vh)  scale(1.08); }
+          65%     { transform: translate(7vw, -6vh)  scale(0.92); }
+        }
+        @keyframes bB5 {
+          0%,100% { transform: translate(0,    0)    scale(1.00); }
+          50%     { transform: translate(-5vw,-7vh)  scale(1.10); }
+        }
+      `}</style>
+
+      {/* 텍스트 중심 그라디언트 블롭 */}
+      <div style={{ position: 'absolute', left: '2%',  top: '15%', width: '46vw', height: '72vh',
+        background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.70) 0%, rgba(80,0,180,0.42) 38%, transparent 68%)',
+        animation: 'bB1 7s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', left: '18%', top: '8%',  width: '42vw', height: '65vh',
+        background: 'radial-gradient(ellipse at center, rgba(170,50,255,0.65) 0%, rgba(140,30,240,0.38) 38%, transparent 66%)',
+        animation: 'bB2 9s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', left: '28%', top: '20%', width: '40vw', height: '62vh',
+        background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.68) 0%, rgba(40,75,235,0.40) 40%, transparent 65%)',
+        animation: 'bB3 8s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', right: '2%', top: '15%', width: '46vw', height: '72vh',
+        background: 'radial-gradient(ellipse at center, rgba(0,210,240,0.65) 0%, rgba(0,175,220,0.38) 35%, transparent 64%)',
+        animation: 'bB4 6s ease-in-out infinite' }} />
+      <div style={{ position: 'absolute', left: '22%', bottom: '10%', width: '42vw', height: '62vh',
+        background: 'radial-gradient(ellipse at center, rgba(0,230,195,0.55) 0%, rgba(0,200,175,0.32) 38%, transparent 65%)',
+        animation: 'bB5 10s ease-in-out infinite' }} />
+
+      {/* 다크 비녜트 — 가장자리 검정, 중앙 글로우 노출 */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 1,
+        background: 'radial-gradient(ellipse 58% 65% at 50% 48%, transparent 18%, rgba(10,10,10,0.55) 52%, rgba(10,10,10,0.90) 72%, #0a0a0a 90%)',
+      }} />
+
+      {/* Top fade */}
       <div
         style={{
           position: 'absolute',
-          inset: 0,
-          backgroundImage: `url('/images/스파로스원 정의_중간.png')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat',
-        }}
-      />
-      {/* 검정 오버레이 */}
-      <div
-        style={{
-          position: 'absolute',
-          inset: 0,
-          background: 'rgba(0,0,0,0.30)',
-        }}
-      />
-      {/* 상단 페이드 — 히어로 섹션과 자연스럽게 연결 */}
-      <div
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
+          top: 0, left: 0, right: 0,
           height: '25%',
-          background: 'linear-gradient(to bottom, #000000, transparent)',
+          background: 'linear-gradient(to bottom, #0a0a0a, transparent)',
           pointerEvents: 'none',
-          zIndex: 1,
+          zIndex: 2,
         }}
       />
-      {/* 콘텐츠 — 오버레이 위 */}
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+
+      {/* Text content */}
+      <div
+        style={{
+          position: 'relative',
+          zIndex: 3,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}
+      >
         <h2
           style={{
-            fontSize: 'var(--fs-display)',
+            fontSize: 'clamp(28px, 4.2vw, 60px)',
             fontWeight: 800,
             lineHeight: 1.1,
             margin: '0 0 32px',
           }}
         >
           <span style={{ color: '#ffffff' }}>All-in-One. </span>
-          <span style={{ color: '#5BA4F5' }}>One for All.</span>
+          <span className="acc">One for All.</span>
         </h2>
 
         <div
@@ -71,7 +111,7 @@ export default function StoryBridgeSection() {
 
         <p
           style={{
-            fontSize: 'var(--fs-label)',
+            fontSize: 'clamp(16px, 2.1vw, 30px)',
             fontWeight: 700,
             color: '#ffffff',
             marginBottom: '24px',
@@ -82,28 +122,29 @@ export default function StoryBridgeSection() {
         </p>
         <p
           style={{
-            fontSize: 'var(--fs-subtitle)',
+            fontSize: 'clamp(14px, 1.7vw, 24px)',
             fontWeight: 400,
             color: 'rgba(255,255,255,0.70)',
             marginBottom: '32px',
-            lineHeight: 1.6,
+            lineHeight: 1.7,
             whiteSpace: 'pre-line',
           }}
         >
           {`스파로스원은 설계부터 보안, 운영까지 하나로 연결한\n완성형 프라이빗 클라우드입니다.`}
         </p>
         <p
+          className="acc"
           style={{
-            fontSize: 'var(--fs-subtitle)',
+            fontSize: 'clamp(14px, 1.7vw, 24px)',
             fontWeight: 500,
-            color: '#5BA4F5',
-            lineHeight: 1.6,
+            lineHeight: 1.7,
             whiteSpace: 'pre-line',
           }}
         >
           {`더 단순하게, 더 안정적으로\n그리고 더 합리적인 비용으로`}
         </p>
       </div>
+
     </section>
   );
 }

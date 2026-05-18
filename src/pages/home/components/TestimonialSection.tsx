@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 
 const TESTIMONIALS = [
   {
@@ -69,274 +69,160 @@ const TESTIMONIALS = [
   },
 ];
 
-const GAP = 12;
-const NAVBAR_H = 64;
 const ACTIVE_BLUE = '#5BA4F5';
+const GAP = 20;
+// 카드 폭: 왼쪽 패딩(120px) 뺀 너비를 2.5등분. 2장 + 반장 peek
+const CARD_W = `calc((100vw - 120px - ${GAP * 2}px) / 2.5)`;
+const CARD_W_MOBILE = `calc((100vw - 48px - ${GAP}px) / 1.2)`;
 
 export default function TestimonialSection() {
-  const [current, setCurrent] = useState(0);
-  const [leftOffset, setLeftOffset] = useState(0);
-  const [mainCardWidth, setMainCardWidth] = useState(0);
-  const [sideCardWidth, setSideCardWidth] = useState(0);
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const isArrowScrollingRef = useRef(false);
+  const [startIdx, setStartIdx] = useState(0);
+  const [slideDir, setSlideDir] = useState<1 | -1>(1);
+  const [animKey, setAnimKey] = useState(0);
 
-  useEffect(() => {
-    const calc = () => {
-      const vw = window.innerWidth;
-      const px = vw >= 768 ? 110 : 24;
-
-      const containerLeft = px;
-      const containerRight = vw - px;
-      const contentW = containerRight - containerLeft;
-
-      // 사이드 카드 2장 폭 = 컨텐츠 폭의 약 18% (작은 미리보기)
-      const sideW = Math.floor((contentW * 0.18 - GAP) / 2);
-      const sideArea = sideW * 2 + GAP;
-      const mainW = contentW - sideArea - GAP;
-
-      setLeftOffset(containerLeft);
-      setMainCardWidth(mainW);
-      setSideCardWidth(sideW);
-    };
-
-    calc();
-    window.addEventListener('resize', calc);
-    return () => window.removeEventListener('resize', calc);
-  }, []);
-
-  // 스크롤 → 카드 인덱스 계산 (화살표 클릭 직후엔 무시)
-  useEffect(() => {
-    const onScroll = () => {
-      if (isArrowScrollingRef.current) return;
-      const section = sectionRef.current;
-      if (!section) return;
-      const rect = section.getBoundingClientRect();
-      const scrolled = -rect.top;
-      const per = window.innerHeight;
-      if (scrolled < 0) {
-        setCurrent(0);
-        return;
-      }
-      const idx = Math.min(
-        Math.max(Math.floor(scrolled / per), 0),
-        TESTIMONIALS.length - 1
-      );
-      setCurrent(idx);
-    };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  // 화살표: 카드 변경 + 스크롤 위치도 동기화 (스크롤 핸들러 일시 lock)
-  const goTo = (idx: number) => {
-    isArrowScrollingRef.current = true;
-    setCurrent(idx);
-    const section = sectionRef.current;
-    if (section) {
-      const top = section.getBoundingClientRect().top + window.scrollY + idx * window.innerHeight;
-      window.scrollTo({ top, behavior: 'auto' });
-    }
-    // 다음 스크롤 이벤트가 끝나기를 기다린 후 lock 해제
-    window.setTimeout(() => {
-      isArrowScrollingRef.current = false;
-    }, 250);
+  const navigate = (dir: 1 | -1) => {
+    setSlideDir(dir);
+    setAnimKey(k => k + 1);
+    setStartIdx(i => (i + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
   };
-  const prev = () => goTo((current - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
-  const next = () => goTo((current + 1) % TESTIMONIALS.length);
 
-  const t = TESTIMONIALS[current];
-  const nextItems = [1, 2].map((offset) => TESTIMONIALS[(current + offset) % TESTIMONIALS.length]);
+  const cards = [0, 1, 2].map(offset => ({
+    item: TESTIMONIALS[(startIdx + offset) % TESTIMONIALS.length],
+    id: (startIdx + offset) % TESTIMONIALS.length,
+  }));
 
   return (
-    <section
-      ref={sectionRef}
-      style={{ height: `${TESTIMONIALS.length * 100}vh`, position: 'relative', background: '#0d0d0d' }}
-    >
-      <div
-        className="sticky flex flex-col overflow-hidden"
-        style={{ top: `${NAVBAR_H}px`, height: `calc(100vh - ${NAVBAR_H}px)`, background: '#0d0d0d' }}
-      >
+    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(48px, 8vh, 96px)', paddingBottom: 'clamp(48px, 8vh, 96px)' }}>
 
       {/* 헤더 */}
-      <div className="flex-shrink-0 px-6 md:px-[120px] pb-6 w-full" style={{ paddingTop: 'clamp(20px, 5vh, 80px)' }}>
-        <div className="text-left">
-          <span
-            className="inline-block font-bold mb-3"
-            style={{ color: ACTIVE_BLUE, fontSize: 'var(--fs-label)' }}
-          >
+      <div
+        className="flex items-end justify-between"
+        style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', marginBottom: '36px' }}
+      >
+        <div>
+          <span style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-label)', display: 'block', marginBottom: '10px', letterSpacing: '0.05em' }}>
             기대효과
           </span>
-          <h2 className="font-extrabold leading-tight" style={{ color: '#f0f0f0', fontSize: 'var(--fs-display)' }}>
+          <h2 style={{ color: '#f0f0f0', fontWeight: 800, fontSize: 'var(--fs-display)', margin: 0, lineHeight: 1.15 }}>
             현장의 고민을 확신으로
           </h2>
         </div>
-      </div>
 
-      {/* 슬라이더 - 모바일 */}
-      <div className="block md:hidden relative w-full overflow-hidden" style={{ flex: 4, minHeight: 0 }}>
-        <img
-          key={current}
-          src={t.image}
-          alt={t.company}
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/40" />
-
-        <div className="absolute inset-x-4 top-8 bottom-16 backdrop-blur-sm rounded-2xl p-6 flex flex-col" style={{ background: 'rgba(26,26,26,0.88)', border: '1px solid rgba(255,255,255,0.1)' }}>
-          <div className="flex-1 flex flex-col justify-center">
-            <p className="text-[16px] font-bold leading-none mb-2" style={{ color: '#f0f0f0' }}>{t.company}</p>
-            <p className="text-[15px] leading-snug" style={{ color: '#aaaaaa' }}>{t.quote}</p>
-            <div className="h-6 flex-shrink-0" />
-            <div className="text-[20px] font-extrabold leading-snug" style={{ color: '#f0f0f0' }}>
-              {t.highlights.map((h, i) => (
-                <p key={i}>
-                  {h.mark ? (
-                    <mark className="bg-blue-900 text-blue-200 px-0.5">{h.text}</mark>
-                  ) : (
-                    h.text
-                  )}
-                </p>
-              ))}
-            </div>
-          </div>
-          <div className="flex items-center justify-between mt-4">
-            <div className="flex items-center gap-1.5">
-              {TESTIMONIALS.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => goTo(i)}
-                  className="h-[3px] rounded-full transition-all duration-300 cursor-pointer"
-                  style={{
-                    width: i === current ? '32px' : '12px',
-                    background: i === current ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
-                  }}
-                />
-              ))}
-            </div>
-            <div className="flex items-center gap-2">
-              <button
-                onClick={prev}
-                className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
-              >
-                <i className="ri-arrow-left-line text-sm" />
-              </button>
-              <button
-                onClick={next}
-                className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
-              >
-                <i className="ri-arrow-right-line text-sm" />
-              </button>
-            </div>
-          </div>
+        {/* 화살표 */}
+        <div className="flex items-center gap-2">
+          {[{ dir: -1 as const, icon: 'ri-arrow-left-s-line' }, { dir: 1 as const, icon: 'ri-arrow-right-s-line' }].map(({ dir, icon }) => (
+            <button
+              key={dir}
+              onClick={() => navigate(dir)}
+              className="flex items-center justify-center cursor-pointer transition-all hover:bg-white/10"
+              style={{
+                width: '40px', height: '40px', borderRadius: '50%',
+                border: '1px solid rgba(255,255,255,0.25)',
+                background: 'transparent', color: 'rgba(255,255,255,0.8)',
+              }}
+            >
+              <i className={`${icon} text-xl`} />
+            </button>
+          ))}
         </div>
       </div>
-      <div className="block md:hidden" style={{ flex: 1, flexShrink: 0 }} />
 
-      {/* 슬라이더 - 데스크탑 */}
-      <div
-        className="hidden md:flex items-stretch"
-        style={{
-          flex: 4,
-          paddingLeft: leftOffset > 0 ? `${leftOffset}px` : '120px',
-          paddingRight: leftOffset > 0 ? `${leftOffset}px` : '120px',
-          gap: `${GAP}px`,
-          minHeight: 0,
-          paddingBottom: '0',
-        }}
-      >
+      {/* 카드 트랙 — overflow:hidden으로 2.5번째 카드 클리핑 */}
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
         <div
-          className="flex-shrink-0 flex overflow-hidden rounded-2xl" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
+          key={animKey}
+          className="flex"
           style={{
-            width: mainCardWidth > 0 ? `${mainCardWidth}px` : '700px',
+            gap: `${GAP}px`,
+            animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
           }}
         >
-          <div className="relative overflow-hidden flex-shrink-0 w-[42%]">
-            <img
-              key={current}
-              src={t.image}
-              alt={t.company}
-              className="absolute inset-0 w-full h-full object-cover object-center"
-            />
-            <div className="absolute inset-0 bg-black/20" />
-          </div>
+          {cards.map(({ item, id }) => (
+            <div
+              key={id}
+              className="flex-shrink-0 flex flex-col"
+              style={{
+                width: `clamp(260px, ${CARD_W}, 560px)`,
+                background: '#1c1c1c',
+                borderRadius: '16px',
+                padding: 'clamp(20px, 2vw, 32px)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                minHeight: '280px',
+              }}
+            >
+              {/* 원형 이미지 */}
+              <div
+                style={{
+                  width: '64px', height: '64px', borderRadius: '50%',
+                  overflow: 'hidden', marginBottom: '20px', flexShrink: 0,
+                  border: '2px solid rgba(91,164,245,0.35)',
+                  boxShadow: '0 0 0 4px rgba(91,164,245,0.08)',
+                }}
+              >
+                <img
+                  src={item.image}
+                  alt={item.company}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                />
+              </div>
 
-          <div className="flex-1 flex flex-col justify-between px-6 py-4 md:px-10 md:py-6">
-            <div className="flex-1 flex flex-col justify-center">
-              <p className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(16px, 1.6vw, 24px)', color: '#f0f0f0' }}>{t.company}</p>
-              <p className="leading-snug mb-3" style={{ fontSize: 'clamp(14px, 1.5vw, 22px)', color: '#aaaaaa' }}>
-                {t.quote}
+              {/* 회사명 */}
+              <p style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: '20px', marginBottom: '6px', letterSpacing: '0.04em' }}>
+                {item.company}
               </p>
-              <div className="h-3" />
-              <div className="font-extrabold leading-relaxed" style={{ fontSize: 'clamp(18px, 2vw, 28px)', color: '#f0f0f0' }}>
-                {t.highlights.map((h, i) => (
-                  <p key={i}>
-                    {h.mark ? (
-                      <mark className="bg-blue-900 text-blue-200 px-0.5">{h.text}</mark>
-                    ) : (
-                      h.text
-                    )}
+
+              {/* 인용 */}
+              <p style={{ color: '#777777', fontSize: '20px', lineHeight: 1.55, marginBottom: '20px' }}>
+                {item.quote}
+              </p>
+
+              {/* 하이라이트 */}
+              <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+                {item.highlights.map((h, hi) => (
+                  <p
+                    key={hi}
+                    style={{
+                      fontSize: '24px',
+                      fontWeight: h.mark ? 700 : 400,
+                      color: '#f0f0f0',
+                      lineHeight: 1.4,
+                      margin: 0,
+                    }}
+                  >
+                    {h.text}
                   </p>
                 ))}
               </div>
             </div>
-
-            <div className="mt-4">
-              <div className="flex items-center gap-3">
-                <div className="flex items-center gap-1.5">
-                  {TESTIMONIALS.map((_, i) => (
-                    <button
-                      key={i}
-                      onClick={() => goTo(i)}
-                      className="h-[3px] rounded-full transition-all duration-300 cursor-pointer"
-                      style={{
-                        width: i === current ? '96px' : '16px',
-                        background: i === current ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
-                      }}
-                    />
-                  ))}
-                </div>
-                <div className="flex items-center gap-1.5 ml-auto">
-                  <button
-                    onClick={prev}
-                    className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
-                  >
-                    <i className="ri-arrow-left-line text-sm" />
-                  </button>
-                  <button
-                    onClick={next}
-                    className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
-                  >
-                    <i className="ri-arrow-right-line text-sm" />
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
+      </div>
 
-        {/* 오른쪽 사이드 이미지들 */}
-        {nextItems.map((item, i) => (
-          <div
-            key={`${current}-next-${i}`}
-            onClick={() => goTo((current + 1 + i) % TESTIMONIALS.length)}
-            className="flex-shrink-0 rounded-2xl overflow-hidden relative cursor-pointer group"
+      {/* 모바일용 도트 */}
+      <div className="flex md:hidden justify-center gap-1.5 mt-6">
+        {TESTIMONIALS.map((_, i) => (
+          <button
+            key={i}
+            onClick={() => { setSlideDir(i > startIdx ? 1 : -1); setAnimKey(k => k + 1); setStartIdx(i); }}
             style={{
-              width: sideCardWidth > 0 ? `${sideCardWidth}px` : '88px',
+              width: i === startIdx ? '28px' : '8px', height: '3px',
+              borderRadius: '2px', background: i === startIdx ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
+              transition: 'all 0.3s', border: 'none', cursor: 'pointer', padding: 0,
             }}
-          >
-            <img
-              src={item.image}
-              alt={item.company}
-              className="absolute inset-0 w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors duration-300" />
-          </div>
+          />
         ))}
       </div>
-      <div className="hidden md:block" style={{ height: 'clamp(20px, 4vh, 80px)', flexShrink: 0 }} />
-      </div>
+
+      <style>{`
+        @keyframes slideCardsLeft {
+          from { transform: translateX(8%); opacity: 0.6; }
+          to   { transform: translateX(0);  opacity: 1; }
+        }
+        @keyframes slideCardsRight {
+          from { transform: translateX(-8%); opacity: 0.6; }
+          to   { transform: translateX(0);   opacity: 1; }
+        }
+      `}</style>
     </section>
   );
 }

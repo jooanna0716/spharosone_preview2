@@ -1,164 +1,183 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
-const SLIDES = [
-  {
-    line1: '클라우드, 이제 클릭 한 번에',
-    line2: '가장 쉬운 프라이빗 클라우드, Spharos One',
-    line3: '복잡한 구축과 운영은 One으로 통합하고',
-    line4: '더 빠르게, 더 안정적으로',
-  },
-  {
-    line1: '구축하지 마세요, 구독하세요',
-    line2: '선납금 0원 · 위약금 0원 · 첫 달 이후 언제든 해지',
-    line3: '수억 원의 초기 투자도, 발목 잡는 약정도 없이',
-    line4: '프라이빗 클라우드의 새로운 기준',
-  },
-];
-
-const INTERVAL = 5000;
+function clamp01(v: number) { return Math.max(0, Math.min(1, v)); }
+function easeInOut(t: number) {
+  return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+}
 
 export default function HeroSection() {
-  const [isMdUp, setIsMdUp] = useState(true);
-  const [current, setCurrent] = useState(0);
-  const [visible, setVisible] = useState(true);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const [scrollP, setScrollP]   = useState(0);
+  const [isMdUp, setIsMdUp]     = useState(true);
 
   useEffect(() => {
     const mql = window.matchMedia('(min-width: 768px)');
     setIsMdUp(mql.matches);
-    const handler = (e: MediaQueryListEvent) => setIsMdUp(e.matches);
-    mql.addEventListener('change', handler);
-    return () => mql.removeEventListener('change', handler);
+    const h = (e: MediaQueryListEvent) => setIsMdUp(e.matches);
+    mql.addEventListener('change', h);
+    return () => mql.removeEventListener('change', h);
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setCurrent((c) => (c + 1) % SLIDES.length);
-        setVisible(true);
-      }, 500);
-    }, INTERVAL);
-    return () => clearInterval(timer);
+    const onScroll = () => {
+      const el = sectionRef.current;
+      if (!el) return;
+      const scrollable = el.offsetHeight - window.innerHeight;
+      if (scrollable <= 0) return;
+      setScrollP(Math.max(0, Math.min(1, -el.getBoundingClientRect().top / scrollable)));
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const slide = SLIDES[current];
+  // ── 카드 슬라이드 계산 (500vh 기준) ────────────────────────────────
+  // 전환 1: scrollP 0.33 → 0.47  (70vh 구간)
+  // 전환 2: scrollP 0.63 → 0.77  (70vh 구간)
+  // 각 카드가 약 130~160vh 동안 화면에 머뭄
+  const T = 0.14;
+
+  // 카드1: 처음부터 보임 → 전환1에서 위로 밀려남
+  const c1Exit = easeInOut(clamp01((scrollP - 0.33) / T));
+  const c1Y    = `${-c1Exit * 100}vh`;
+
+  // 카드2: 아래서 올라옴 → 전환2에서 위로 밀려남
+  const c2Enter = easeInOut(clamp01((scrollP - 0.33) / T));
+  const c2Exit  = easeInOut(clamp01((scrollP - 0.63) / T));
+  const c2Y     = `${(1 - c2Enter) * 100 - c2Exit * 100}vh`;
+
+  // 카드3: 아래서 올라옴 → 끝까지 유지
+  const c3Enter = easeInOut(clamp01((scrollP - 0.63) / T));
+  const c3Y     = `${(1 - c3Enter) * 100}vh`;
+
+  // 마지막 검정 페이드
+  const blackP = easeInOut(clamp01((scrollP - 0.85) / 0.10));
+
+  const cardStyle = (y: string): React.CSSProperties => ({
+    position: 'absolute',
+    inset: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: `translateY(${y})`,
+    willChange: 'transform',
+    padding: isMdUp ? '0 80px' : '0 24px',
+    textAlign: 'center',
+  });
 
   return (
-    <div
-      style={{
-        background: '#000000',
-        height: '100vh',
-      }}
-    >
-      <style>{`
-        @keyframes heroZoom {
-          0%   { transform: scale(1); }
-          50%  { transform: scale(1.04); }
-          100% { transform: scale(1); }
-        }
-        .hero-bg {
-          animation: heroZoom ${INTERVAL * 2}ms ease-in-out infinite;
-        }
-      `}</style>
+    <div ref={sectionRef} style={{ height: '400vh', position: 'relative', background: '#0d0d0d' }}>
+      <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
-      {/* 이미지 */}
-      <div
-        style={{
-          width: '100%',
-          height: '100%',
-          position: 'relative',
-          overflow: 'hidden',
-          background: '#000000',
-        }}
-      >
-        {/* 줌 애니메이션 배경 — contrast/saturate로 선명도 보정 */}
-        <div
-          className="hero-bg"
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url('/images/히어로색션.png')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'contrast(1.10) saturate(1.08)',
-          }}
-        />
-        {/* 퍼플~블루~민트 그라디언트 오버레이 (DAN25 스타일) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'linear-gradient(135deg, rgba(107,33,232,0.72) 0%, rgba(59,130,246,0.60) 50%, rgba(0,184,156,0.55) 100%)',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-        />
+        {/* ── 키프레임 ─────────────────────────────────────────────── */}
+        <style>{`
+          @keyframes hB1 {
+            0%,100% { transform: translate(0,     0)    scale(1.00); }
+            20%     { transform: translate(18vw, -14vh) scale(1.14); }
+            45%     { transform: translate(-12vw, 20vh) scale(0.90); }
+            70%     { transform: translate(22vw,  10vh) scale(1.08); }
+          }
+          @keyframes hB2 {
+            0%,100% { transform: translate(0,     0)    scale(1.00); }
+            30%     { transform: translate(-20vw, 16vh) scale(1.12); }
+            60%     { transform: translate(14vw, -22vh) scale(0.88); }
+          }
+          @keyframes hB3 {
+            0%,100% { transform: translate(0,     0)    scale(1.00); }
+            35%     { transform: translate(24vw,  18vh) scale(1.16); }
+            65%     { transform: translate(-16vw,-14vh) scale(0.92); }
+          }
+          @keyframes hB4 {
+            0%,100% { transform: translate(0,     0)    scale(1.00); }
+            40%     { transform: translate(-22vw, 12vh) scale(1.10); }
+            75%     { transform: translate(16vw, -18vh) scale(0.94); }
+          }
+          @keyframes hB5 {
+            0%,100% { transform: translate(0,     0)    scale(1.00); }
+            50%     { transform: translate(-14vw,-20vh) scale(1.12); }
+          }
+        `}</style>
 
-        {/* 하단 페이드 — 이미지를 검정으로 자연스럽게 */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: '55%',
-            background: 'linear-gradient(to bottom, transparent, #0d0d0d)',
-            pointerEvents: 'none',
-            zIndex: 2,
-          }}
-        />
+        {/* ── 유영하는 그라디언트 배경 ────────────────────────────────── */}
+        <div style={{ position: 'absolute', inset: 0, background: '#1E0060' }} />
+        <div style={{ position: 'absolute', left: '-15%', top: '-15%', width: '80vw', height: '130vh',
+          background: 'radial-gradient(ellipse at center, #6200CC 0%, rgba(90,0,200,0.72) 35%, transparent 68%)',
+          animation: 'hB1 14s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', left: '10%', top: '-35%', width: '75vw', height: '115vh',
+          background: 'radial-gradient(ellipse at center, #BB3FFF 0%, rgba(160,50,250,0.65) 35%, transparent 66%)',
+          animation: 'hB2 18s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', left: '25%', top: '5%', width: '65vw', height: '105vh',
+          background: 'radial-gradient(ellipse at center, #3060FF 0%, rgba(50,90,255,0.60) 38%, transparent 65%)',
+          animation: 'hB3 16s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', right: '-10%', top: '-10%', width: '80vw', height: '130vh',
+          background: 'radial-gradient(ellipse at center, #00DDFF 0%, rgba(0,200,240,0.78) 30%, transparent 62%)',
+          animation: 'hB4 12s ease-in-out infinite' }} />
+        <div style={{ position: 'absolute', right: '0%', bottom: '-25%', width: '60vw', height: '95vh',
+          background: 'radial-gradient(ellipse at center, #00FFCE 0%, rgba(0,230,200,0.65) 35%, transparent 63%)',
+          animation: 'hB5 20s ease-in-out infinite' }} />
 
-        {/* 중앙 텍스트 슬라이드 */}
-        <div
-          style={{
-            position: 'absolute',
-            left: '50%',
-            top: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: isMdUp ? '90%' : '85%',
-            textAlign: 'center',
-            opacity: visible ? 1 : 0,
-            transition: 'opacity 0.5s ease',
-          }}
-        >
-          <p style={{
-            fontSize: isMdUp ? '64px' : '28px',
-            fontWeight: 800,
-            color: '#FFFFFF',
-            lineHeight: 1.2,
-            margin: '0 0 14px',
-          }}>
-            {slide.line1}
-          </p>
-          <p style={{
-            fontSize: isMdUp ? '40px' : '18px',
-            fontWeight: 600,
-            color: 'rgba(255,255,255,0.90)',
-            lineHeight: 1.4,
-            margin: '0 0 16px',
-          }}>
-            {slide.line2}
-          </p>
-          <p style={{
-            fontSize: isMdUp ? '30px' : '14px',
-            color: 'rgba(255,255,255,0.70)',
-            lineHeight: 1.6,
-            margin: '0 0 4px',
-          }}>
-            {slide.line3}
-          </p>
-          <p style={{
-            fontSize: isMdUp ? '30px' : '14px',
-            color: 'rgba(255,255,255,0.70)',
-            lineHeight: 1.6,
-            margin: 0,
-          }}>
-            {slide.line4}
-          </p>
+        {/* ── 하단 그라데이션 — 다음 섹션과 자연스럽게 연결 */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
+          background: 'linear-gradient(to top, #0d0d0d 0%, transparent 100%)',
+          pointerEvents: 'none', zIndex: 9,
+        }} />
+
+        {/* ── 검정 페이드 ─────────────────────────────────────────── */}
+        <div style={{ position: 'absolute', inset: 0, background: '#0d0d0d',
+          opacity: blackP, pointerEvents: 'none', zIndex: 10 }} />
+
+        {/* ── 카드 레이어 (overflow hidden으로 클리핑) ──────────────── */}
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 5 }}>
+
+          {/* 카드 1 — Spharos ONE */}
+          <div style={cardStyle(c1Y)}>
+            <h1 style={{
+              fontSize: isMdUp ? '120px' : '52px',
+              fontWeight: 900,
+              color: '#000',
+              lineHeight: 1,
+              letterSpacing: '-0.03em',
+              margin: 0,
+            }}>
+              Spharos ONE
+            </h1>
+          </div>
+
+          {/* 카드 2 — 슬라이드 1 */}
+          <div style={cardStyle(c2Y)}>
+            <p style={{ fontSize: isMdUp ? '64px' : '28px', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
+              클라우드, 이제 클릭 한 번에
+            </p>
+            <p style={{ fontSize: isMdUp ? '40px' : '18px', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
+              가장 쉬운 프라이빗 클라우드, Spharos One
+            </p>
+            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
+              복잡한 구축과 운영은 One으로 통합하고
+            </p>
+            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
+              더 빠르게, 더 안정적으로
+            </p>
+          </div>
+
+          {/* 카드 3 — 슬라이드 2 */}
+          <div style={cardStyle(c3Y)}>
+            <p style={{ fontSize: isMdUp ? '64px' : '28px', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
+              구축하지 마세요, 구독하세요
+            </p>
+            <p style={{ fontSize: isMdUp ? '40px' : '18px', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
+              선납금 0원 · 위약금 0원 · 첫 달 이후 언제든 해지
+            </p>
+            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
+              수억 원의 초기 투자도, 발목 잡는 약정도 없이
+            </p>
+            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
+              프라이빗 클라우드의 새로운 기준
+            </p>
+          </div>
+
         </div>
-
-
       </div>
     </div>
   );

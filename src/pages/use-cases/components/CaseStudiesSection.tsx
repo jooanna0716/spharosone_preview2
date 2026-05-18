@@ -81,8 +81,7 @@ export default function CaseStudiesSection() {
                   className="rounded-xl p-4 md:p-5 text-center" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
                   <p
-                    className="text-xl md:text-2xl font-bold mb-1"
-                    style={{ color: '#5BA4F5' }}
+                    className="text-xl md:text-2xl font-bold mb-1 acc"
                   >
                     {m.value}
                   </p>
@@ -96,8 +95,8 @@ export default function CaseStudiesSection() {
               {active.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="px-3 py-1.5 rounded-full text-xs md:text-sm font-medium"
-                  style={{ background: '#1a2a40', color: '#5BA4F5' }}
+                  className="acc px-3 py-1.5 rounded-full text-xs md:text-sm font-medium"
+                  style={{ background: '#1a2a40' }}
                 >
                   {tag}
                 </span>

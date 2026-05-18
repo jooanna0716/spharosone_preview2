@@ -66,10 +66,10 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
-                className="transition-colors cursor-pointer whitespace-nowrap"
+                className={`transition-colors cursor-pointer whitespace-nowrap${isActive ? ' acc' : ''}`}
                 style={{
                   fontSize: '20px',
-                  color: isActive ? '#5BA4F5' : (transparent ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.85)'),
+                  color: isActive ? undefined : (transparent ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.85)'),
                   fontWeight: isActive ? '700' : '400',
                   transition: 'color 0.3s ease',
                 }}
@@ -113,10 +113,10 @@ export default function Navbar() {
             <Link
               key={link.path}
               to={link.path}
-              className="cursor-pointer whitespace-nowrap"
+              className={`cursor-pointer whitespace-nowrap${location.pathname === link.path ? ' acc' : ''}`}
               style={{
                 fontSize: '16px',
-                color: location.pathname === link.path ? '#5BA4F5' : 'rgba(255,255,255,0.85)',
+                color: location.pathname === link.path ? undefined : 'rgba(255,255,255,0.85)',
                 fontWeight: location.pathname === link.path ? '700' : '400',
               }}
             >

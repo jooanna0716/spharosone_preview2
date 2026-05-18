@@ -32,7 +32,7 @@ const CONTRACT_OPTIONS = [
     title: '월 단위 구독',
     period: '월 · 12 · 24 · 36개월',
     desc: '기본 월 단위 구독에서 12/24/36개월 장기 옵션까지 비즈니스 계획에 맞는 다양한 계약 기간을 선택할 수 있습니다.',
-    bg: '#5BA4F5',
+    bg: '#1a1a1a',
   },
   {
     tag: '혜택',
@@ -118,7 +118,7 @@ function CompareSlide() {
             <div key={row.label} style={{ display: 'flex', alignItems: 'center' }}>
               <CheckIcon pass={true} />
               <span style={{ fontSize: 'var(--fs-body)', color: '#f0f0f0' }}>
-                <span style={{ fontWeight: 600, color: '#5BA4F5', marginRight: '6px' }}>{row.label}:</span>
+                <span className="acc" style={{ fontWeight: 600, marginRight: '6px' }}>{row.label}:</span>
                 {row.opex}
               </span>
             </div>
@@ -139,7 +139,7 @@ function ChartLegend() {
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         <div style={{ width: '20px', height: '3px', background: '#5BA4F5', borderRadius: '2px' }} />
-        <span style={{ fontSize: '12px', color: '#5BA4F5', fontWeight: 600 }}>OPEX (Spharos One)</span>
+        <span className="acc" style={{ fontSize: '12px', fontWeight: 600 }}>OPEX (Spharos One)</span>
       </div>
     </div>
   );
@@ -291,7 +291,7 @@ export default function PricingModelSection() {
 
         {/* 헤더 */}
         <div style={{ marginBottom: '64px' }}>
-          <span style={{ fontSize: 'var(--fs-label)', color: '#5BA4F5', fontWeight: 600 }}>비즈니스 혜택</span>
+          <span className="acc" style={{ fontSize: 'var(--fs-label)', fontWeight: 600 }}>비즈니스 혜택</span>
           <h2 style={{ fontSize: 'var(--fs-display)', fontWeight: 800, color: '#f0f0f0', lineHeight: 1.2, margin: '8px 0 0' }}>
             선납금 0원, 위약금 0원<br />구독으로 비즈니스 혜택을 누리세요
           </h2>
@@ -362,10 +362,11 @@ export default function PricingModelSection() {
                 }}
               >
                 <span
+                  className={isDark ? undefined : 'acc'}
                   style={{
                     fontSize: '13px',
                     fontWeight: 700,
-                    color: isDark ? '#fff' : '#5BA4F5',
+                    color: isDark ? '#fff' : undefined,
                     background: isDark ? 'rgba(255,255,255,0.25)' : 'rgba(91,164,245,0.12)',
                     padding: '4px 12px',
                     borderRadius: '20px',
@@ -377,7 +378,7 @@ export default function PricingModelSection() {
                 <p style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0', margin: 0 }}>
                   {opt.title}
                 </p>
-                <p style={{ fontSize: '20px', fontWeight: 600, color: isDark ? 'rgba(255,255,255,0.85)' : '#5BA4F5', margin: 0 }}>
+                <p className={isDark ? undefined : 'acc'} style={{ fontSize: '20px', fontWeight: 600, color: isDark ? 'rgba(255,255,255,0.85)' : undefined, margin: 0 }}>
                   {opt.period}
                 </p>
                 <p style={{ fontSize: 'var(--fs-body)', color: isDark ? 'rgba(255,255,255,0.80)' : '#aaaaaa', lineHeight: 1.7, margin: 0 }}>

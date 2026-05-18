@@ -5,49 +5,70 @@ export default function CtaSection() {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
-    <section
-      style={{
-        backgroundImage: `linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('/images/문의하기.png')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat',
-      }}
-    >
-      <div className="w-full px-6 md:px-[120px]" style={{ padding: 'clamp(60px, 12vh, 192px) 120px' }}>
-        <p
-          className="font-semibold leading-tight"
-          style={{ fontSize: 'var(--fs-subtitle)', color: '#5BA4F5' }}
-        >
-          프라이빗 클라우드의 새로운 기준 Spharos One
-        </p>
-        <div className="mt-5">
+    <section style={{ background: '#0d0d0d', padding: 'clamp(32px, 6vh, 80px) clamp(20px, 4vw, 60px)' }}>
+
+      {/* 카드 */}
+      <div
+        style={{
+          position: 'relative',
+          borderRadius: '28px',
+          overflow: 'hidden',
+          background: '#08080c',
+        }}
+      >
+        {/* 멀티컬러 글로우 — 퍼플·블루·시안·티얼 */}
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            background: `
+              radial-gradient(ellipse 70% 100% at -8% 115%,  rgba(130,20,255,0.95) 0%, rgba(100,10,220,0.55) 35%, transparent 65%),
+              radial-gradient(ellipse 50% 70%  at 22%  110%, rgba(48,96,255,0.80)  0%, rgba(40,75,235,0.40) 40%, transparent 62%),
+              radial-gradient(ellipse 38% 55%  at 46%  108%, rgba(0,210,240,0.65)  0%, rgba(0,175,220,0.30) 42%, transparent 60%),
+              radial-gradient(ellipse 38% 55%  at 54%  108%, rgba(0,230,195,0.55)  0%, rgba(0,200,175,0.25) 42%, transparent 60%),
+              radial-gradient(ellipse 50% 70%  at 78%  110%, rgba(48,96,255,0.80)  0%, rgba(40,75,235,0.40) 40%, transparent 62%),
+              radial-gradient(ellipse 70% 100% at 108% 115%, rgba(130,20,255,0.95) 0%, rgba(100,10,220,0.55) 35%, transparent 65%)
+            `,
+          }}
+        />
+
+        {/* 본문 */}
+        <div style={{ position: 'relative', zIndex: 1, padding: 'clamp(60px, 12vh, 140px) clamp(32px, 8.33vw, 120px)' }}>
+          <p
+            className="font-semibold leading-tight acc"
+            style={{ fontSize: 'var(--fs-label)', marginBottom: '20px' }}
+          >
+            프라이빗 클라우드의 새로운 기준 Spharos One
+          </p>
           <h2
             className="font-extrabold text-white leading-tight"
-            style={{ fontSize: 'var(--fs-display)' }}
+            style={{ fontSize: 'clamp(28px, 4.5vw, 72px)', marginBottom: '16px' }}
           >
             전문 컨설턴트의 상담을 받아보세요
           </h2>
           <h3
-            className="mt-3 font-semibold leading-tight"
-            style={{ fontSize: 'clamp(22px, 3.125vw, 40px)', color: '#ffffff' }}
+            className="font-semibold leading-tight"
+            style={{ fontSize: 'clamp(16px, 2.2vw, 36px)', color: 'rgba(255,255,255,0.75)', marginBottom: '48px' }}
           >
             설계·운영·보안까지 최적의 서비스를 제안합니다
           </h3>
-        </div>
-        <button
-          type="button"
-          onClick={() => setPopupOpen(true)}
-          className="inline-flex items-center gap-3 mt-10 cursor-pointer group rounded-full px-8 py-4 font-semibold transition-all hover:opacity-90"
-          style={{ background: '#5BA4F5', color: '#fff', fontSize: 'var(--fs-label)' }}
-        >
-          문의하기
-          <span
-            className="flex items-center justify-center rounded-full transition-transform group-hover:translate-x-1"
-            style={{ width: '28px', height: '28px', background: 'rgba(255,255,255,0.2)' }}
+          <button
+            type="button"
+            onClick={() => setPopupOpen(true)}
+            className="inline-flex items-center gap-3 cursor-pointer group rounded-full font-semibold transition-all hover:opacity-90"
+            style={{ background: '#5BA4F5', color: '#fff', fontSize: 'clamp(14px, 1.1vw, 18px)', padding: '14px 32px' }}
           >
-            <i className="ri-arrow-right-line text-white text-base"></i>
-          </span>
-        </button>
+            문의하기
+            <span
+              className="flex items-center justify-center rounded-full transition-transform group-hover:translate-x-1"
+              style={{ width: '28px', height: '28px', background: 'rgba(255,255,255,0.2)' }}
+            >
+              <i className="ri-arrow-right-line text-white text-base" />
+            </span>
+          </button>
+        </div>
+
       </div>
 
       {popupOpen && createPortal(
