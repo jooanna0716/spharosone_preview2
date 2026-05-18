@@ -164,11 +164,11 @@ export default function TestimonialSection() {
         <div className="text-left">
           <span
             className="inline-block font-bold mb-3"
-            style={{ color: ACTIVE_BLUE, fontSize: '30px' }}
+            style={{ color: ACTIVE_BLUE, fontSize: 'clamp(18px, 2vw, 30px)' }}
           >
             기대효과
           </span>
-          <h2 className="font-extrabold leading-tight" style={{ color: '#111111', fontSize: '60px' }}>
+          <h2 className="font-extrabold leading-tight" style={{ color: '#111111', fontSize: 'clamp(28px, 4vw, 60px)' }}>
             현장의 고민을 확신으로
           </h2>
         </div>
@@ -262,14 +262,14 @@ export default function TestimonialSection() {
             <div className="absolute inset-0 bg-black/20" />
           </div>
 
-          <div className="flex-1 flex flex-col justify-between px-8 py-10 md:px-10 md:py-12">
+          <div className="flex-1 flex flex-col justify-between px-8 py-6 md:px-10 md:py-8">
             <div className="flex-1 flex flex-col justify-center">
-              <p className="text-[24px] font-bold text-gray-900 leading-none mb-2">{t.company}</p>
-              <p className="text-[24px] text-gray-900 leading-snug mb-6">
+              <p className="font-bold text-gray-900 leading-none mb-2" style={{ fontSize: 'clamp(16px, 1.6vw, 24px)' }}>{t.company}</p>
+              <p className="text-gray-900 leading-snug mb-3" style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>
                 {t.quote}
               </p>
-              <div className="h-6" />
-              <div className="text-[30px] font-extrabold text-gray-900 leading-relaxed">
+              <div className="h-3" />
+              <div className="font-extrabold text-gray-900 leading-relaxed" style={{ fontSize: 'clamp(18px, 2vw, 28px)' }}>
                 {t.highlights.map((h, i) => (
                   <p key={i}>
                     {h.mark ? (
@@ -282,7 +282,7 @@ export default function TestimonialSection() {
               </div>
             </div>
 
-            <div className="mt-8">
+            <div className="mt-4">
               <div className="flex items-center gap-3">
                 <div className="flex items-center gap-1.5">
                   {TESTIMONIALS.map((_, i) => (
@@ -335,7 +335,7 @@ export default function TestimonialSection() {
           </div>
         ))}
       </div>
-      <div className="hidden md:block" style={{ height: '150px', flexShrink: 0 }} />
+      <div className="hidden md:block" style={{ height: '80px', flexShrink: 0 }} />
       </div>
     </section>
   );
