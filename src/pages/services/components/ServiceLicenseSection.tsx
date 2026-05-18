@@ -11,6 +11,8 @@ interface TableRow {
   item: string;
   spec: string;
   unit: string;
+  unitRowspan?: number;
+  skipUnit?: boolean;
   billing?: string;
   billingRowspan?: number;
   billingGroupEnd?: boolean;
@@ -47,13 +49,13 @@ const MAIN_SERVICES: ServiceItem[] = [
     serviceTable: {
       title: 'IaaS 서비스 구성',
       rows: [
-        { category: 'IaaS', categoryRowspan: 7, categoryGroupEnd: true, classification: '기본 서비스료', item: '관리 플랫폼', spec: '', unit: '', billing: '월청구', billingRowspan: 7, billingGroupEnd: true, note: '계정당 기본료' },
-        { classification: 'VM 타입', classificationRowspan: 2, item: '기본', spec: '8 Core / 32 GB / 1,000 GB', unit: '', skipBilling: true },
-        { item: '추가', spec: '4 Core / 32 GB / 1,000 GB', unit: '', skipBilling: true },
-        { classification: '관제 및 운영대행', item: '관제 및 운영대행', spec: '대당', unit: 'VM', skipBilling: true },
-        { classification: '국번 서비스', item: '스냅샷', spec: 'VM 당', unit: '', skipBilling: true },
-        { classification: '공용 방화벽 서비스', item: '공용 방화벽 서비스', spec: '방화벽 사용 IP 수량에 따라 과금', unit: '', skipBilling: true, note: '개인화 데스크톱' },
-        { classification: '백신', groupEnd: true, item: 'V3 Net for Windows Server', spec: '공유 자원 풀', unit: '', skipBilling: true, note: '20% 할인' },
+        { category: 'IaaS', categoryRowspan: 7, categoryGroupEnd: true, classification: '기본 서비스료', item: '관리 플랫폼', spec: '', unit: 'VM', unitRowspan: 7, billing: '월청구', billingRowspan: 7, billingGroupEnd: true, note: '계정당 기본료' },
+        { classification: 'VM 타입', classificationRowspan: 2, item: '기본', spec: '8 Core / 32 GB / 1,000 GB', skipUnit: true, skipBilling: true },
+        { item: '추가', spec: '4 Core / 32 GB / 1,000 GB', skipUnit: true, skipBilling: true },
+        { classification: '관제 및 운영대행', item: '관제 및 운영대행', spec: '대당', skipUnit: true, skipBilling: true },
+        { classification: '국번 서비스', item: '스냅샷', spec: 'VM 당', skipUnit: true, skipBilling: true },
+        { classification: '공용 방화벽 서비스', item: '공용 방화벽 서비스', spec: '방화벽 사용 IP 수량에 따라 과금', skipUnit: true, skipBilling: true, note: '개인화 데스크톱' },
+        { classification: '백신', groupEnd: true, item: 'V3 Net for Windows Server', spec: '공유 자원 풀', skipUnit: true, skipBilling: true, note: '20% 할인' },
         { category: 'IaaS\n(outpost)', categoryRowspan: 5, classification: 'SCI', item: 'Spharos cloud infrastructure', spec: '100GB 당', unit: 'Core', billing: '월청구', billingRowspan: 5, note: 'Spharos CMP 기본 포함', noteRowspan: 5 },
         { classification: 'SCM', item: 'Spharos cloud manager', spec: 'VM 당', unit: 'Core', skipBilling: true, skipNote: true },
         { classification: 'SUS', item: 'Spharos unified storage', spec: 'VM 당', unit: 'TiB', skipBilling: true, skipNote: true },
@@ -301,7 +303,9 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
                   )}
                   <td style={groupStyle(tdCell, row.groupEnd)}>{row.item}</td>
                   <td style={groupStyle({ ...tdCell, textAlign: 'left' }, row.groupEnd)}>{row.spec}</td>
-                  <td style={groupStyle({ ...tdCell, whiteSpace: 'nowrap' }, row.groupEnd)}>{row.unit}</td>
+                  {!row.skipUnit && (
+                    <td rowSpan={row.unitRowspan ?? 1} style={groupStyle({ ...tdCell, whiteSpace: 'nowrap' }, row.groupEnd)}>{row.unit}</td>
+                  )}
                   {!row.skipBilling && (
                     row.billing !== undefined
                       ? <td rowSpan={row.billingRowspan ?? 1} style={groupStyle(tdCell, row.groupEnd || row.billingGroupEnd)}>{row.billing}</td>
