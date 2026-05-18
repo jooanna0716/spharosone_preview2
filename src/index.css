@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-ko: 'Pretendard', sans-serif;
+    --font-en: 'Poppins', sans-serif;
+  }
+
+  * {
+    font-family: 'Pretendard', 'Poppins', sans-serif;
+  }
+
+  /* English characters use Poppins, Korean uses Pretendard */
+  body {
+    font-family: 'Pretendard', 'Poppins', sans-serif;
+  }
+}
+
+body {
+  font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+}
+
+p, span, h1, h2, h3, h4, h5, h6, li, div {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}

@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(Select-String -Pattern \"lock|npm|yarn|pnpm\")",
+      "PowerShell(ls \"C:\\\\Users\\\\mdhn1\\\\Downloads\\\\project-9332341 \\(1\\)\" | Where-Object { $_.Name -match \"lock|npm|yarn|pnpm\" })",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(npm --version)",
+      "Bash(find /c/Users/mdhn1 -name \"npm\" -o -name \"node\" 2>/dev/null | head -20)",
+      "PowerShell(Get-Command npm -ErrorAction SilentlyContinue)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(New-Item -ItemType Directory -Force -Path \"C:\\\\Users\\\\mdhn1\\\\Downloads\\\\스파로스원_v.2.0\\\\.claude\")",
+      "Bash(mkdir -p \"C:\\\\Users\\\\mdhn1\\\\Downloads\\\\스파로스원_v.2.0\\\\.claude\" && echo '{\"version\":\"0.0.1\",\"configurations\":[{\"name\":\"스파로스원\",\"runtimeExecutable\":\"npm\",\"runtimeArgs\":[\"run\",\"dev\"],\"port\":5173}]}' > \"C:\\\\Users\\\\mdhn1\\\\Downloads\\\\스파로스원_v.2.0\\\\.claude\\\\launch.json\")",
+      "Bash(Remove-Item -Recurse -Force \"C:\\\\Users\\\\mdhn1\\\\Downloads\\\\스파로스원_v.2.0\\\\node_modules\\\\.vite\" -ErrorAction SilentlyContinue)"
+    ]
+  }
+}
