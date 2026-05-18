@@ -13,7 +13,7 @@ export default function CtaSection() {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      <div className="w-full px-6 md:px-[110px] py-48 md:py-64">
+      <div className="w-full px-6 md:px-[110px]" style={{ padding: 'clamp(60px, 12vh, 192px) clamp(24px, 7.5vw, 110px)' }}>
         <p
           className="font-semibold leading-tight"
           style={{ fontSize: 'var(--fs-subtitle)', color: '#5BA4F5' }}

@@ -197,7 +197,7 @@ function CashFlowSlide() {
 
       {/* 왼쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p style={{ margin: 0, fontSize: '24px', fontWeight: 700, color: '#333' }}>현금흐름 분석</p>
+        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#333' }}>현금흐름 분석</p>
         <ChartLegend />
         <div style={containerStyle}>
           <svg width="100%" viewBox={`0 0 ${LW} ${SVG_H}`} style={{ overflow: 'visible' }}>
@@ -221,7 +221,7 @@ function CashFlowSlide() {
 
       {/* 오른쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p style={{ margin: 0, fontSize: '24px', fontWeight: 700, color: '#333' }}>3년 TCO 분석</p>
+        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#333' }}>3년 TCO 분석</p>
         <ChartLegend />
         <div style={containerStyle}>
           <svg width="100%" viewBox={`0 0 ${BW} ${SVG_H}`} style={{ overflow: 'visible' }}>
@@ -285,7 +285,7 @@ export default function PricingModelSection() {
   const [slide, setSlide] = useState(0);
 
   return (
-    <section style={{ background: '#FFFFFF', padding: '160px 0' }}>
+    <section style={{ background: '#FFFFFF', padding: 'clamp(60px, 10vh, 160px) 0' }}>
       <div style={{ width: '100%', padding: '0 clamp(24px, 8vw, 110px)' }}>
 
         {/* 헤더 */}

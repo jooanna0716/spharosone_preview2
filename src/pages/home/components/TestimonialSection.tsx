@@ -160,7 +160,7 @@ export default function TestimonialSection() {
       >
 
       {/* 헤더 */}
-      <div className="flex-shrink-0 px-6 md:px-[110px] pb-8 w-full" style={{ paddingTop: '80px' }}>
+      <div className="flex-shrink-0 px-6 md:px-[110px] pb-6 w-full" style={{ paddingTop: 'clamp(20px, 5vh, 80px)' }}>
         <div className="text-left">
           <span
             className="inline-block font-bold mb-3"
@@ -262,7 +262,7 @@ export default function TestimonialSection() {
             <div className="absolute inset-0 bg-black/20" />
           </div>
 
-          <div className="flex-1 flex flex-col justify-between px-8 py-6 md:px-10 md:py-8">
+          <div className="flex-1 flex flex-col justify-between px-6 py-4 md:px-10 md:py-6">
             <div className="flex-1 flex flex-col justify-center">
               <p className="font-bold text-gray-900 leading-none mb-2" style={{ fontSize: 'clamp(16px, 1.6vw, 24px)' }}>{t.company}</p>
               <p className="text-gray-900 leading-snug mb-3" style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>
@@ -335,7 +335,7 @@ export default function TestimonialSection() {
           </div>
         ))}
       </div>
-      <div className="hidden md:block" style={{ height: '80px', flexShrink: 0 }} />
+      <div className="hidden md:block" style={{ height: 'clamp(20px, 4vh, 80px)', flexShrink: 0 }} />
       </div>
     </section>
   );

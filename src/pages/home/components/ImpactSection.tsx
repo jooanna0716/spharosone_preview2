@@ -83,7 +83,7 @@ function DesktopImpactSection() {
           }}
         >
           {/* 헤더 */}
-          <div style={{ paddingTop: '160px', flexShrink: 0 }}>
+          <div style={{ paddingTop: 'clamp(40px, 10vh, 160px)', flexShrink: 0 }}>
             <span
               style={{
                 fontSize: 'var(--fs-label)',

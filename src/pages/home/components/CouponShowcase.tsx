@@ -83,7 +83,7 @@ function BouncyCard({ children, index, style }: { children: React.ReactNode; ind
 /* ─── 데스크탑 ─── */
 function DesktopCouponShowcase() {
   return (
-    <section style={{ background: '#F0F0F0', padding: '160px 0' }}>
+    <section style={{ background: '#F0F0F0', padding: 'clamp(60px, 10vh, 160px) 0' }}>
       <div style={{ width: '100%', padding: '0 110px' }}>
 
         {/* 헤더 */}
