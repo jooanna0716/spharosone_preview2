@@ -13,18 +13,18 @@ export default {
       extend: {
         colors: {
           accent: {
-            DEFAULT: '#00B89C',
-            light: '#E6F9F5',
-            dark: '#009980',
+            DEFAULT: '#5BA4F5',
+            light: '#1a2a40',
+            dark: '#3b82f6',
           },
           surface: {
-            DEFAULT: '#F0F0F0',
-            card: '#FFFFFF',
+            DEFAULT: '#0d0d0d',
+            card: '#1a1a1a',
           },
           ink: {
-            DEFAULT: '#111111',
-            secondary: '#555555',
-            muted: '#888888',
+            DEFAULT: '#f0f0f0',
+            secondary: '#aaaaaa',
+            muted: '#777777',
           },
         },
         borderRadius: {

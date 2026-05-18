@@ -37,11 +37,11 @@ export default function Navbar() {
     <nav
       className="fixed top-0 left-0 w-full z-50"
       style={{
-        background: transparent ? 'transparent' : 'rgba(240,240,240,0.7)',
-        backdropFilter: transparent ? 'none' : 'blur(10px)',
-        WebkitBackdropFilter: transparent ? 'none' : 'blur(10px)',
-        borderBottom: transparent ? 'none' : '1px solid rgba(0,0,0,0.06)',
-        boxShadow: transparent ? 'none' : '0 1px 8px rgba(0,0,0,0.06)',
+        background: transparent ? 'transparent' : 'rgba(13,13,13,0.85)',
+        backdropFilter: transparent ? 'none' : 'blur(12px)',
+        WebkitBackdropFilter: transparent ? 'none' : 'blur(12px)',
+        borderBottom: transparent ? 'none' : '1px solid rgba(255,255,255,0.06)',
+        boxShadow: transparent ? 'none' : '0 1px 8px rgba(0,0,0,0.3)',
         transition: 'background 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease',
       }}
     >
@@ -50,7 +50,7 @@ export default function Navbar() {
         <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <img
             src={transparent
-              ? 'https://storage.readdy-site.link/project_files/09bf78ae-475d-4476-990b-92bad66325f9/a86f27da-4e64-4c72-aad0-975dc3b1df6a_Spharos-One-Black.png?v=b784750f5d9b40b067ac95731dae9614'
+              ? '/images/Spharos-One-White.png'
               : '/images/Spharos-One-White.png'}
             alt="Spharos One Logo"
             className="h-10 w-auto object-contain"
@@ -69,7 +69,7 @@ export default function Navbar() {
                 className="transition-colors cursor-pointer whitespace-nowrap"
                 style={{
                   fontSize: '20px',
-                  color: isActive ? '#5BA4F5' : (transparent ? 'rgba(255,255,255,0.9)' : '#333333'),
+                  color: isActive ? '#5BA4F5' : (transparent ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.85)'),
                   fontWeight: isActive ? '700' : '400',
                   transition: 'color 0.3s ease',
                 }}
@@ -84,7 +84,7 @@ export default function Navbar() {
             className="transition-all cursor-pointer whitespace-nowrap rounded-full px-5 py-2 text-sm font-semibold border-none"
             style={{
               fontSize: '16px',
-              background: transparent ? 'rgba(255,255,255,0.15)' : '#111111',
+              background: transparent ? 'rgba(255,255,255,0.15)' : '#5BA4F5',
               color: '#ffffff',
               border: transparent ? '1px solid rgba(255,255,255,0.4)' : 'none',
               transition: 'background 0.3s ease',
@@ -101,14 +101,14 @@ export default function Navbar() {
           aria-label="메뉴 열기"
         >
           <i className={`${menuOpen ? 'ri-close-line' : 'ri-menu-line'} text-2xl`}
-            style={{ color: transparent ? '#ffffff' : '#374151' }}
+            style={{ color: '#ffffff' }}
           ></i>
         </button>
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden px-6 py-4 flex flex-col gap-4 bg-white border-t border-gray-100">
+        <div className="md:hidden px-6 py-4 flex flex-col gap-4 border-t" style={{ background: 'rgba(13,13,13,0.95)', borderColor: 'rgba(255,255,255,0.08)' }}>
           {NAV_LINKS.map((link) => (
             <Link
               key={link.path}
@@ -116,7 +116,7 @@ export default function Navbar() {
               className="cursor-pointer whitespace-nowrap"
               style={{
                 fontSize: '16px',
-                color: location.pathname === link.path ? '#5BA4F5' : '#333333',
+                color: location.pathname === link.path ? '#5BA4F5' : 'rgba(255,255,255,0.85)',
                 fontWeight: location.pathname === link.path ? '700' : '400',
               }}
             >
@@ -127,7 +127,7 @@ export default function Navbar() {
             type="button"
             onClick={() => setPopupOpen(true)}
             className="cursor-pointer whitespace-nowrap bg-transparent border-none text-left"
-            style={{ fontSize: '16px', color: '#333333', fontWeight: '400' }}
+            style={{ fontSize: '16px', color: 'rgba(255,255,255,0.85)', fontWeight: '400' }}
           >
             문의하기
           </button>
@@ -143,20 +143,22 @@ export default function Navbar() {
           onClick={() => setPopupOpen(false)}
         >
           <div
-            className="bg-white rounded-2xl p-8 w-[440px] flex flex-col gap-5 shadow-xl"
+            className="rounded-2xl p-8 w-[440px] flex flex-col gap-5 shadow-xl"
+            style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <h3 className="font-bold text-gray-900" style={{ fontSize: '18px' }}>문의하기</h3>
+              <h3 className="font-bold" style={{ fontSize: '18px', color: '#f0f0f0' }}>문의하기</h3>
               <button
                 type="button"
                 onClick={() => setPopupOpen(false)}
-                className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 cursor-pointer bg-transparent border-none"
+                className="w-8 h-8 flex items-center justify-center cursor-pointer bg-transparent border-none"
+                style={{ color: '#777777' }}
               >
                 <i className="ri-close-line text-xl"></i>
               </button>
             </div>
-            <p className="text-gray-500" style={{ fontSize: '18px' }}>원하시는 문의 방식을 선택해주세요.</p>
+            <p style={{ fontSize: '18px', color: '#aaaaaa' }}>원하시는 문의 방식을 선택해주세요.</p>
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:jooanna@shinsegae.com?subject=[Spharos One] 서비스 문의&body=1. 이름 : %0D%0A2. 연락처 : %0D%0A3. 이메일 : %0D%0A4. 회사 : %0D%0A5. 직급 : %0D%0A6. 직무 : %0D%0A7. 문의 유형 [메인서비스 / 라이선스 / 부가서비스 중 선택] : %0D%0A8. 문의 내용 : %0D%0A%0D%0A※ 문의 답변을 목적으로 이름, 연락처, 이메일, 회사명, 직급, 직무, 문의 내용을 수집하고 있습니다. 수집 후 1개월 간 보관되며 이후 안전하게 파기됩니다."
@@ -172,8 +174,8 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setPopupOpen(false)}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-center cursor-pointer whitespace-nowrap"
-                style={{ fontSize: '18px' }}
+                className="w-full py-3 font-semibold rounded-xl text-center cursor-pointer whitespace-nowrap transition-opacity hover:opacity-80"
+                style={{ fontSize: '18px', background: '#2a2a2a', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.1)' }}
               >
                 <i className="ri-article-line mr-1.5"></i>
                 게시판 문의하기

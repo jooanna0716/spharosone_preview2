@@ -84,13 +84,14 @@ export default function HeroSection() {
             filter: 'contrast(1.10) saturate(1.08)',
           }}
         />
-        {/* 화질 보정 오버레이 */}
+        {/* 퍼플~블루~민트 그라디언트 오버레이 (DAN25 스타일) */}
         <div
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'rgba(0,0,0,0.08)',
+            background: 'linear-gradient(135deg, rgba(107,33,232,0.72) 0%, rgba(59,130,246,0.60) 50%, rgba(0,184,156,0.55) 100%)',
             pointerEvents: 'none',
+            zIndex: 1,
           }}
         />
 
@@ -101,8 +102,8 @@ export default function HeroSection() {
             bottom: 0,
             left: 0,
             right: 0,
-            height: '50%',
-            background: 'linear-gradient(to bottom, transparent, #000000)',
+            height: '55%',
+            background: 'linear-gradient(to bottom, transparent, #0d0d0d)',
             pointerEvents: 'none',
             zIndex: 2,
           }}

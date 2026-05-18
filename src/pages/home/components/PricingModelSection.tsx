@@ -39,14 +39,14 @@ const CONTRACT_OPTIONS = [
     title: '자체 프로모션',
     period: '스파로스원 고객은 특별하게',
     desc: '초기 도입 프로모션, 계약 기간별 차등 할인, 서비스 추가 시 결합 할인 등 다양한 비용 절감 혜택을 누릴 수 있습니다.',
-    bg: '#EFF6FF',
+    bg: '#1a1a1a',
   },
   {
     tag: '편의',
     title: '간소화된 관리',
     period: '변경 · 연장 · 해지',
     desc: '서비스 변경, 계약 연장, 해지 프로세스가 간소화되어 복잡한 절차 없이 계약 조건을 관리할 수 있습니다.',
-    bg: '#DBEAFE',
+    bg: '#1a1a1a',
   },
 ];
 
@@ -83,20 +83,20 @@ function CompareSlide() {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', height: '100%' }}>
       {/* CAPEX */}
-      <div style={{ background: '#F4F4F4', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+      <div style={{ background: '#1a1a1a', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px', border: '1px solid rgba(255,255,255,0.08)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '13px', fontWeight: 600, color: '#666', background: 'rgba(0,0,0,0.10)', padding: '4px 12px', borderRadius: '20px' }}>기존 방식</span>
-          <span style={{ fontSize: '24px', fontWeight: 700, color: '#555' }}>CAPEX</span>
+          <span style={{ fontSize: '13px', fontWeight: 600, color: '#888', background: 'rgba(255,255,255,0.08)', padding: '4px 12px', borderRadius: '20px' }}>기존 방식</span>
+          <span style={{ fontSize: '24px', fontWeight: 700, color: '#aaaaaa' }}>CAPEX</span>
         </div>
-        <p style={{ fontSize: 'var(--fs-body)', color: '#777', lineHeight: 1.6, margin: 0 }}>
+        <p style={{ fontSize: 'var(--fs-body)', color: '#777777', lineHeight: 1.6, margin: 0 }}>
           서버·스토리지를 직접 구매하고 데이터센터를 구축하는 전통적인 자본 지출 방식입니다.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {COMPARISON_ROWS.map((row) => (
             <div key={row.label} style={{ display: 'flex', alignItems: 'center' }}>
               <CheckIcon pass={false} />
-              <span style={{ fontSize: '20px', color: '#666' }}>
-                <span style={{ fontWeight: 600, color: '#888', marginRight: '6px' }}>{row.label}:</span>
+              <span style={{ fontSize: '20px', color: '#888888' }}>
+                <span style={{ fontWeight: 600, color: '#666666', marginRight: '6px' }}>{row.label}:</span>
                 {row.capex}
               </span>
             </div>
@@ -105,19 +105,19 @@ function CompareSlide() {
       </div>
 
       {/* OPEX */}
-      <div style={{ background: '#FFFFFF', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '0 4px 32px rgba(91,164,245,0.18)', border: '2px solid #5BA4F5' }}>
+      <div style={{ background: '#1f2a3a', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '0 4px 32px rgba(91,164,245,0.25)', border: '2px solid #5BA4F5' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
           <span style={{ fontSize: '13px', fontWeight: 700, color: '#fff', background: '#5BA4F5', padding: '4px 12px', borderRadius: '20px' }}>추천</span>
-          <span style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#111' }}>Spharos One (OPEX)</span>
+          <span style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0' }}>Spharos One (OPEX)</span>
         </div>
-        <p style={{ fontSize: '20px', color: '#444', lineHeight: 1.6, margin: 0 }}>
+        <p style={{ fontSize: '20px', color: '#aaaaaa', lineHeight: 1.6, margin: 0 }}>
           초기 투자 없이 사용한 만큼 지불하는 구독형 운영 지출 방식으로 유연하게 클라우드를 운영합니다.
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {COMPARISON_ROWS.map((row) => (
             <div key={row.label} style={{ display: 'flex', alignItems: 'center' }}>
               <CheckIcon pass={true} />
-              <span style={{ fontSize: 'var(--fs-body)', color: '#222' }}>
+              <span style={{ fontSize: 'var(--fs-body)', color: '#f0f0f0' }}>
                 <span style={{ fontWeight: 600, color: '#5BA4F5', marginRight: '6px' }}>{row.label}:</span>
                 {row.opex}
               </span>
@@ -184,12 +184,13 @@ function CashFlowSlide() {
 
   const containerStyle: React.CSSProperties = {
     flex: 1,
-    background: '#F4F8FF',
+    background: '#161b25',
     borderRadius: '16px',
     padding: '16px 14px 10px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    border: '1px solid rgba(91,164,245,0.15)',
   };
 
   return (
@@ -197,15 +198,15 @@ function CashFlowSlide() {
 
       {/* 왼쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#333' }}>현금흐름 분석</p>
+        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0' }}>현금흐름 분석</p>
         <ChartLegend />
         <div style={containerStyle}>
           <svg width="100%" viewBox={`0 0 ${LW} ${SVG_H}`} style={{ overflow: 'visible' }}>
             <path d={areaD} fill="rgba(91,164,245,0.13)" />
             {[0, 25, 50, 75, 100].map(v => (
               <g key={v}>
-                <line x1={lPL} y1={yOf(v)} x2={LW - lPR} y2={yOf(v)} stroke="#e0e0e0" strokeWidth="1" strokeDasharray="4 3" />
-                <text x={lPL - 5} y={yOf(v) + 4} textAnchor="end" fontSize="11" fill="#bbb">{v}%</text>
+                <line x1={lPL} y1={yOf(v)} x2={LW - lPR} y2={yOf(v)} stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 3" />
+                <text x={lPL - 5} y={yOf(v) + 4} textAnchor="end" fontSize="11" fill="#666">{v}%</text>
               </g>
             ))}
             <polyline points={capexPts} fill="none" stroke="#AAAAAA" strokeWidth="2" strokeLinejoin="round" />
@@ -213,7 +214,7 @@ function CashFlowSlide() {
             {CASH_FLOW.map((d, i) => <circle key={`cp${i}`} cx={xOf(i)} cy={yOf(d.capex)} r="3.5" fill="#AAAAAA" />)}
             {CASH_FLOW.map((d, i) => <circle key={`op${i}`} cx={xOf(i)} cy={yOf(d.opex)}  r="3.5" fill="#5BA4F5" />)}
             {CASH_FLOW.map((d, i) => (
-              <text key={`xl${i}`} x={xOf(i)} y={SVG_H - 4} textAnchor="middle" fontSize="11" fill="#999">{d.period}</text>
+              <text key={`xl${i}`} x={xOf(i)} y={SVG_H - 4} textAnchor="middle" fontSize="11" fill="#666">{d.period}</text>
             ))}
           </svg>
         </div>
@@ -221,19 +222,19 @@ function CashFlowSlide() {
 
       {/* 오른쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#333' }}>3년 TCO 분석</p>
+        <p style={{ margin: 0, fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0' }}>3년 TCO 분석</p>
         <ChartLegend />
         <div style={containerStyle}>
           <svg width="100%" viewBox={`0 0 ${BW} ${SVG_H}`} style={{ overflow: 'visible' }}>
             {/* 그리드 */}
             {[0, 10, 20, 30].map((v) => (
               <g key={v}>
-                <line x1={bPL} y1={barTop(v)} x2={BW - bPR} y2={barTop(v)} stroke="#e0e0e0" strokeWidth="1" strokeDasharray="4 3" />
-                <text x={bPL - 5} y={barTop(v) + 4} textAnchor="end" fontSize="11" fill="#bbb">{v}%</text>
+                <line x1={bPL} y1={barTop(v)} x2={BW - bPR} y2={barTop(v)} stroke="rgba(255,255,255,0.1)" strokeWidth="1" strokeDasharray="4 3" />
+                <text x={bPL - 5} y={barTop(v) + 4} textAnchor="end" fontSize="11" fill="#666">{v}%</text>
               </g>
             ))}
             {/* X 축 */}
-            <line x1={bPL} y1={barTop(0)} x2={BW - bPR} y2={barTop(0)} stroke="#ddd" strokeWidth="1.5" />
+            <line x1={bPL} y1={barTop(0)} x2={BW - bPR} y2={barTop(0)} stroke="rgba(255,255,255,0.15)" strokeWidth="1.5" />
 
             {TCO_DATA.map((d, i) => {
               const cx = groupCx(i);
@@ -269,7 +270,7 @@ function CashFlowSlide() {
                   )}
 
                   {/* X 레이블 */}
-                  <text x={cx} y={SVG_H - 4} textAnchor="middle" fontSize="11" fill="#666" fontWeight="600">{d.label}</text>
+                  <text x={cx} y={SVG_H - 4} textAnchor="middle" fontSize="11" fill="#888888" fontWeight="600">{d.label}</text>
                 </g>
               );
             })}
@@ -285,13 +286,13 @@ export default function PricingModelSection() {
   const [slide, setSlide] = useState(0);
 
   return (
-    <section style={{ background: '#FFFFFF', padding: 'clamp(60px, 10vh, 160px) 0' }}>
+    <section style={{ background: '#0d0d0d', padding: 'clamp(60px, 10vh, 160px) 0' }}>
       <div style={{ width: '100%', padding: '0 120px' }}>
 
         {/* 헤더 */}
         <div style={{ marginBottom: '64px' }}>
           <span style={{ fontSize: 'var(--fs-label)', color: '#5BA4F5', fontWeight: 600 }}>비즈니스 혜택</span>
-          <h2 style={{ fontSize: 'var(--fs-display)', fontWeight: 800, color: '#111111', lineHeight: 1.2, margin: '8px 0 0' }}>
+          <h2 style={{ fontSize: 'var(--fs-display)', fontWeight: 800, color: '#f0f0f0', lineHeight: 1.2, margin: '8px 0 0' }}>
             선납금 0원, 위약금 0원<br />구독으로 비즈니스 혜택을 누리세요
           </h2>
         </div>
@@ -329,7 +330,7 @@ export default function PricingModelSection() {
                 border: 'none',
                 padding: 0,
                 cursor: 'pointer',
-                background: i === slide ? '#5BA4F5' : 'rgba(0,0,0,0.18)',
+                background: i === slide ? '#5BA4F5' : 'rgba(255,255,255,0.18)',
                 transition: 'width 0.3s ease, background 0.3s ease',
               }}
             />
@@ -340,7 +341,7 @@ export default function PricingModelSection() {
         <div style={{ width: '52px', height: '3px', background: '#5BA4F5', borderRadius: '2px', margin: '72px 0 48px' }} />
 
         {/* 유연한 계약 옵션 */}
-        <h3 style={{ fontSize: 'var(--fs-heading)', fontWeight: 700, color: '#111', margin: '0 0 32px', lineHeight: 1.3 }}>
+        <h3 style={{ fontSize: 'var(--fs-heading)', fontWeight: 700, color: '#f0f0f0', margin: '0 0 32px', lineHeight: 1.3 }}>
           유연한 계약 옵션
         </h3>
 
@@ -373,13 +374,13 @@ export default function PricingModelSection() {
                 >
                   {opt.tag}
                 </span>
-                <p style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: isDark ? '#fff' : '#111', margin: 0 }}>
+                <p style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0', margin: 0 }}>
                   {opt.title}
                 </p>
                 <p style={{ fontSize: '20px', fontWeight: 600, color: isDark ? 'rgba(255,255,255,0.85)' : '#5BA4F5', margin: 0 }}>
                   {opt.period}
                 </p>
-                <p style={{ fontSize: 'var(--fs-body)', color: isDark ? 'rgba(255,255,255,0.80)' : '#666', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontSize: 'var(--fs-body)', color: isDark ? 'rgba(255,255,255,0.80)' : '#aaaaaa', lineHeight: 1.7, margin: 0 }}>
                   {opt.desc}
                 </p>
               </div>

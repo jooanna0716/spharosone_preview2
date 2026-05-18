@@ -6,7 +6,7 @@ export default function FeaturesSection() {
   const active = FEATURES[activeIdx];
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-[120px] bg-white w-full">
+    <section className="py-16 md:py-24 px-6 md:px-[120px] w-full" style={{ background: '#0d0d0d' }}>
       <div className="w-full">
         {/* Header */}
         <div className="mb-12 md:mb-16">
@@ -18,7 +18,7 @@ export default function FeaturesSection() {
           </span>
           <h2
             className="font-bold text-3xl md:text-5xl leading-tight"
-            style={{ color: '#111111', fontFamily: "'Poppins', sans-serif" }}
+            style={{ color: '#f0f0f0', fontFamily: "'Poppins', sans-serif" }}
           >
             다양한 산업과 요구에 맞는<br className="hidden md:block" /> 맞춤형 클라우드 솔루션
           </h2>
@@ -34,23 +34,23 @@ export default function FeaturesSection() {
                 onClick={() => setActiveIdx(i)}
                 className="flex-shrink-0 flex flex-col items-center gap-2 md:gap-3 px-5 py-4 md:px-8 md:py-6 rounded-xl transition-all duration-300 cursor-pointer border"
                 style={{
-                  background: isActive ? '#F9BB00' : '#F8F8FA',
-                  borderColor: isActive ? '#F9BB00' : 'rgba(0,0,0,0.08)',
+                  background: isActive ? '#F9BB00' : '#1a1a1a',
+                  borderColor: isActive ? '#F9BB00' : 'rgba(255,255,255,0.08)',
                   minWidth: '120px',
                 }}
               >
                 <div
                   className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full"
-                  style={{ background: isActive ? '#111' : '#E5EBF4' }}
+                  style={{ background: isActive ? '#111' : '#2a2a2a' }}
                 >
                   <i
                     className={`${f.icon} text-lg md:text-xl`}
-                    style={{ color: isActive ? '#F9BB00' : '#0F2747' }}
+                    style={{ color: isActive ? '#F9BB00' : '#5BA4F5' }}
                   />
                 </div>
                 <span
                   className="font-semibold text-sm md:text-base whitespace-nowrap"
-                  style={{ color: isActive ? '#111' : 'rgba(0,0,0,0.55)' }}
+                  style={{ color: isActive ? '#111' : 'rgba(255,255,255,0.55)' }}
                 >
                   {f.title}
                 </span>
@@ -62,7 +62,7 @@ export default function FeaturesSection() {
         {/* Active Feature Detail */}
         <div
           className="rounded-2xl p-6 md:p-12 transition-all duration-500"
-          style={{ background: '#E5EBF4' }}
+          style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
         >
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">
             {/* Left: Title & Summary */}
@@ -70,16 +70,16 @@ export default function FeaturesSection() {
               <div className="flex items-center gap-3 mb-3">
                 <div
                   className="w-12 h-12 flex items-center justify-center rounded-full"
-                  style={{ background: '#0F2747' }}
+                  style={{ background: '#1a2a40' }}
                 >
                   <i className={`${active.icon} text-xl`} style={{ color: '#F9BB00' }} />
                 </div>
                 <div>
-                  <h3 className="text-2xl md:text-3xl font-bold text-black">{active.title}</h3>
-                  <p className="text-sm text-gray-500">{active.subtitle}</p>
+                  <h3 className="text-2xl md:text-3xl font-bold" style={{ color: '#f0f0f0' }}>{active.title}</h3>
+                  <p className="text-sm" style={{ color: '#aaaaaa' }}>{active.subtitle}</p>
                 </div>
               </div>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed mt-4">
+              <p className="text-base md:text-lg leading-relaxed mt-4" style={{ color: '#aaaaaa' }}>
                 {active.summary}
               </p>
             </div>
@@ -90,7 +90,8 @@ export default function FeaturesSection() {
                 {active.detailPoints.map((point, i) => (
                   <div
                     key={i}
-                    className="bg-white rounded-xl p-5 md:p-6 border border-gray-100"
+                    className="rounded-xl p-5 md:p-6"
+                    style={{ background: '#111827', border: '1px solid rgba(255,255,255,0.08)' }}
                   >
                     <div
                       className="w-8 h-8 flex items-center justify-center rounded-full mb-3"
@@ -98,7 +99,7 @@ export default function FeaturesSection() {
                     >
                       <span className="text-sm font-bold text-black">{String(i + 1).padStart(2, '0')}</span>
                     </div>
-                    <p className="text-sm md:text-base text-gray-800 leading-relaxed">
+                    <p className="text-sm md:text-base leading-relaxed" style={{ color: '#aaaaaa' }}>
                       {point}
                     </p>
                   </div>

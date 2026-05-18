@@ -88,7 +88,7 @@ function DesktopFeaturesSection() {
 
   return (
     <section ref={sectionRef} className="relative" style={{ height: '280vh' }}>
-      <div className="sticky top-0 overflow-hidden" style={{ height: '100vh', backgroundColor: '#f8f8fa' }}>
+      <div className="sticky top-0 overflow-hidden" style={{ height: '100vh', backgroundColor: '#0d0d0d' }}>
         <div
           className="absolute overflow-hidden"
           style={{
@@ -117,11 +117,11 @@ function DesktopFeaturesSection() {
               ref={textBlockRef}
               style={{ width: '60%', alignSelf: 'flex-start', transform: `translateY(${textY}px)`, opacity: textOpacity, transition: 'transform 0.05s linear, opacity 0.05s linear' }}
             >
-              <h2 className="font-extrabold leading-tight" style={{ fontSize: 'clamp(32px, 4.375vw, 56px)', color: '#111111', lineHeight: '1.2' }}>
+              <h2 className="font-extrabold leading-tight" style={{ fontSize: 'clamp(32px, 4.375vw, 56px)', color: '#f0f0f0', lineHeight: '1.2' }}>
                 <span style={{ display: 'block' }}>복잡한 클라우드 인프라를</span>
                 <span style={{ display: 'block' }}>스파로스원 하나로 완성하세요</span>
               </h2>
-              <p className="mt-6 leading-relaxed" style={{ fontSize: 'clamp(16px, 2.1875vw, 28px)', color: '#333333', maxWidth: '800px' }}>
+              <p className="mt-6 leading-relaxed" style={{ fontSize: 'clamp(16px, 2.1875vw, 28px)', color: '#aaaaaa', maxWidth: '800px' }}>
                 검증된 Nutanix 솔루션 기술과 신세계의 비즈니스 운영 역량을 결합해
                 최상의 안정성과 유연한 비즈니스 환경을 제공합니다
               </p>
@@ -244,7 +244,7 @@ function MobileFeaturesSection() {
 
   return (
     <section ref={sectionRef} className="relative" style={{ height: '300vh' }}>
-      <div className="sticky top-0 overflow-hidden" style={{ height: '100vh', backgroundColor: '#f8f8fa' }}>
+      <div className="sticky top-0 overflow-hidden" style={{ height: '100vh', backgroundColor: '#0d0d0d' }}>
         <div
           className="absolute overflow-hidden"
           style={{
@@ -263,10 +263,10 @@ function MobileFeaturesSection() {
           style={{ top: `${textTop}px`, left: '16px', right: '16px', zIndex: 2, pointerEvents: 'none', opacity: 1 - textOut, transform: `translateY(${-(textOut * 50)}px)`, transition: 'transform 0.05s linear, opacity 0.05s linear' }}
         >
           <div ref={textBlockRef}>
-            <h2 className="font-extrabold leading-tight" style={{ fontSize: '28px', color: '#111111', lineHeight: '1.35' }}>
+            <h2 className="font-extrabold leading-tight" style={{ fontSize: '28px', color: '#f0f0f0', lineHeight: '1.35' }}>
               복잡한 클라우드 인프라를<br />스파로스원 하나로 완성하세요
             </h2>
-            <p className="mt-4 leading-relaxed mx-auto" style={{ fontSize: '14px', color: '#444444', maxWidth: '340px' }}>
+            <p className="mt-4 leading-relaxed mx-auto" style={{ fontSize: '14px', color: '#aaaaaa', maxWidth: '340px' }}>
               검증된 Nutanix 솔루션 기술과 신세계의 비즈니스 운영 역량을 결합해
               최상의 안정성과 유연한 비즈니스 환경을 제공합니다
             </p>

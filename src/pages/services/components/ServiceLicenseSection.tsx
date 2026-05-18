@@ -209,9 +209,9 @@ const tdCell: React.CSSProperties = {
   fontSize: '18px',
   padding: '11px 16px',
   textAlign: 'center',
-  borderRight: '1px solid #ececec',
-  borderBottom: '1px solid #ececec',
-  color: '#333',
+  borderRight: '1px solid rgba(255,255,255,0.08)',
+  borderBottom: '1px solid rgba(255,255,255,0.08)',
+  color: '#e0e0e0',
   verticalAlign: 'middle',
 };
 
@@ -239,13 +239,14 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
     >
       <div
         style={{
-          background: '#fff',
+          background: '#1a1a1a',
           borderRadius: '16px',
           width: 'min(1200px, 95vw)',
           maxHeight: '90vh',
           overflowY: 'auto',
           padding: '44px 44px 40px',
           position: 'relative',
+          border: '1px solid rgba(255,255,255,0.1)',
         }}
         onClick={(e) => e.stopPropagation()}
       >
@@ -254,18 +255,18 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
           style={{
             position: 'absolute', top: '20px', right: '24px',
             background: 'none', border: 'none', fontSize: '24px',
-            cursor: 'pointer', color: '#555', lineHeight: 1,
+            cursor: 'pointer', color: '#aaaaaa', lineHeight: 1,
           }}
         >
           ✕
         </button>
 
-        <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '32px', color: '#111' }}>
+        <h2 style={{ fontSize: '28px', fontWeight: 700, marginBottom: '32px', color: '#f0f0f0' }}>
           {table.title}
         </h2>
 
         <div style={{ overflowX: 'auto' }}>
-          <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid #e0e0e0', tableLayout: 'fixed' }}>
+          <table style={{ width: '100%', borderCollapse: 'collapse', border: '1px solid rgba(255,255,255,0.1)', tableLayout: 'fixed' }}>
             <colgroup>
               <col style={{ width: '110px' }} />
               <col style={{ width: '150px' }} />
@@ -288,7 +289,7 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
                   {row.category !== undefined && (
                     <td
                       rowSpan={row.categoryRowspan}
-                      style={groupStyle({ ...tdCell, fontWeight: 600, whiteSpace: 'pre-line', background: '#fafafa' }, false, row.categoryGroupEnd)}
+                      style={groupStyle({ ...tdCell, fontWeight: 600, whiteSpace: 'pre-line', background: '#222222' }, false, row.categoryGroupEnd)}
                     >
                       {row.category}
                     </td>
@@ -296,7 +297,7 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
                   {row.classification !== undefined && (
                     <td
                       rowSpan={row.classificationRowspan ?? 1}
-                      style={groupStyle({ ...tdCell, background: '#fafafa' }, row.groupEnd)}
+                      style={groupStyle({ ...tdCell, background: '#222222' }, row.groupEnd)}
                     >
                       {row.classification}
                     </td>
@@ -340,16 +341,17 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
       <div
         className="px-6 md:px-10"
         style={{
-          background: '#ffffff',
+          background: '#1a1a1a',
           borderRadius: '20px',
-          boxShadow: '0 2px 16px rgba(0,0,0,0.06)',
+          boxShadow: '0 2px 16px rgba(0,0,0,0.3)',
+          border: '1px solid rgba(255,255,255,0.06)',
         }}
       >
         {/* 데스크탑 */}
         <div className="hidden md:block py-10">
           {/* 제목 */}
           <div className="flex items-center gap-3 flex-wrap mb-2">
-            <h3 className="font-bold text-black" style={{ fontSize: '42px', lineHeight: 1.1 }}>{item.label}</h3>
+            <h3 className="font-bold" style={{ fontSize: '42px', lineHeight: 1.1, color: '#f0f0f0' }}>{item.label}</h3>
             {item.badge && (
               <span
                 style={{
@@ -365,14 +367,14 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               </span>
             )}
           </div>
-          <p className="text-black/60 text-2xl mb-8">{item.subtitle}</p>
+          <p className="text-2xl mb-8" style={{ color: '#aaaaaa' }}>{item.subtitle}</p>
 
           {/* 상세 */}
           <div className="space-y-8">
             {item.definition ? (
               <>
-                <p className="text-black/80 leading-relaxed" style={{ fontSize: '30px' }}>{item.definition}</p>
-                <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.10)', margin: '8px 0 0' }} />
+                <p className="leading-relaxed" style={{ fontSize: '30px', color: 'rgba(240,240,240,0.8)' }}>{item.definition}</p>
+                <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.10)', margin: '8px 0 0' }} />
               </>
             ) : item.features.length > 0 && (
               <div>
@@ -394,8 +396,8 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               <div>
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                   <span
-                    className="font-bold text-black"
-                    style={{ fontSize: '24px', background: 'rgba(0,0,0,0.07)', padding: '6px 20px', borderRadius: '20px' }}
+                    className="font-bold"
+                    style={{ fontSize: '24px', background: 'rgba(255,255,255,0.08)', padding: '6px 20px', borderRadius: '20px', color: '#f0f0f0' }}
                   >
                     서비스 구성
                   </span>
@@ -420,11 +422,11 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                     </button>
                   )}
                 </div>
-                <div className="text-black/80 leading-relaxed space-y-3" style={{ fontSize: '24px' }}>
+                <div className="leading-relaxed space-y-3" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>
                   {item.compositions.map((c) => (
                     <div key={c.name}>
-                      <p className="font-semibold text-black">• {c.name}</p>
-                      <p className="text-black/70 pl-4">{c.desc}</p>
+                      <p className="font-semibold" style={{ color: '#f0f0f0' }}>• {c.name}</p>
+                      <p className="pl-4" style={{ color: 'rgba(240,240,240,0.65)' }}>{c.desc}</p>
                     </div>
                   ))}
                 </div>
@@ -433,17 +435,17 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
 
             <div>
               <span
-                className="inline-block font-bold text-black mb-3"
-                style={{ fontSize: '24px', background: 'rgba(0,0,0,0.07)', padding: '4px 16px', borderRadius: '20px' }}
+                className="inline-block font-bold mb-3"
+                style={{ fontSize: '24px', background: 'rgba(255,255,255,0.08)', padding: '4px 16px', borderRadius: '20px', color: '#f0f0f0' }}
               >
                 추천 고객
               </span>
               {Array.isArray(item.recommend) ? (
-                <div className="text-black/80 leading-relaxed space-y-1" style={{ fontSize: '24px' }}>
+                <div className="leading-relaxed space-y-1" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>
                   {item.recommend.map((r, i) => <p key={i}>• {r}</p>)}
                 </div>
               ) : (
-                <p className="text-black/80 leading-relaxed" style={{ fontSize: '24px' }}>{item.recommend}</p>
+                <p className="leading-relaxed" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>{item.recommend}</p>
               )}
             </div>
           </div>
@@ -457,16 +459,16 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
           >
             <div className="text-left">
               <div className="flex items-center gap-2">
-                <h3 className="font-bold text-black text-2xl">{item.label}</h3>
+                <h3 className="font-bold text-2xl" style={{ color: '#f0f0f0' }}>{item.label}</h3>
                 {item.badge && (
                   <span style={{ fontSize: '11px', fontWeight: 600, color: '#ffffff', background: '#5BA4F5', padding: '2px 8px', borderRadius: '20px' }}>
                     {item.badge}
                   </span>
                 )}
               </div>
-              <p className="text-black/60 text-sm mt-1">{item.subtitle}</p>
+              <p className="text-sm mt-1" style={{ color: '#aaaaaa' }}>{item.subtitle}</p>
             </div>
-            <span className="w-8 h-8 flex items-center justify-center text-black text-xl">
+            <span className="w-8 h-8 flex items-center justify-center text-xl" style={{ color: '#aaaaaa' }}>
               {open ? '−' : '+'}
             </span>
           </button>
@@ -474,7 +476,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
           {open && (
             <div className="pb-6 space-y-6">
               {item.definition ? (
-                <p className="text-black/80 text-sm leading-relaxed">{item.definition}</p>
+                <p className="text-sm leading-relaxed" style={{ color: 'rgba(240,240,240,0.8)' }}>{item.definition}</p>
               ) : item.features.length > 0 && (
                 <div>
                   <p className="font-bold text-black text-base mb-2">특징</p>
@@ -494,7 +496,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                 <div>
                   <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
                     <span
-                      style={{ fontSize: '14px', fontWeight: 700, background: 'rgba(0,0,0,0.07)', padding: '4px 14px', borderRadius: '20px', color: '#1a1a1a' }}
+                      style={{ fontSize: '14px', fontWeight: 700, background: 'rgba(255,255,255,0.08)', padding: '4px 14px', borderRadius: '20px', color: '#f0f0f0' }}
                     >
                       서비스 구성
                     </span>
@@ -531,11 +533,11 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                       </div>
                     )}
                   </div>
-                  <div className="text-black/80 leading-relaxed space-y-2" style={{ fontSize: '14px' }}>
+                  <div className="leading-relaxed space-y-2" style={{ fontSize: '14px', color: 'rgba(240,240,240,0.8)' }}>
                     {item.compositions.map((c) => (
                       <div key={c.name}>
-                        <p className="font-semibold text-black">• {c.name}</p>
-                        <p className="text-black/70 pl-4">{c.desc}</p>
+                        <p className="font-semibold" style={{ color: '#f0f0f0' }}>• {c.name}</p>
+                        <p className="pl-4" style={{ color: 'rgba(240,240,240,0.65)' }}>{c.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -543,17 +545,17 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               )}
               <div>
                 <span
-                  className="inline-block font-bold text-black mb-2"
-                  style={{ fontSize: '14px', background: 'rgba(0,0,0,0.07)', padding: '4px 14px', borderRadius: '20px' }}
+                  className="inline-block font-bold mb-2"
+                  style={{ fontSize: '14px', background: 'rgba(255,255,255,0.08)', padding: '4px 14px', borderRadius: '20px', color: '#f0f0f0' }}
                 >
                   추천 고객
                 </span>
                 {Array.isArray(item.recommend) ? (
-                  <div className="text-black/80 leading-relaxed space-y-1" style={{ fontSize: '14px' }}>
+                  <div className="leading-relaxed space-y-1" style={{ fontSize: '14px', color: 'rgba(240,240,240,0.8)' }}>
                     {item.recommend.map((r, i) => <p key={i}>• {r}</p>)}
                   </div>
                 ) : (
-                  <p className="text-black/80 leading-relaxed" style={{ fontSize: '14px' }}>{item.recommend}</p>
+                  <p className="leading-relaxed" style={{ fontSize: '14px', color: 'rgba(240,240,240,0.8)' }}>{item.recommend}</p>
                 )}
               </div>
             </div>
@@ -586,7 +588,7 @@ export default function ServiceLicenseSection({ activeTab }: Props) {
       : ADDON_SERVICES;
 
   return (
-    <section style={{ background: '#F0F0F0', padding: '80px 0 80px' }}>
+    <section style={{ background: '#0d0d0d', padding: '80px 0 80px' }}>
       <div style={{ width: '100%', padding: isMd ? '0 120px' : '0 24px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {services.map((s) => (

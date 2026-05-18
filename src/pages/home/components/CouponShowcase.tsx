@@ -83,13 +83,13 @@ function BouncyCard({ children, index, style }: { children: React.ReactNode; ind
 /* ─── 데스크탑 ─── */
 function DesktopCouponShowcase() {
   return (
-    <section style={{ background: '#F0F0F0', padding: 'clamp(60px, 10vh, 160px) 0' }}>
+    <section style={{ background: '#0d0d0d', padding: 'clamp(60px, 10vh, 160px) 0' }}>
       <div style={{ width: '100%', padding: '0 120px' }}>
 
         {/* 헤더 */}
         <div style={{ marginBottom: '48px' }}>
           <span className="section-label" style={{ fontSize: 'var(--fs-label)', color: '#5BA4F5' }}>핵심가치</span>
-          <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-display)', color: '#111111', lineHeight: 1.2 }}>
+          <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-display)', color: '#f0f0f0', lineHeight: 1.2 }}>
             스파로스원을 선택해야 하는 이유
           </h2>
         </div>
@@ -107,8 +107,9 @@ function DesktopCouponShowcase() {
                 display: 'grid',
                 gridTemplateColumns: '360px 1fr',
                 alignItems: 'stretch',
-                background: '#FFFFFF',
-                boxShadow: '0 2px 20px rgba(0,0,0,0.08)',
+                background: '#1a1a1a',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.3)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 minHeight: '240px',
               }}
             >
@@ -135,9 +136,9 @@ function DesktopCouponShowcase() {
                 <h3 className="font-bold" style={{ fontSize: 'var(--fs-label)', lineHeight: 1.35, margin: 0 }}>
                   <span style={{ color: '#5BA4F5' }}>{card.titleBlue}</span>
                   <br />
-                  <span style={{ color: '#111111' }}>{card.titleBlack}</span>
+                  <span style={{ color: '#f0f0f0' }}>{card.titleBlack}</span>
                 </h3>
-                <p style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(17,17,17,0.72)', lineHeight: 1.7, margin: 0 }}>
+                <p style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>
                   {card.desc}
                 </p>
               </div>
@@ -152,11 +153,11 @@ function DesktopCouponShowcase() {
 /* ─── 모바일 ─── */
 function MobileCouponShowcase() {
   return (
-    <section style={{ background: '#F0F0F0', padding: '80px 0' }}>
+    <section style={{ background: '#0d0d0d', padding: '80px 0' }}>
       <div style={{ width: '100%', padding: '0 24px' }}>
         <div style={{ marginBottom: '32px' }}>
           <span className="section-label" style={{ fontSize: '20px', color: '#5BA4F5' }}>핵심가치</span>
-          <h2 className="font-extrabold" style={{ fontSize: '28px', color: '#111111', lineHeight: 1.2 }}>
+          <h2 className="font-extrabold" style={{ fontSize: '28px', color: '#f0f0f0', lineHeight: 1.2 }}>
             스파로스원을 선택해야 하는 이유
           </h2>
         </div>
@@ -171,8 +172,9 @@ function MobileCouponShowcase() {
                 display: 'grid',
                 gridTemplateColumns: '120px 1fr',
                 alignItems: 'stretch',
-                background: '#FFFFFF',
-                boxShadow: '0 2px 20px rgba(0,0,0,0.08)',
+                background: '#1a1a1a',
+                boxShadow: '0 2px 20px rgba(0,0,0,0.3)',
+                border: '1px solid rgba(255,255,255,0.06)',
                 minHeight: '160px',
               }}
             >
@@ -196,9 +198,9 @@ function MobileCouponShowcase() {
                 <h3 className="font-bold" style={{ fontSize: '17px', lineHeight: 1.35, margin: 0 }}>
                   <span style={{ color: '#5BA4F5' }}>{card.titleBlue}</span>
                   <br />
-                  <span style={{ color: '#111111' }}>{card.titleBlack}</span>
+                  <span style={{ color: '#f0f0f0' }}>{card.titleBlack}</span>
                 </h3>
-                <p style={{ fontSize: '14px', color: 'rgba(17,17,17,0.72)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
+                <p style={{ fontSize: '14px', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
               </div>
             </BouncyCard>
           ))}

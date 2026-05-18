@@ -152,11 +152,11 @@ export default function TestimonialSection() {
   return (
     <section
       ref={sectionRef}
-      style={{ height: `${TESTIMONIALS.length * 100}vh`, position: 'relative', background: '#F0F0F0' }}
+      style={{ height: `${TESTIMONIALS.length * 100}vh`, position: 'relative', background: '#0d0d0d' }}
     >
       <div
         className="sticky flex flex-col overflow-hidden"
-        style={{ top: `${NAVBAR_H}px`, height: `calc(100vh - ${NAVBAR_H}px)`, background: '#F0F0F0' }}
+        style={{ top: `${NAVBAR_H}px`, height: `calc(100vh - ${NAVBAR_H}px)`, background: '#0d0d0d' }}
       >
 
       {/* 헤더 */}
@@ -168,7 +168,7 @@ export default function TestimonialSection() {
           >
             기대효과
           </span>
-          <h2 className="font-extrabold leading-tight" style={{ color: '#111111', fontSize: 'var(--fs-display)' }}>
+          <h2 className="font-extrabold leading-tight" style={{ color: '#f0f0f0', fontSize: 'var(--fs-display)' }}>
             현장의 고민을 확신으로
           </h2>
         </div>
@@ -184,16 +184,16 @@ export default function TestimonialSection() {
         />
         <div className="absolute inset-0 bg-black/40" />
 
-        <div className="absolute inset-x-4 top-8 bottom-16 bg-[#EFF9F6]/85 backdrop-blur-sm rounded-2xl p-6 flex flex-col">
+        <div className="absolute inset-x-4 top-8 bottom-16 backdrop-blur-sm rounded-2xl p-6 flex flex-col" style={{ background: 'rgba(26,26,26,0.88)', border: '1px solid rgba(255,255,255,0.1)' }}>
           <div className="flex-1 flex flex-col justify-center">
-            <p className="text-[16px] font-bold text-gray-900 leading-none mb-2">{t.company}</p>
-            <p className="text-[15px] text-gray-700 leading-snug">{t.quote}</p>
+            <p className="text-[16px] font-bold leading-none mb-2" style={{ color: '#f0f0f0' }}>{t.company}</p>
+            <p className="text-[15px] leading-snug" style={{ color: '#aaaaaa' }}>{t.quote}</p>
             <div className="h-6 flex-shrink-0" />
-            <div className="text-[20px] font-extrabold text-gray-900 leading-snug">
+            <div className="text-[20px] font-extrabold leading-snug" style={{ color: '#f0f0f0' }}>
               {t.highlights.map((h, i) => (
                 <p key={i}>
                   {h.mark ? (
-                    <mark className="bg-blue-200 text-gray-900 px-0.5">{h.text}</mark>
+                    <mark className="bg-blue-900 text-blue-200 px-0.5">{h.text}</mark>
                   ) : (
                     h.text
                   )}
@@ -210,7 +210,7 @@ export default function TestimonialSection() {
                   className="h-[3px] rounded-full transition-all duration-300 cursor-pointer"
                   style={{
                     width: i === current ? '32px' : '12px',
-                    background: i === current ? ACTIVE_BLUE : '#d1d5db',
+                    background: i === current ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
                   }}
                 />
               ))}
@@ -218,13 +218,13 @@ export default function TestimonialSection() {
             <div className="flex items-center gap-2">
               <button
                 onClick={prev}
-                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-400 text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
               >
                 <i className="ri-arrow-left-line text-sm" />
               </button>
               <button
                 onClick={next}
-                className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-400 text-gray-600 hover:bg-gray-100 transition cursor-pointer"
+                className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
               >
                 <i className="ri-arrow-right-line text-sm" />
               </button>
@@ -247,7 +247,7 @@ export default function TestimonialSection() {
         }}
       >
         <div
-          className="flex-shrink-0 flex overflow-hidden rounded-2xl bg-[#E5EBF4]"
+          className="flex-shrink-0 flex overflow-hidden rounded-2xl" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
           style={{
             width: mainCardWidth > 0 ? `${mainCardWidth}px` : '700px',
           }}
@@ -264,16 +264,16 @@ export default function TestimonialSection() {
 
           <div className="flex-1 flex flex-col justify-between px-6 py-4 md:px-10 md:py-6">
             <div className="flex-1 flex flex-col justify-center">
-              <p className="font-bold text-gray-900 leading-none mb-2" style={{ fontSize: 'clamp(16px, 1.6vw, 24px)' }}>{t.company}</p>
-              <p className="text-gray-900 leading-snug mb-3" style={{ fontSize: 'clamp(14px, 1.5vw, 22px)' }}>
+              <p className="font-bold leading-none mb-2" style={{ fontSize: 'clamp(16px, 1.6vw, 24px)', color: '#f0f0f0' }}>{t.company}</p>
+              <p className="leading-snug mb-3" style={{ fontSize: 'clamp(14px, 1.5vw, 22px)', color: '#aaaaaa' }}>
                 {t.quote}
               </p>
               <div className="h-3" />
-              <div className="font-extrabold text-gray-900 leading-relaxed" style={{ fontSize: 'clamp(18px, 2vw, 28px)' }}>
+              <div className="font-extrabold leading-relaxed" style={{ fontSize: 'clamp(18px, 2vw, 28px)', color: '#f0f0f0' }}>
                 {t.highlights.map((h, i) => (
                   <p key={i}>
                     {h.mark ? (
-                      <mark className="bg-blue-200 text-gray-900 px-0.5">{h.text}</mark>
+                      <mark className="bg-blue-900 text-blue-200 px-0.5">{h.text}</mark>
                     ) : (
                       h.text
                     )}
@@ -292,7 +292,7 @@ export default function TestimonialSection() {
                       className="h-[3px] rounded-full transition-all duration-300 cursor-pointer"
                       style={{
                         width: i === current ? '96px' : '16px',
-                        background: i === current ? ACTIVE_BLUE : '#d1d5db',
+                        background: i === current ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
                       }}
                     />
                   ))}
@@ -300,13 +300,13 @@ export default function TestimonialSection() {
                 <div className="flex items-center gap-1.5 ml-auto">
                   <button
                     onClick={prev}
-                    className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-500 hover:bg-gray-100 transition cursor-pointer"
+                    className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
                   >
                     <i className="ri-arrow-left-line text-sm" />
                   </button>
                   <button
                     onClick={next}
-                    className="w-8 h-8 flex items-center justify-center rounded-full border border-gray-300 text-gray-500 hover:bg-gray-100 transition cursor-pointer"
+                    className="w-8 h-8 flex items-center justify-center rounded-full transition cursor-pointer" style={{ border: '1px solid rgba(255,255,255,0.2)', color: 'rgba(255,255,255,0.7)' }}
                   >
                     <i className="ri-arrow-right-line text-sm" />
                   </button>

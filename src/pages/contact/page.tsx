@@ -40,38 +40,39 @@ export default function ContactPage() {
       <Navbar />
 
       {/* Hero */}
-      <section className="relative pt-32 pb-16 px-6 md:px-[120px] bg-stone-50 overflow-hidden">
+      <section className="relative pt-32 pb-16 px-6 md:px-[120px] overflow-hidden" style={{ background: '#0d0d0d' }}>
         <div className="w-full text-center">
-          <span className="inline-block px-4 py-1.5 bg-amber-50 border border-amber-200 text-amber-600 text-xs font-semibold tracking-widest uppercase rounded-full mb-4">
+          <span className="inline-block px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full mb-4" style={{ background: 'rgba(91,164,245,0.15)', border: '1px solid rgba(91,164,245,0.3)', color: '#5BA4F5' }}>
             Contact
           </span>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900">
+          <h1 className="text-4xl md:text-5xl font-extrabold" style={{ color: '#f0f0f0' }}>
             무엇이든 물어보세요
           </h1>
-          <p className="mt-4 text-gray-500 text-base max-w-md mx-auto leading-relaxed">
+          <p className="mt-4 text-base max-w-md mx-auto leading-relaxed" style={{ color: '#aaaaaa' }}>
             도입 문의, 기술 지원, 파트너십 등 어떤 내용이든 편하게 남겨주세요. 1영업일 내 답변드립니다.
           </p>
         </div>
       </section>
 
       {/* Main Content */}
-      <section className="py-16 px-6 md:px-10 bg-white">
+      <section className="py-16 px-6 md:px-10" style={{ background: '#0d0d0d' }}>
         <div className="max-w-3xl mx-auto">
 
           {/* Form */}
           <div className="w-full">
             {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center gap-4 bg-amber-50 rounded-2xl p-12 text-center border border-amber-100">
-                <div className="w-16 h-16 flex items-center justify-center rounded-full bg-amber-500">
+              <div className="h-full flex flex-col items-center justify-center gap-4 rounded-2xl p-12 text-center" style={{ background: '#1a2a40', border: '1px solid rgba(91,164,245,0.2)' }}>
+                <div className="w-16 h-16 flex items-center justify-center rounded-full" style={{ background: '#5BA4F5' }}>
                   <i className="ri-check-line text-white text-3xl"></i>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">문의가 접수되었습니다!</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">
+                <h3 className="text-xl font-bold" style={{ color: '#f0f0f0' }}>문의가 접수되었습니다!</h3>
+                <p className="text-sm leading-relaxed" style={{ color: '#aaaaaa' }}>
                   1영업일 이내에 담당자가 연락드릴 예정입니다.<br />감사합니다.
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="mt-2 px-6 py-2.5 bg-amber-500 hover:bg-amber-600 text-white text-sm font-semibold rounded-full cursor-pointer whitespace-nowrap"
+                  className="mt-2 px-6 py-2.5 text-white text-sm font-semibold rounded-full cursor-pointer whitespace-nowrap transition-opacity hover:opacity-90"
+                  style={{ background: '#5BA4F5' }}
                 >
                   다시 문의하기
                 </button>
@@ -81,56 +82,62 @@ export default function ContactPage() {
                 id="contact-form"
                 data-readdy-form
                 onSubmit={handleSubmit}
-                className="flex flex-col gap-5 bg-stone-50 rounded-2xl p-8 border border-gray-100"
+                className="flex flex-col gap-5 rounded-2xl p-8"
+                style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
               >
-                <h2 className="text-xl font-bold text-gray-900">문의 남기기</h2>
+                <h2 className="text-xl font-bold" style={{ color: '#f0f0f0' }}>문의 남기기</h2>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-gray-600">이름 *</label>
+                    <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>이름 *</label>
                     <input
                       type="text"
                       name="name"
                       required
                       placeholder="홍길동"
-                      className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-800 focus:outline-none focus:border-amber-400 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors"
+                      style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-gray-600">이메일 *</label>
+                    <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>이메일 *</label>
                     <input
                       type="email"
                       name="email"
                       required
                       placeholder="example@company.com"
-                      className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-800 focus:outline-none focus:border-amber-400 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors"
+                      style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                     />
                   </div>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-gray-600">회사명</label>
+                    <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>회사명</label>
                     <input
                       type="text"
                       name="company"
                       placeholder="(주)회사명"
-                      className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-800 focus:outline-none focus:border-amber-400 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors"
+                      style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                     />
                   </div>
                   <div className="flex-1 flex flex-col gap-1.5">
-                    <label className="text-xs font-semibold text-gray-600">연락처</label>
+                    <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>연락처</label>
                     <input
                       type="tel"
                       name="phone"
                       placeholder="010-0000-0000"
-                      className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-800 focus:outline-none focus:border-amber-400 transition-colors"
+                      className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors"
+                      style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                     />
                   </div>
                 </div>
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-xs font-semibold text-gray-600">문의 유형</label>
+                  <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>문의 유형</label>
                   <select
                     name="inquiry_type"
-                    className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:border-amber-400 transition-colors cursor-pointer"
+                    className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors cursor-pointer"
+                    style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                   >
                     <option value="">문의 유형을 선택해주세요</option>
                     <option value="도입 문의">도입 문의</option>
@@ -142,8 +149,8 @@ export default function ContactPage() {
                 </div>
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center justify-between">
-                    <label className="text-xs font-semibold text-gray-600">문의 내용 *</label>
-                    <span className={`text-xs ${charCount > 500 ? 'text-red-500' : 'text-gray-400'}`}>{charCount}/500</span>
+                    <label className="text-xs font-semibold" style={{ color: '#aaaaaa' }}>문의 내용 *</label>
+                    <span className={`text-xs ${charCount > 500 ? 'text-red-400' : ''}`} style={{ color: charCount > 500 ? undefined : '#666666' }}>{charCount}/500</span>
                   </div>
                   <textarea
                     name="message"
@@ -152,13 +159,15 @@ export default function ContactPage() {
                     maxLength={500}
                     placeholder="문의하실 내용을 자세히 입력해주세요."
                     onChange={(e) => setCharCount(e.target.value.length)}
-                    className="px-4 py-2.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-800 focus:outline-none focus:border-amber-400 transition-colors resize-none"
+                    className="px-4 py-2.5 rounded-lg text-sm focus:outline-none transition-colors resize-none"
+                    style={{ background: '#2a2a2a', border: '1px solid rgba(255,255,255,0.1)', color: '#f0f0f0' }}
                   ></textarea>
                 </div>
                 <button
                   type="submit"
                   disabled={loading || charCount > 500}
-                  className="w-full py-3.5 bg-amber-500 hover:bg-amber-600 disabled:bg-amber-300 text-white font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap text-sm"
+                  className="w-full py-3.5 text-white font-semibold rounded-full transition-all cursor-pointer whitespace-nowrap text-sm hover:opacity-90 disabled:opacity-50"
+                  style={{ background: '#5BA4F5' }}
                 >
                   {loading ? '전송 중...' : '문의 보내기'}
                 </button>

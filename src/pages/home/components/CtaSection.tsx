@@ -56,20 +56,22 @@ export default function CtaSection() {
           onClick={() => setPopupOpen(false)}
         >
           <div
-            className="bg-white rounded-2xl p-8 w-[440px] flex flex-col gap-5 shadow-xl"
+            className="rounded-2xl p-8 w-[440px] flex flex-col gap-5 shadow-xl"
+            style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between">
-              <h3 className="font-bold text-gray-900" style={{ fontSize: '18px' }}>문의하기</h3>
+              <h3 className="font-bold" style={{ fontSize: '18px', color: '#f0f0f0' }}>문의하기</h3>
               <button
                 type="button"
                 onClick={() => setPopupOpen(false)}
-                className="w-8 h-8 flex items-center justify-center text-gray-400 hover:text-gray-600 cursor-pointer bg-transparent border-none"
+                className="w-8 h-8 flex items-center justify-center cursor-pointer bg-transparent border-none"
+                style={{ color: '#777777' }}
               >
                 <i className="ri-close-line text-xl"></i>
               </button>
             </div>
-            <p className="text-gray-500" style={{ fontSize: '18px' }}>원하시는 문의 방식을 선택해주세요.</p>
+            <p style={{ fontSize: '18px', color: '#aaaaaa' }}>원하시는 문의 방식을 선택해주세요.</p>
             <div className="flex flex-col gap-3">
               <a
                 href="mailto:jooanna@shinsegae.com?subject=[Spharos One] 서비스 문의&body=1. 이름 : %0D%0A2. 연락처 : %0D%0A3. 이메일 : %0D%0A4. 회사 : %0D%0A5. 직급 : %0D%0A6. 직무 : %0D%0A7. 문의 유형 [메인서비스 / 라이선스 / 부가서비스 중 선택] : %0D%0A8. 문의 내용 : %0D%0A%0D%0A※ 문의 답변을 목적으로 이름, 연락처, 이메일, 회사명, 직급, 직무, 문의 내용을 수집하고 있습니다. 수집 후 1개월 간 보관되며 이후 안전하게 파기됩니다."
@@ -85,8 +87,8 @@ export default function CtaSection() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setPopupOpen(false)}
-                className="w-full py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold rounded-xl text-center cursor-pointer whitespace-nowrap"
-                style={{ fontSize: '18px' }}
+                className="w-full py-3 font-semibold rounded-xl text-center cursor-pointer whitespace-nowrap transition-opacity hover:opacity-80"
+                style={{ fontSize: '18px', background: '#2a2a2a', color: '#f0f0f0', border: '1px solid rgba(255,255,255,0.1)' }}
               >
                 <i className="ri-article-line mr-1.5"></i>
                 게시판 문의하기

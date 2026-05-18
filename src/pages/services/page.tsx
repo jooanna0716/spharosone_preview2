@@ -11,7 +11,7 @@ export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState<TabKey>('main');
 
   return (
-    <main className="min-h-screen" style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f8f8fa' }}>
+    <main className="min-h-screen" style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#0d0d0d' }}>
       <Navbar />
 
       {/* 서비스 쇼케이스 (스크롤) - 헤더 포함 */}

@@ -6,7 +6,7 @@ export default function CaseStudiesSection() {
   const active = CASE_STUDIES.find((c) => c.key === activeKey)!;
 
   return (
-    <section className="py-16 md:py-24 px-6 md:px-[120px] w-full" style={{ background: '#F8F8FA' }}>
+    <section className="py-16 md:py-24 px-6 md:px-[120px] w-full" style={{ background: '#0d0d0d' }}>
       <div className="w-full">
         {/* Header */}
         <div className="mb-12 md:mb-16">
@@ -18,7 +18,7 @@ export default function CaseStudiesSection() {
           </span>
           <h2
             className="font-bold text-3xl md:text-5xl leading-tight"
-            style={{ color: '#111111', fontFamily: "'Poppins', sans-serif" }}
+            style={{ color: '#f0f0f0', fontFamily: "'Poppins', sans-serif" }}
           >
             산업별 맞춤형 클라우드<br className="hidden md:block" /> 도입 성공 사례
           </h2>
@@ -34,9 +34,9 @@ export default function CaseStudiesSection() {
                 onClick={() => setActiveKey(cs.key)}
                 className="px-5 py-2.5 rounded-full text-sm md:text-base font-semibold transition-all duration-300 cursor-pointer whitespace-nowrap"
                 style={{
-                  background: isActive ? '#0F2747' : '#FFFFFF',
-                  color: isActive ? '#FFFFFF' : 'rgba(0,0,0,0.55)',
-                  border: isActive ? 'none' : '1px solid rgba(0,0,0,0.10)',
+                  background: isActive ? '#5BA4F5' : '#1a1a1a',
+                  color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)',
+                  border: isActive ? 'none' : '1px solid rgba(255,255,255,0.10)',
                 }}
               >
                 {cs.industry}
@@ -65,10 +65,10 @@ export default function CaseStudiesSection() {
               >
                 {active.industry}
               </span>
-              <h3 className="text-2xl md:text-3xl font-bold text-black mb-4">
+              <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ color: '#f0f0f0' }}>
                 {active.title}
               </h3>
-              <p className="text-base md:text-lg text-gray-700 leading-relaxed">
+              <p className="text-base md:text-lg leading-relaxed" style={{ color: '#aaaaaa' }}>
                 {active.description}
               </p>
             </div>
@@ -78,11 +78,11 @@ export default function CaseStudiesSection() {
               {active.metrics.map((m) => (
                 <div
                   key={m.label}
-                  className="bg-white rounded-xl p-4 md:p-5 text-center border border-gray-100"
+                  className="rounded-xl p-4 md:p-5 text-center" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
                 >
                   <p
                     className="text-xl md:text-2xl font-bold mb-1"
-                    style={{ color: '#0F2747' }}
+                    style={{ color: '#5BA4F5' }}
                   >
                     {m.value}
                   </p>
@@ -97,7 +97,7 @@ export default function CaseStudiesSection() {
                 <span
                   key={tag}
                   className="px-3 py-1.5 rounded-full text-xs md:text-sm font-medium"
-                  style={{ background: '#E5EBF4', color: '#0F2747' }}
+                  style={{ background: '#1a2a40', color: '#5BA4F5' }}
                 >
                   {tag}
                 </span>

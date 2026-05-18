@@ -128,7 +128,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
     <section
       className="relative w-full flex flex-col"
       style={{
-        background: '#FFFFFF',
+        background: '#0d0d0d',
         paddingTop: '88px',
         paddingBottom: '0',
       }}
@@ -248,7 +248,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                 className="font-extrabold"
                 style={{
                   fontSize: isMdUp ? '50px' : '28px',
-                  color: '#111111',
+                  color: '#f0f0f0',
                   lineHeight: 1.2,
                   margin: '0 0 6px',
                 }}
