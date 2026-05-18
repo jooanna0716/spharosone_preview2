@@ -145,7 +145,7 @@ function DesktopImpactSection() {
                     display: 'grid',
                     gridTemplateColumns: '45% 55%',
                     alignItems: 'end',
-                    paddingBottom: '30vh',
+                    paddingBottom: 'clamp(16px, 22vh, 30vh)',
                     opacity,
                     transform: `translateX(${translateX}%) translateY(${translateY}px)`,
                     pointerEvents: opacity < 0.1 ? 'none' : 'auto',
@@ -202,7 +202,7 @@ function DesktopImpactSection() {
                   </div>
 
                   {/* 우측: 제목 + 설명 */}
-                  <div style={{ paddingLeft: '48px', height: 'clamp(160px, 20vw, 256px)', marginBottom: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'end' }}>
+                  <div style={{ paddingLeft: '48px', marginBottom: '24px', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignSelf: 'end' }}>
                     <h3
                       style={{
                         fontSize: 'clamp(24px, 3.4375vw, 44px)',
