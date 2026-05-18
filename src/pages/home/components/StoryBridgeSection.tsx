@@ -32,6 +32,19 @@ export default function StoryBridgeSection() {
           background: 'rgba(0,0,0,0.30)',
         }}
       />
+      {/* 상단 페이드 — 히어로 섹션과 자연스럽게 연결 */}
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '25%',
+          background: 'linear-gradient(to bottom, #000000, transparent)',
+          pointerEvents: 'none',
+          zIndex: 1,
+        }}
+      />
       {/* 콘텐츠 — 오버레이 위 */}
       <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <h2

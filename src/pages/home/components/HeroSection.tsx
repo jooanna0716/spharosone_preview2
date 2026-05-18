@@ -101,7 +101,7 @@ export default function HeroSection() {
             bottom: 0,
             left: 0,
             right: 0,
-            height: '30%',
+            height: '50%',
             background: 'linear-gradient(to bottom, transparent, #000000)',
             pointerEvents: 'none',
             zIndex: 2,
