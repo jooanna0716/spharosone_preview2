@@ -63,8 +63,8 @@ function DesktopImpactSection() {
       <div
         style={{
           position: 'sticky',
-          top: 0,
-          height: '100vh',
+          top: '64px',
+          height: 'calc(100vh - 64px)',
           overflow: 'hidden',
           backgroundImage: `linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('/images/도입 효과.png')`,
           backgroundSize: 'cover',
@@ -83,7 +83,7 @@ function DesktopImpactSection() {
           }}
         >
           {/* 헤더 */}
-          <div style={{ paddingTop: 'clamp(80px, 12vh, 160px)', flexShrink: 0 }}>
+          <div style={{ paddingTop: 'clamp(40px, 6vh, 80px)', flexShrink: 0 }}>
             <span
               style={{
                 fontSize: 'var(--fs-label)',
