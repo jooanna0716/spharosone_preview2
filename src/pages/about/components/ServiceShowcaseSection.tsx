@@ -212,7 +212,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             </div>
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px' }}>
+          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px', paddingTop: 'clamp(160px, 22vh, 220px)' }}>
             <div className="mb-3 md:mb-6">
               <h2
                 className="font-bold leading-tight transition-all duration-500"

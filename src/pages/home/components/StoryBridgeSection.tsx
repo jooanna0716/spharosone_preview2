@@ -43,20 +43,20 @@ export default function StoryBridgeSection() {
       `}</style>
 
       {/* 텍스트 중심 그라디언트 블롭 */}
-      <div style={{ position: 'absolute', left: '2%',  top: '15%', width: '46vw', height: '72vh',
-        background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.70) 0%, rgba(80,0,180,0.42) 38%, transparent 68%)',
+      <div style={{ position: 'absolute', left: '-5%',  top: '5%', width: '70vw', height: '90vh',
+        background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.75) 0%, rgba(80,0,180,0.45) 38%, transparent 68%)',
         animation: 'bB1 7s ease-in-out infinite' }} />
-      <div style={{ position: 'absolute', left: '18%', top: '8%',  width: '42vw', height: '65vh',
-        background: 'radial-gradient(ellipse at center, rgba(170,50,255,0.65) 0%, rgba(140,30,240,0.38) 38%, transparent 66%)',
+      <div style={{ position: 'absolute', left: '10%', top: '0%',  width: '65vw', height: '85vh',
+        background: 'radial-gradient(ellipse at center, rgba(170,50,255,0.70) 0%, rgba(140,30,240,0.42) 38%, transparent 66%)',
         animation: 'bB2 9s ease-in-out infinite' }} />
-      <div style={{ position: 'absolute', left: '28%', top: '20%', width: '40vw', height: '62vh',
-        background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.68) 0%, rgba(40,75,235,0.40) 40%, transparent 65%)',
+      <div style={{ position: 'absolute', left: '20%', top: '10%', width: '60vw', height: '80vh',
+        background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.72) 0%, rgba(40,75,235,0.44) 40%, transparent 65%)',
         animation: 'bB3 8s ease-in-out infinite' }} />
-      <div style={{ position: 'absolute', right: '2%', top: '15%', width: '46vw', height: '72vh',
-        background: 'radial-gradient(ellipse at center, rgba(0,210,240,0.65) 0%, rgba(0,175,220,0.38) 35%, transparent 64%)',
+      <div style={{ position: 'absolute', right: '-5%', top: '5%', width: '70vw', height: '90vh',
+        background: 'radial-gradient(ellipse at center, rgba(0,210,240,0.70) 0%, rgba(0,175,220,0.42) 35%, transparent 64%)',
         animation: 'bB4 6s ease-in-out infinite' }} />
-      <div style={{ position: 'absolute', left: '22%', bottom: '10%', width: '42vw', height: '62vh',
-        background: 'radial-gradient(ellipse at center, rgba(0,230,195,0.55) 0%, rgba(0,200,175,0.32) 38%, transparent 65%)',
+      <div style={{ position: 'absolute', left: '15%', bottom: '0%', width: '65vw', height: '80vh',
+        background: 'radial-gradient(ellipse at center, rgba(0,230,195,0.60) 0%, rgba(0,200,175,0.35) 38%, transparent 65%)',
         animation: 'bB5 10s ease-in-out infinite' }} />
 
       {/* 다크 비녜트 — 가장자리 검정, 중앙 글로우 노출 */}

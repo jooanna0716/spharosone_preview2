@@ -35,7 +35,7 @@ export default function HeroSection() {
   // 전환 1: scrollP 0.33 → 0.47  (70vh 구간)
   // 전환 2: scrollP 0.63 → 0.77  (70vh 구간)
   // 각 카드가 약 130~160vh 동안 화면에 머뭄
-  const T = 0.14;
+  const T = 0.28;
 
   // 카드1: 처음부터 보임 → 전환1에서 위로 밀려남
   const c1Exit = easeInOut(clamp01((scrollP - 0.33) / T));

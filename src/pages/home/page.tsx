@@ -69,10 +69,8 @@ export default function HomePage() {
       const bridgeTop = bridge.offsetTop;
       const bridgeH = bridge.offsetHeight;
 
-      // 1. 히어로 → 스토리 섹션
+      // 1. 히어로 구간: 자유 스크롤 (dead zone은 checkDeadZone 이펙트가 처리)
       if (scrollY < storyTop) {
-        e.preventDefault();
-        snapTo(story);
         return;
       }
 
