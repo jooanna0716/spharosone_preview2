@@ -53,7 +53,7 @@ const MAIN_SERVICES: ServiceItem[] = [
         { classification: 'VM 타입', classificationRowspan: 2, item: '기본', spec: '8 Core / 32 GB / 1,000 GB', skipUnit: true, skipBilling: true },
         { item: '추가', spec: '4 Core / 32 GB / 1,000 GB', skipUnit: true, skipBilling: true },
         { classification: '관제 및 운영대행', item: '관제 및 운영대행', spec: '대당', skipUnit: true, skipBilling: true },
-        { classification: '국번 서비스', item: '스냅샷', spec: 'VM 당', skipUnit: true, skipBilling: true },
+        { classification: '백업 서비스', item: '스냅샷', spec: 'VM 당', skipUnit: true, skipBilling: true },
         { classification: '공용 방화벽 서비스', item: '공용 방화벽 서비스', spec: '방화벽 사용 IP 수량에 따라 과금', skipUnit: true, skipBilling: true, note: '개인화 데스크톱' },
         { classification: '백신', groupEnd: true, item: 'V3 Net for Windows Server', spec: '공유 자원 풀', skipUnit: true, skipBilling: true, note: '20% 할인' },
         { category: 'IaaS\n(outpost)', categoryRowspan: 5, classification: 'SCI', item: 'Spharos One cloud infrastructure', spec: '100GB 당', unit: 'Core', billing: '월청구', billingRowspan: 5, note: 'Spharos CMP 기본 포함', noteRowspan: 5 },
