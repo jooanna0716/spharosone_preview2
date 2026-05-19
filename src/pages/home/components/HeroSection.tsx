@@ -141,7 +141,7 @@ export default function HeroSection() {
               letterSpacing: '-0.03em',
               margin: 0,
             }}>
-              Spharos ONE
+              Spharos One
             </h1>
           </div>
 
