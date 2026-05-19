@@ -167,10 +167,10 @@ function ServiceCard({ item, isLast }: { item: ServiceItem; isLast?: boolean }) 
       {/* Desktop */}
       <div className="hidden md:flex flex-col">
         <div className="flex items-center gap-3 mb-1">
-          <h3 className="font-bold text-white" style={{ fontSize: '34px' }}>{item.label}</h3>
+          <h3 className="font-bold text-white" style={{ fontSize: 'clamp(20px, 2.36vw, 34px)' }}>{item.label}</h3>
           {item.badge && <span className="px-3 py-1 bg-white/20 text-white text-xs font-bold rounded whitespace-nowrap">{item.badge}</span>}
         </div>
-        <p className="text-gray-400 mb-4" style={{ fontSize: '24px' }}>{item.subtitle}</p>
+        <p className="text-gray-400 mb-4" style={{ fontSize: 'var(--fs-subtitle)' }}>{item.subtitle}</p>
         {!isLast && <div className="border-t border-gray-700 mb-8" />}
         <div className="mb-4">
           <span className="inline-block px-4 py-1.5 bg-[#5BA4F5] text-white text-sm font-bold rounded-full mb-3">특징</span>
@@ -187,8 +187,8 @@ function ServiceCard({ item, isLast }: { item: ServiceItem; isLast?: boolean }) 
         </div>
         {item.compositions && (
           <div className="mb-4">
-            <span className="inline-block px-4 py-2 bg-white/15 text-white font-bold rounded mb-3" style={{ fontSize: '30px' }}>서비스 구성</span>
-            <div className="text-gray-200 leading-relaxed space-y-3" style={{ fontSize: '24px' }}>
+            <span className="inline-block px-4 py-2 bg-white/15 text-white font-bold rounded mb-3" style={{ fontSize: 'var(--fs-label)' }}>서비스 구성</span>
+            <div className="text-gray-200 leading-relaxed space-y-3" style={{ fontSize: 'var(--fs-subtitle)' }}>
               {item.compositions.map((c) => (
                 <div key={c.name}>
                   <p className="font-semibold mb-1">• {c.name}</p>
@@ -199,13 +199,13 @@ function ServiceCard({ item, isLast }: { item: ServiceItem; isLast?: boolean }) 
           </div>
         )}
         <div>
-          <span className="inline-block px-4 py-2 bg-white/15 text-white font-bold rounded mb-3" style={{ fontSize: '30px' }}>추천 고객</span>
+          <span className="inline-block px-4 py-2 bg-white/15 text-white font-bold rounded mb-3" style={{ fontSize: 'var(--fs-label)' }}>추천 고객</span>
           {Array.isArray(item.recommend) ? (
-            <div className="text-gray-200 leading-relaxed space-y-1" style={{ fontSize: '24px' }}>
+            <div className="text-gray-200 leading-relaxed space-y-1" style={{ fontSize: 'var(--fs-subtitle)' }}>
               {item.recommend.map((r, i) => <p key={i}>• {r}</p>)}
             </div>
           ) : (
-            <p className="text-gray-200 leading-relaxed" style={{ fontSize: '24px' }}>{item.recommend}</p>
+            <p className="text-gray-200 leading-relaxed" style={{ fontSize: 'var(--fs-subtitle)' }}>{item.recommend}</p>
           )}
         </div>
       </div>

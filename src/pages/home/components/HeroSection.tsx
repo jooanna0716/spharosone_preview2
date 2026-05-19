@@ -134,7 +134,7 @@ export default function HeroSection() {
           {/* 카드 1 — Spharos ONE */}
           <div style={cardStyle(c1Y)}>
             <h1 style={{
-              fontSize: isMdUp ? '120px' : '52px',
+              fontSize: 'var(--fs-hero)',
               fontWeight: 900,
               color: '#000',
               lineHeight: 1,
@@ -147,32 +147,32 @@ export default function HeroSection() {
 
           {/* 카드 2 — 슬라이드 1 */}
           <div style={cardStyle(c2Y)}>
-            <p style={{ fontSize: isMdUp ? '64px' : '28px', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
+            <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
               클라우드, 이제 클릭 한 번에
             </p>
-            <p style={{ fontSize: isMdUp ? '40px' : '18px', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
+            <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
               가장 쉬운 프라이빗 클라우드, Spharos One
             </p>
-            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
+            <p style={{ fontSize: 'var(--fs-label)', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
               복잡한 구축과 운영은 One으로 통합하고
             </p>
-            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
+            <p style={{ fontSize: 'var(--fs-label)', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
               더 빠르게, 더 안정적으로
             </p>
           </div>
 
           {/* 카드 3 — 슬라이드 2 */}
           <div style={cardStyle(c3Y)}>
-            <p style={{ fontSize: isMdUp ? '64px' : '28px', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
+            <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000', lineHeight: 1.2, margin: '0 0 14px' }}>
               구축하지 마세요, 구독하세요
             </p>
-            <p style={{ fontSize: isMdUp ? '40px' : '18px', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
+            <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: '#111', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
               선납금 0원 · 위약금 0원 · 첫 달 이후 언제든 해지
             </p>
-            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
+            <p style={{ fontSize: 'var(--fs-label)', color: '#111', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
               수억 원의 초기 투자도, 발목 잡는 약정도 없이
             </p>
-            <p style={{ fontSize: isMdUp ? '30px' : '14px', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
+            <p style={{ fontSize: 'var(--fs-label)', color: '#111', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
               프라이빗 클라우드의 새로운 기준
             </p>
           </div>

@@ -167,12 +167,12 @@ export default function TestimonialSection() {
               </div>
 
               {/* 회사명 */}
-              <p style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: '20px', marginBottom: '6px', letterSpacing: '0.04em' }}>
+              <p style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-body)', marginBottom: '6px', letterSpacing: '0.04em' }}>
                 {item.company}
               </p>
 
               {/* 인용 */}
-              <p style={{ color: '#777777', fontSize: '20px', lineHeight: 1.55, marginBottom: '20px' }}>
+              <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: '20px' }}>
                 {item.quote}
               </p>
 
@@ -182,7 +182,7 @@ export default function TestimonialSection() {
                   <p
                     key={hi}
                     style={{
-                      fontSize: '24px',
+                      fontSize: 'var(--fs-subtitle)',
                       fontWeight: h.mark ? 700 : 400,
                       color: '#f0f0f0',
                       lineHeight: 1.4,

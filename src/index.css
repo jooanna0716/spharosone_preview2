@@ -8,12 +8,16 @@
     --font-en: 'Poppins', sans-serif;
 
     /* 반응형 폰트 스케일 — 1440px 기준 설계 */
-    --fs-display:  clamp(28px, 4.2vw, 60px);   /* 60px 대제목 */
-    --fs-heading:  clamp(20px, 2.4vw, 35px);   /* 35px 중제목 */
-    --fs-label:    clamp(16px, 2.1vw, 30px);   /* 30px 섹션 라벨 */
-    --fs-subtitle: clamp(14px, 1.7vw, 24px);   /* 24px 소제목 */
-    --fs-body:     clamp(13px, 1.4vw, 20px);   /* 20px 본문 */
-    --fs-sm:       clamp(11px, 1vw,   14px);   /* 소형 텍스트 */
+    --fs-hero:     clamp(52px,  8.33vw, 120px); /* 120px 히어로 최대 제목 */
+    --fs-giant:    clamp(28px,  4.44vw,  64px); /* 64px  섹션 대제목 */
+    --fs-xlarge:   clamp(24px,  3.47vw,  50px); /* 50px  강조 문구 */
+    --fs-large:    clamp(18px,  2.78vw,  40px); /* 40px  히어로 부제목 */
+    --fs-display:  clamp(28px,  4.2vw,   60px); /* 60px  대제목 */
+    --fs-heading:  clamp(20px,  2.4vw,   35px); /* 35px  중제목 */
+    --fs-label:    clamp(16px,  2.1vw,   30px); /* 30px  섹션 라벨 */
+    --fs-subtitle: clamp(14px,  1.7vw,   24px); /* 24px  소제목 */
+    --fs-body:     clamp(13px,  1.4vw,   20px); /* 20px  본문 */
+    --fs-sm:       clamp(11px,  1vw,     14px); /* 14px  소형 텍스트 */
   }
 
   * {

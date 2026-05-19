@@ -159,7 +159,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             <h3
               className="font-bold leading-tight shrink-0"
               style={{
-                fontSize: isMdUp ? '36px' : '22px',
+                fontSize: 'clamp(22px, 2.5vw, 36px)',
                 fontFamily: "'Poppins', sans-serif",
                 color: '#FFFFFF',
                 letterSpacing: '0.03em',
@@ -187,7 +187,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className={`font-bold leading-tight transition-all duration-300${isActive ? ' acc' : ''}`}
                         style={{
-                          fontSize: isMdUp ? '30px' : '14px',
+                          fontSize: 'var(--fs-label)',
                           fontFamily: "'Poppins', sans-serif",
                           color: isActive ? undefined : 'rgba(255,255,255,0.45)',
                           letterSpacing: '0.1em',
@@ -198,7 +198,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className="font-medium leading-tight transition-all duration-300"
                         style={{
-                          fontSize: isMdUp ? '30px' : '14px',
+                          fontSize: 'var(--fs-label)',
                           color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)',
                           letterSpacing: '0.02em',
                         }}
@@ -217,7 +217,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
               <h2
                 className="font-bold leading-tight transition-all duration-500"
                 style={{
-                  fontSize: isMdUp ? '64px' : '36px',
+                  fontSize: 'var(--fs-giant)',
                   color: '#FFFFFF',
                   fontFamily: "'Poppins', sans-serif",
                 }}
@@ -228,7 +228,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             <p
               className="leading-relaxed transition-all duration-500"
               style={{
-                fontSize: isMdUp ? '30px' : '14px',
+                fontSize: 'var(--fs-label)',
                 color: 'rgba(255,255,255,0.92)',
                 fontWeight: 600,
               }}
@@ -248,7 +248,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
               <p
                 className="font-extrabold"
                 style={{
-                  fontSize: isMdUp ? '50px' : '28px',
+                  fontSize: 'var(--fs-xlarge)',
                   color: '#f0f0f0',
                   lineHeight: 1.2,
                   margin: '0 0 6px',
@@ -261,7 +261,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
               <p
                 className="font-extrabold"
                 style={{
-                  fontSize: isMdUp ? '50px' : '28px',
+                  fontSize: 'var(--fs-xlarge)',
                   background: 'linear-gradient(90deg, #7016DC 0%, #3B6EF0 45%, #00C4B4 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',

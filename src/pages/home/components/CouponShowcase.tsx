@@ -156,8 +156,8 @@ function MobileCouponShowcase() {
     <section style={{ background: '#0d0d0d', padding: '80px 0' }}>
       <div style={{ width: '100%', padding: '0 24px' }}>
         <div style={{ marginBottom: '32px' }}>
-          <span className="section-label acc" style={{ fontSize: '20px' }}>핵심가치</span>
-          <h2 className="font-extrabold" style={{ fontSize: '28px', color: '#f0f0f0', lineHeight: 1.2 }}>
+          <span className="section-label acc" style={{ fontSize: 'var(--fs-body)' }}>핵심가치</span>
+          <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-heading)', color: '#f0f0f0', lineHeight: 1.2 }}>
             스파로스원을 선택해야 하는 이유
           </h2>
         </div>
@@ -195,12 +195,12 @@ function MobileCouponShowcase() {
                   gap: '10px',
                 }}
               >
-                <h3 className="font-bold" style={{ fontSize: '17px', lineHeight: 1.35, margin: 0 }}>
+                <h3 className="font-bold" style={{ fontSize: 'var(--fs-body)', lineHeight: 1.35, margin: 0 }}>
                   <span className="acc">{card.titleBlue}</span>
                   <br />
                   <span style={{ color: '#f0f0f0' }}>{card.titleBlack}</span>
                 </h3>
-                <p style={{ fontSize: '14px', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
+                <p style={{ fontSize: 'var(--fs-sm)', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
               </div>
             </BouncyCard>
           ))}
