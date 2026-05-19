@@ -32,26 +32,26 @@ export default function HeroSection() {
   }, []);
 
   // ── 카드 슬라이드 계산 (500vh 기준) ────────────────────────────────
-  // 전환 1: scrollP 0.33 → 0.47  (70vh 구간)
-  // 전환 2: scrollP 0.63 → 0.77  (70vh 구간)
-  // 각 카드가 약 130~160vh 동안 화면에 머뭄
-  const T = 0.28;
+  // 전환 1: scrollP 0.26 → 0.48  (카드1 퇴장 + 카드2 등장)
+  // 전환 2: scrollP 0.52 → 0.74  (카드2 퇴장 + 카드3 등장)
+  // 카드3 dwell: 0.74 → 0.86  (~48vh), 이후 검정 페이드 0.86 → 1.0
+  const T = 0.22;
 
   // 카드1: 처음부터 보임 → 전환1에서 위로 밀려남
-  const c1Exit = easeInOut(clamp01((scrollP - 0.33) / T));
+  const c1Exit = easeInOut(clamp01((scrollP - 0.26) / T));
   const c1Y    = `${-c1Exit * 100}vh`;
 
   // 카드2: 아래서 올라옴 → 전환2에서 위로 밀려남
-  const c2Enter = easeInOut(clamp01((scrollP - 0.33) / T));
-  const c2Exit  = easeInOut(clamp01((scrollP - 0.63) / T));
+  const c2Enter = easeInOut(clamp01((scrollP - 0.26) / T));
+  const c2Exit  = easeInOut(clamp01((scrollP - 0.52) / T));
   const c2Y     = `${(1 - c2Enter) * 100 - c2Exit * 100}vh`;
 
   // 카드3: 아래서 올라옴 → 끝까지 유지
-  const c3Enter = easeInOut(clamp01((scrollP - 0.63) / T));
+  const c3Enter = easeInOut(clamp01((scrollP - 0.52) / T));
   const c3Y     = `${(1 - c3Enter) * 100}vh`;
 
-  // 마지막 검정 페이드
-  const blackP = easeInOut(clamp01((scrollP - 0.85) / 0.10));
+  // 마지막 검정 페이드 (카드3 완전 등장 후 충분한 dwell 확보)
+  const blackP = easeInOut(clamp01((scrollP - 0.86) / 0.14));
 
   const cardStyle = (y: string): React.CSSProperties => ({
     position: 'absolute',
@@ -67,7 +67,7 @@ export default function HeroSection() {
   });
 
   return (
-    <div ref={sectionRef} style={{ height: '400vh', position: 'relative', background: '#0d0d0d' }}>
+    <div ref={sectionRef} style={{ height: '500vh', position: 'relative', background: '#0d0d0d' }}>
       <div style={{ position: 'sticky', top: 0, height: '100vh', overflow: 'hidden' }}>
 
         {/* ── 키프레임 ─────────────────────────────────────────────── */}

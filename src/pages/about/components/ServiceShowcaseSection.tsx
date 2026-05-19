@@ -144,9 +144,9 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
       <div
         className="w-full flex flex-col px-6 md:px-[120px]"
       >
-        {/* Rounded image card — 상단 바(타이틀+탭)가 이미지 내부로 들어옴 */}
+        {/* 카드 — flex-col으로 헤더+콘텐츠 정상 흐름 */}
         <div
-          className="relative w-full overflow-hidden"
+          className="relative w-full overflow-hidden flex flex-col"
           style={{
             height: isMdUp ? '62vh' : '55vh',
             minHeight: isMdUp ? '420px' : '320px',
@@ -154,15 +154,15 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
           }}
         >
 
-          {/* 이미지 내부 상단 바 — 항상 세로 배열로 겹침 방지 */}
-          <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-start gap-2 px-8 md:px-16 pt-8 md:pt-10">
+          {/* 상단 바 — 정상 흐름 (position:absolute 제거), xl에서 가로 배치 */}
+          <div className="flex flex-col xl:flex-row xl:items-baseline xl:justify-between gap-3 xl:gap-0 px-8 md:px-16 pt-8 md:pt-10 pb-3 flex-shrink-0 z-20">
             <h3
               className="font-bold leading-tight shrink-0"
               style={{
-                fontSize: 'clamp(14px, 1.4vw, 20px)',
+                fontSize: 'clamp(22px, 2.5vw, 36px)',
                 fontFamily: "'Poppins', sans-serif",
-                color: 'rgba(255,255,255,0.70)',
-                letterSpacing: '0.04em',
+                color: '#FFFFFF',
+                letterSpacing: '0.03em',
               }}
             >
               Spharos One Services
@@ -170,7 +170,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
 
             <div className="inline-block">
               <div
-                className="flex items-baseline gap-4 md:gap-8 border-b"
+                className="flex items-baseline gap-5 md:gap-10 border-b"
                 style={{ borderColor: 'rgba(255,255,255,0.20)' }}
               >
                 {TABS.map((tab) => {
@@ -179,7 +179,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                     <button
                       key={tab.key}
                       onClick={() => onTabChange(tab.key)}
-                      className={`flex items-baseline gap-1 md:gap-2 cursor-pointer transition-all duration-300 group pb-2 border-b-2 bg-transparent ${
+                      className={`flex items-baseline gap-1.5 md:gap-3 cursor-pointer transition-all duration-300 group pb-2 md:pb-3 border-b-2 bg-transparent ${
                         isActive ? 'border-[#5BA4F5]' : 'border-transparent'
                       }`}
                       style={{ marginBottom: '-1px' }}
@@ -187,10 +187,10 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className={`font-bold leading-tight transition-all duration-300${isActive ? ' acc' : ''}`}
                         style={{
-                          fontSize: 'clamp(13px, 1.4vw, 20px)',
+                          fontSize: 'var(--fs-label)',
                           fontFamily: "'Poppins', sans-serif",
                           color: isActive ? undefined : 'rgba(255,255,255,0.45)',
-                          letterSpacing: '0.08em',
+                          letterSpacing: '0.1em',
                         }}
                       >
                         {tab.num}
@@ -198,8 +198,9 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className="font-medium leading-tight transition-all duration-300"
                         style={{
-                          fontSize: 'clamp(13px, 1.4vw, 20px)',
+                          fontSize: 'var(--fs-label)',
                           color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)',
+                          letterSpacing: '0.02em',
                         }}
                       >
                         {tab.label}
@@ -211,7 +212,8 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             </div>
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px', paddingTop: 'clamp(110px, 16vh, 160px)' }}>
+          {/* 콘텐츠 — flex-1로 나머지 공간 채움, 위아래 동일 패딩으로 가운데 정렬 */}
+          <div className="flex-1 flex flex-col justify-center px-8 md:px-16" style={{ paddingTop: 'clamp(40px, 6vh, 80px)', paddingBottom: 'clamp(40px, 6vh, 80px)' }}>
             <div className="mb-3 md:mb-6">
               <h2
                 className="font-bold leading-tight transition-all duration-500"
