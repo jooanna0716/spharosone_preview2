@@ -132,7 +132,7 @@ export default function SpharosOneStorySection() {
               width: '100%',
               height: '100%',
               objectFit: 'cover',
-              objectPosition: 'center 30%',
+              objectPosition: 'center center',
               display: 'block',
             }}
           />

@@ -5,7 +5,7 @@ export default function CtaSection() {
   const [popupOpen, setPopupOpen] = useState(false);
 
   return (
-    <section style={{ background: '#0d0d0d', padding: 'clamp(32px, 6vh, 80px) clamp(20px, 4vw, 60px)' }}>
+    <section style={{ background: '#0d0d0d', padding: 'clamp(60px, 10vh, 140px) clamp(20px, 4vw, 60px)' }}>
 
       {/* 카드 */}
       <div

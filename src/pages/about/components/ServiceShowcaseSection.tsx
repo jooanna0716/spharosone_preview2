@@ -154,15 +154,15 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
           }}
         >
 
-          {/* 이미지 내부 상단 바 */}
-          <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-start lg:flex-row lg:items-baseline lg:justify-between gap-4 lg:gap-0 px-8 md:px-16 pt-16 md:pt-20">
+          {/* 이미지 내부 상단 바 — 항상 세로 배열로 겹침 방지 */}
+          <div className="absolute top-0 left-0 right-0 z-20 flex flex-col items-start gap-2 px-8 md:px-16 pt-8 md:pt-10">
             <h3
               className="font-bold leading-tight shrink-0"
               style={{
-                fontSize: 'clamp(22px, 2.5vw, 36px)',
+                fontSize: 'clamp(14px, 1.4vw, 20px)',
                 fontFamily: "'Poppins', sans-serif",
-                color: '#FFFFFF',
-                letterSpacing: '0.03em',
+                color: 'rgba(255,255,255,0.70)',
+                letterSpacing: '0.04em',
               }}
             >
               Spharos One Services
@@ -170,7 +170,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
 
             <div className="inline-block">
               <div
-                className="flex items-baseline gap-5 md:gap-10 border-b"
+                className="flex items-baseline gap-4 md:gap-8 border-b"
                 style={{ borderColor: 'rgba(255,255,255,0.20)' }}
               >
                 {TABS.map((tab) => {
@@ -179,7 +179,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                     <button
                       key={tab.key}
                       onClick={() => onTabChange(tab.key)}
-                      className={`flex items-baseline gap-1.5 md:gap-3 cursor-pointer transition-all duration-300 group pb-2 md:pb-3 border-b-2 bg-transparent ${
+                      className={`flex items-baseline gap-1 md:gap-2 cursor-pointer transition-all duration-300 group pb-2 border-b-2 bg-transparent ${
                         isActive ? 'border-[#5BA4F5]' : 'border-transparent'
                       }`}
                       style={{ marginBottom: '-1px' }}
@@ -187,10 +187,10 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className={`font-bold leading-tight transition-all duration-300${isActive ? ' acc' : ''}`}
                         style={{
-                          fontSize: 'var(--fs-label)',
+                          fontSize: 'clamp(13px, 1.4vw, 20px)',
                           fontFamily: "'Poppins', sans-serif",
                           color: isActive ? undefined : 'rgba(255,255,255,0.45)',
-                          letterSpacing: '0.1em',
+                          letterSpacing: '0.08em',
                         }}
                       >
                         {tab.num}
@@ -198,9 +198,8 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
                       <span
                         className="font-medium leading-tight transition-all duration-300"
                         style={{
-                          fontSize: 'var(--fs-label)',
+                          fontSize: 'clamp(13px, 1.4vw, 20px)',
                           color: isActive ? '#FFFFFF' : 'rgba(255,255,255,0.55)',
-                          letterSpacing: '0.02em',
                         }}
                       >
                         {tab.label}
@@ -212,7 +211,7 @@ export default function ServiceShowcaseSection({ activeTab, onTabChange }: Props
             </div>
           </div>
 
-          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px', paddingTop: 'clamp(160px, 22vh, 220px)' }}>
+          <div className="relative z-10 h-full flex flex-col justify-end px-8 md:px-16" style={{ paddingBottom: isMdUp ? '80px' : '40px', paddingTop: 'clamp(110px, 16vh, 160px)' }}>
             <div className="mb-3 md:mb-6">
               <h2
                 className="font-bold leading-tight transition-all duration-500"
