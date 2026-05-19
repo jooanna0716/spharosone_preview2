@@ -20,7 +20,7 @@ export default function Footer() {
       <div className="w-full">
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-1.5">
-            <img src="https://storage.readdy-site.link/project_files/09bf78ae-475d-4476-990b-92bad66325f9/0a8ade1a-2694-4299-b405-e77100ad8f4e__.png?v=683262a65621c6dd2fa34ba9bdf569f2" alt="SHINSEGAE I&C" className="h-9 w-auto object-contain" style={{ filter: 'brightness(0) invert(1) opacity(0.6)' }} />
+            <img src="/images/신세계아이앤씨_푸터로고.png" alt="SHINSEGAE I&C" className="h-9 w-auto object-contain" />
           </div>
           <div className="relative">
             <button

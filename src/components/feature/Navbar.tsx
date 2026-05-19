@@ -49,9 +49,7 @@ export default function Navbar() {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 cursor-pointer">
           <img
-            src={transparent
-              ? '/images/Spharos-One-White.png'
-              : '/images/Spharos-One-White.png'}
+            src="/images/Spharos-One-Black.png"
             alt="Spharos One Logo"
             className="h-10 w-auto object-contain"
             style={{ transition: 'opacity 0.3s ease' }}
