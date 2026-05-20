@@ -52,7 +52,7 @@ export default function Footer() {
             )}
           </div>
         </div>
-        <div className="pt-6" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+        <div className="pt-6">
           <p className="text-sm leading-relaxed" style={{ color: '#777777' }}>
             서울특별시 강남구 테헤란로 231, 센터필드 EAST 24층&nbsp;&nbsp;|&nbsp;&nbsp;<span style={{ color: '#aaaaaa' }}>대표이사</span> 양윤지&nbsp;&nbsp;|&nbsp;&nbsp;<span style={{ color: '#aaaaaa' }}>TEL</span> 02-3397-1234&nbsp;&nbsp;|&nbsp;&nbsp;<span style={{ color: '#aaaaaa' }}>사업자등록번호</span> 201-81-20549
           </p>

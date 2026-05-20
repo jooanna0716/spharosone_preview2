@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Navbar from '@/components/feature/Navbar';
 import ServiceShowcaseSection from '@/pages/about/components/ServiceShowcaseSection';
 import ServiceLicenseSection from '@/pages/about/components/ServiceLicenseSection';
+import BridgeSection from '@/pages/about/components/BridgeSection';
 import CtaSection from '@/pages/home/components/CtaSection';
 import Footer from '@/components/feature/Footer';
 
@@ -20,6 +21,7 @@ export default function AboutPage() {
       {/* 서비스 라이선스 */}
       <ServiceLicenseSection activeTab={activeTab} />
 
+      <BridgeSection />
       <CtaSection />
       <Footer />
     </main>

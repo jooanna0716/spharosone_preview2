@@ -111,37 +111,37 @@ export default function StoryBridgeSection() {
 
         <p
           style={{
-            fontSize: 'clamp(16px, 2.1vw, 30px)',
+            fontSize: 'clamp(20px, 2.63vw, 38px)',
             fontWeight: 700,
             color: '#ffffff',
-            marginBottom: '24px',
-            lineHeight: 1.4,
+            marginBottom: '28px',
+            lineHeight: 1.3,
           }}
         >
           모든 것을 하나로, 모두의 기준으로
         </p>
         <p
           style={{
-            fontSize: 'clamp(14px, 1.7vw, 24px)',
+            fontSize: 'clamp(14px, 1.73vw, 25px)',
             fontWeight: 400,
             color: 'rgba(255,255,255,0.70)',
-            marginBottom: '32px',
-            lineHeight: 1.7,
+            marginBottom: '24px',
+            lineHeight: 1.75,
             whiteSpace: 'pre-line',
           }}
         >
-          {`스파로스원은 설계부터 보안, 운영까지 하나로 연결한\n완성형 프라이빗 클라우드입니다.`}
+          {`복잡한 인프라와 운영의 기준이 흔들릴 때,\nSpharos 등대가 방향을 밝히고\nOne이 모든 것을 하나로 연결합니다.`}
         </p>
         <p
           className="acc"
           style={{
-            fontSize: 'clamp(14px, 1.7vw, 24px)',
-            fontWeight: 500,
-            lineHeight: 1.7,
+            fontSize: '33px',
+            fontWeight: 400,
+            lineHeight: 1.75,
             whiteSpace: 'pre-line',
           }}
         >
-          {`더 단순하게, 더 안정적으로\n그리고 더 합리적인 비용으로`}
+          {`스파로스원은 설계부터 보안, 운영까지\n하나로 연결한 완성형 프라이빗 클라우드입니다.`}
         </p>
       </div>
 

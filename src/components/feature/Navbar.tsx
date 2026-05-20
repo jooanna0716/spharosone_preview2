@@ -15,7 +15,8 @@ export default function Navbar() {
   const location = useLocation();
 
   const isHome = location.pathname === '/';
-  const transparent = isHome && !scrolled;
+  const isServices = location.pathname === '/services';
+  const transparent = (isHome || isServices) && !scrolled;
 
   useEffect(() => {
     setMenuOpen(false);
@@ -23,6 +24,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const onScroll = () => {
+      if (isServices) {
+        setScrolled(window.scrollY > 80);
+        return;
+      }
       const showcase = document.getElementById('showcase-section');
       const threshold = showcase ? showcase.offsetTop : window.innerHeight * 4 + 80;
       setScrolled(window.scrollY >= threshold);
@@ -30,7 +35,7 @@ export default function Navbar() {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
     return () => window.removeEventListener('scroll', onScroll);
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>

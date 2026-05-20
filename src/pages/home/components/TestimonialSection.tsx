@@ -71,22 +71,25 @@ const TESTIMONIALS = [
 
 const ACTIVE_BLUE = '#5BA4F5';
 const GAP = 20;
-// 카드 폭: 왼쪽 패딩(120px) 뺀 너비를 2.5등분. 2장 + 반장 peek
-const CARD_W = `calc((100vw - 120px - ${GAP * 2}px) / 2.5)`;
+const CARDS_PER_PAGE = 2;
+const PAGE_COUNT = Math.ceil(TESTIMONIALS.length / CARDS_PER_PAGE); // 3
+// 카드 폭: 좌우 패딩(120px × 2) 뺀 너비를 2등분
+const CARD_W = `calc((100vw - 240px - ${GAP}px) / 2)`;
 const CARD_W_MOBILE = `calc((100vw - 48px - ${GAP}px) / 1.2)`;
 
 export default function TestimonialSection() {
-  const [startIdx, setStartIdx] = useState(0);
+  const [pageIdx, setPageIdx] = useState(0);
   const [slideDir, setSlideDir] = useState<1 | -1>(1);
   const [animKey, setAnimKey] = useState(0);
 
   const navigate = (dir: 1 | -1) => {
     setSlideDir(dir);
     setAnimKey(k => k + 1);
-    setStartIdx(i => (i + dir + TESTIMONIALS.length) % TESTIMONIALS.length);
+    setPageIdx(p => (p + dir + PAGE_COUNT) % PAGE_COUNT);
   };
 
-  const cards = [0, 1, 2].map(offset => ({
+  const startIdx = pageIdx * CARDS_PER_PAGE;
+  const cards = [0, 1].map(offset => ({
     item: TESTIMONIALS[(startIdx + offset) % TESTIMONIALS.length],
     id: (startIdx + offset) % TESTIMONIALS.length,
   }));
@@ -127,8 +130,8 @@ export default function TestimonialSection() {
         </div>
       </div>
 
-      {/* 카드 트랙 — overflow:hidden으로 2.5번째 카드 클리핑 */}
-      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
+      {/* 카드 트랙 */}
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
         <div
           key={animKey}
           className="flex"
@@ -142,12 +145,12 @@ export default function TestimonialSection() {
               key={id}
               className="flex-shrink-0 flex flex-col"
               style={{
-                width: `clamp(260px, ${CARD_W}, 560px)`,
+                width: `clamp(260px, ${CARD_W}, 680px)`,
                 background: '#1c1c1c',
                 borderRadius: '16px',
-                padding: 'clamp(20px, 2vw, 32px)',
+                padding: 'clamp(20px, 2vw, 32px) clamp(20px, 2vw, 32px) 50px',
                 border: '1px solid rgba(255,255,255,0.07)',
-                minHeight: '280px',
+                minHeight: 'clamp(280px, 35vh, 440px)',
               }}
             >
               {/* 원형 이미지 */}
@@ -198,15 +201,15 @@ export default function TestimonialSection() {
         </div>
       </div>
 
-      {/* 모바일용 도트 */}
+      {/* 모바일용 도트 (페이지 기준) */}
       <div className="flex md:hidden justify-center gap-1.5 mt-6">
-        {TESTIMONIALS.map((_, i) => (
+        {Array.from({ length: PAGE_COUNT }).map((_, i) => (
           <button
             key={i}
-            onClick={() => { setSlideDir(i > startIdx ? 1 : -1); setAnimKey(k => k + 1); setStartIdx(i); }}
+            onClick={() => { setSlideDir(i > pageIdx ? 1 : -1); setAnimKey(k => k + 1); setPageIdx(i); }}
             style={{
-              width: i === startIdx ? '28px' : '8px', height: '3px',
-              borderRadius: '2px', background: i === startIdx ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
+              width: i === pageIdx ? '28px' : '8px', height: '3px',
+              borderRadius: '2px', background: i === pageIdx ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
               transition: 'all 0.3s', border: 'none', cursor: 'pointer', padding: 0,
             }}
           />

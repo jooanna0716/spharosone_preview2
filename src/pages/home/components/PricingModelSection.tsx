@@ -30,7 +30,7 @@ const CONTRACT_OPTIONS = [
   {
     tag: '구독',
     title: '월 단위 구독',
-    period: '월 · 12 · 24 · 36개월',
+    period: '필요한 만큼, 원하는 기간으로',
     desc: '기본 월 단위 구독에서 12/24/36개월 장기 옵션까지 비즈니스 계획에 맞는 다양한 계약 기간을 선택할 수 있습니다.',
     bg: '#1a1a1a',
   },
@@ -317,24 +317,35 @@ export default function PricingModelSection() {
           </div>
         </div>
 
-        {/* 도트 네비게이션 */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '28px' }}>
-          {[0, 1].map((i) => (
-            <button
-              key={i}
-              onClick={() => setSlide(i)}
-              style={{
-                width: i === slide ? '32px' : '10px',
-                height: '10px',
-                borderRadius: '5px',
-                border: 'none',
-                padding: 0,
-                cursor: 'pointer',
-                background: i === slide ? '#5BA4F5' : 'rgba(255,255,255,0.18)',
-                transition: 'width 0.3s ease, background 0.3s ease',
-              }}
-            />
-          ))}
+        {/* 원형 숫자 네비게이션 */}
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', marginTop: '28px' }}>
+          {[1, 2].map((num) => {
+            const isActive = slide === num - 1;
+            return (
+              <button
+                key={num}
+                onClick={() => setSlide(num - 1)}
+                style={{
+                  width: '40px',
+                  height: '40px',
+                  borderRadius: '50%',
+                  border: isActive ? '2px solid #5BA4F5' : '2px solid rgba(255,255,255,0.2)',
+                  background: isActive ? '#5BA4F5' : 'transparent',
+                  color: isActive ? '#ffffff' : 'rgba(255,255,255,0.4)',
+                  fontSize: '15px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  padding: 0,
+                }}
+              >
+                {num}
+              </button>
+            );
+          })}
         </div>
 
         {/* 구분선 */}

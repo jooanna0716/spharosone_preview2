@@ -351,7 +351,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
         <div className="hidden md:block py-10">
           {/* 제목 */}
           <div className="flex items-center gap-3 flex-wrap mb-2">
-            <h3 className="font-bold" style={{ fontSize: 'clamp(22px, 2.92vw, 42px)', lineHeight: 1.1, color: '#f0f0f0' }}>{item.label}</h3>
+            <h3 className="font-bold" style={{ fontSize: '30px', lineHeight: 1.1, color: '#f0f0f0' }}>{item.label}</h3>
             {item.badge && (
               <span
                 style={{
@@ -367,13 +367,13 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               </span>
             )}
           </div>
-          <p className="mb-8" style={{ fontSize: 'var(--fs-subtitle)', color: '#aaaaaa' }}>{item.subtitle}</p>
+          <p className="mb-8" style={{ fontSize: '20px', color: '#aaaaaa' }}>{item.subtitle}</p>
 
           {/* 상세 */}
           <div className="space-y-8">
             {item.definition ? (
               <>
-                <p className="leading-relaxed" style={{ fontSize: 'var(--fs-label)', color: 'rgba(240,240,240,0.8)' }}>{item.definition}</p>
+                <p className="leading-relaxed" style={{ fontSize: '28px', color: 'rgba(240,240,240,0.8)' }}>{item.definition}</p>
                 <hr style={{ border: 'none', borderTop: '1px solid rgba(255,255,255,0.10)', margin: '8px 0 0' }} />
               </>
             ) : item.features.length > 0 && (
@@ -397,7 +397,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                 <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '12px' }}>
                   <span
                     className="font-bold"
-                    style={{ fontSize: 'var(--fs-subtitle)', background: 'rgba(255,255,255,0.08)', padding: '6px 20px', borderRadius: '20px', color: '#f0f0f0' }}
+                    style={{ fontSize: '24px', background: 'rgba(255,255,255,0.08)', padding: '6px 20px', borderRadius: '20px', color: '#f0f0f0' }}
                   >
                     서비스 구성
                   </span>
@@ -423,7 +423,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                     </button>
                   )}
                 </div>
-                <div className="leading-relaxed space-y-3" style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(240,240,240,0.8)' }}>
+                <div className="leading-relaxed space-y-3" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>
                   {item.compositions.map((c) => (
                     <div key={c.name}>
                       <p className="font-semibold" style={{ color: '#f0f0f0' }}>• {c.name}</p>
@@ -437,16 +437,16 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
             <div>
               <span
                 className="inline-block font-bold mb-3"
-                style={{ fontSize: 'var(--fs-subtitle)', background: 'rgba(255,255,255,0.08)', padding: '4px 16px', borderRadius: '20px', color: '#f0f0f0' }}
+                style={{ fontSize: '24px', background: 'rgba(255,255,255,0.08)', padding: '4px 16px', borderRadius: '20px', color: '#f0f0f0' }}
               >
                 추천 고객
               </span>
               {Array.isArray(item.recommend) ? (
-                <div className="leading-relaxed space-y-1" style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(240,240,240,0.8)' }}>
+                <div className="leading-relaxed space-y-1" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>
                   {item.recommend.map((r, i) => <p key={i}>• {r}</p>)}
                 </div>
               ) : (
-                <p className="leading-relaxed" style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(240,240,240,0.8)' }}>{item.recommend}</p>
+                <p className="leading-relaxed" style={{ fontSize: '24px', color: 'rgba(240,240,240,0.8)' }}>{item.recommend}</p>
               )}
             </div>
           </div>
