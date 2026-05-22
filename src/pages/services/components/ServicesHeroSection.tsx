@@ -154,7 +154,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             <div style={{
               position: 'absolute', bottom: '12%',
               left: '28px', right: '28px',
-              zIndex: 3, display: 'flex', flexDirection: 'column', gap: '12px',
+              zIndex: 3, display: 'flex', flexDirection: 'column', gap: '24px',
             }}>
               <p style={{
                 fontFamily: "'Poppins', sans-serif",

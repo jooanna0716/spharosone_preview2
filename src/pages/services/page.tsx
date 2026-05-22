@@ -7,19 +7,24 @@ import Footer from '@/components/feature/Footer';
 
 type TabKey = 'main' | 'license' | 'addon';
 
-const DESCRIPTIONS: Record<TabKey, { bold: string; rest: string }> = {
-  main: {
-    bold: '스파로스 원',
-    rest: '은 기업 환경에 최적화된 서비스형(As a Service) 프라이빗 클라우드로, 구축 부담은 줄이고 보안·컴플라이언스·업무 연속성까지 고려한 안정적인 운영 환경을 제공합니다.',
-  },
-  license: {
-    bold: '스파로스 원',
-    rest: '에 필요한 기능을 더해 우리 회사에 맞는 클라우드 환경을 완성하세요. 구독형 기반 온프레미스 구축부터 클라우드 운영·보안, AI·ML 워크로드까지 기업 환경에 맞춰 유연하게 확장하며 필요한 기능만 단계적으로 적용할 수 있습니다.',
-  },
-  addon: {
-    bold: '핵심 인프라 운영 지원',
-    rest: '부터 보안·운영 안정성·지속 관리까지 전문화된 맞춤형 부가 서비스를 제공해 기업의 클라우드 운영 효율과 IT 경쟁력을 높입니다.',
-  },
+type Segment = { text: string; bold: boolean };
+
+const DESCRIPTIONS: Record<TabKey, Segment[]> = {
+  main: [
+    { text: '스파로스 원', bold: true },
+    { text: '은 기업 환경에 최적화된 ', bold: false },
+    { text: '서비스형(As a Service) 프라이빗 클라우드', bold: true },
+    { text: '로, 구축 부담은 줄이고 보안·컴플라이언스·업무 연속성까지 고려한 안정적인 운영 환경을 제공합니다.', bold: false },
+  ],
+  license: [
+    { text: '스파로스 원', bold: true },
+    { text: '에 필요한 기능을 더해 우리 회사에 맞는 클라우드 환경을 완성하세요. 구독형 기반 온프레미스 구축부터 클라우드 운영·보안, AI·ML 워크로드까지 기업 환경에 맞춰 유연하게 확장하며 필요한 기능만 단계적으로 적용할 수 있습니다.', bold: false },
+  ],
+  addon: [
+    { text: '핵심 인프라 운영 지원부터 보안·운영 안정성·지속 관리까지 전문화된 ', bold: false },
+    { text: '맞춤형 부가 서비스', bold: true },
+    { text: '를 제공해 기업의 클라우드 운영 효율과 IT 경쟁력을 높입니다.', bold: false },
+  ],
 };
 
 function RevealText({ tab }: { tab: TabKey }) {
@@ -47,17 +52,17 @@ function RevealText({ tab }: { tab: TabKey }) {
     return () => { observer.disconnect(); clearTimeout(timer); };
   }, [tab]);
 
-  const { bold, rest } = DESCRIPTIONS[tab];
+  const segments = DESCRIPTIONS[tab];
   let idx = 0;
 
-  const chars = (text: string, bold: boolean) =>
+  const chars = (text: string, isBold: boolean, segIdx: number) =>
     text.split('').map((ch, i) => {
       const delay = idx++ * 18;
       return (
         <span
-          key={`${bold ? 'b' : 'r'}-${i}`}
+          key={`seg${segIdx}-${i}`}
           style={{
-            fontWeight: bold ? 700 : 400,
+            fontWeight: isBold ? 700 : 400,
             color: lit ? '#ffffff' : 'rgba(255,255,255,0.28)',
             transition: lit ? `color 0.25s ease ${delay}ms` : 'none',
           }}
@@ -77,8 +82,7 @@ function RevealText({ tab }: { tab: TabKey }) {
         margin: 0,
       }}
     >
-      {chars(bold, true)}
-      {chars(rest, false)}
+      {segments.map((seg, si) => chars(seg.text, seg.bold, si))}
     </p>
   );
 }
