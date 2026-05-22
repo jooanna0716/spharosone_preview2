@@ -166,7 +166,7 @@ function CashFlowSlide() {
   ].join('');
 
   // ── 오른쪽 막대 그래프 ──
-  const BW = 380;
+  const BW = 420;
   // 상단 여백을 넉넉히 줘서 절감률 태그 표시
   const bPL = 40, bPR = 12, bPT = 44, bPB = 32;
   const bCW = BW - bPL - bPR;
