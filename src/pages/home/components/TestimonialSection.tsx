@@ -92,12 +92,12 @@ export default function TestimonialSection() {
   }));
 
   return (
-    <section style={{ background: '#0d0d0d', height: '100vh', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(48px, 11.9vh, 120px)', paddingBottom: 'clamp(48px, 11.9vh, 120px)' }}>
+    <section style={{ background: '#0d0d0d', minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(32px, 6vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
         className="flex items-end justify-between"
-        style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', marginBottom: '36px' }}
+        style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', marginBottom: 'clamp(16px, 3vh, 36px)' }}
       >
         <div>
           <span style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-label)', display: 'block', marginBottom: '10px', letterSpacing: '0.05em' }}>
@@ -147,15 +147,15 @@ export default function TestimonialSection() {
                 minWidth: 0,
                 background: '#1c1c1c',
                 borderRadius: '16px',
-                padding: 'clamp(20px, 2vw, 32px) clamp(20px, 2vw, 32px) 50px',
+                padding: 'clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px) clamp(16px, 4vh, 50px)',
                 border: '1px solid rgba(255,255,255,0.07)',
               }}
             >
               {/* 원형 이미지 */}
               <div
                 style={{
-                  width: '64px', height: '64px', borderRadius: '50%',
-                  overflow: 'hidden', marginBottom: '20px', flexShrink: 0,
+                  width: 'clamp(44px, 6vh, 64px)', height: 'clamp(44px, 6vh, 64px)', borderRadius: '50%',
+                  overflow: 'hidden', marginBottom: 'clamp(10px, 1.5vh, 20px)', flexShrink: 0,
                   border: '2px solid rgba(91,164,245,0.35)',
                   boxShadow: '0 0 0 4px rgba(91,164,245,0.08)',
                 }}
@@ -173,7 +173,7 @@ export default function TestimonialSection() {
               </p>
 
               {/* 인용 */}
-              <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: '20px' }}>
+              <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: 'clamp(8px, 1.5vh, 20px)' }}>
                 {item.quote}
               </p>
 
