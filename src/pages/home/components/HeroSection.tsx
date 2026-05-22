@@ -131,7 +131,7 @@ export default function HeroSection() {
             스파로스 원 하나로
           </p>
           <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: '0 0 4px', opacity: 0.68 }}>
-            수억 원의 초기 투자와 약정 없이
+            복잡함 없이, 부담 없이
           </p>
           <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: 0, opacity: 0.68 }}>
             가장 쉽게 시작하는 프라이빗 클라우드
