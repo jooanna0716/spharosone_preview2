@@ -85,6 +85,7 @@ export default function StoryBridgeSection() {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          gap: '14px',
         }}
       >
         <h2
@@ -92,7 +93,7 @@ export default function StoryBridgeSection() {
             fontSize: 'clamp(28px, 4.2vw, 60px)',
             fontWeight: 800,
             lineHeight: 1.1,
-            margin: '0 0 32px',
+            margin: 0,
           }}
         >
           <span style={{ color: '#ffffff' }}>All-in-One. </span>
@@ -105,7 +106,6 @@ export default function StoryBridgeSection() {
             height: '3px',
             background: '#5BA4F5',
             borderRadius: '2px',
-            marginBottom: '48px',
           }}
         />
 
@@ -114,7 +114,7 @@ export default function StoryBridgeSection() {
             fontSize: 'clamp(20px, 2.63vw, 38px)',
             fontWeight: 700,
             color: '#ffffff',
-            marginBottom: '28px',
+            margin: 0,
             lineHeight: 1.3,
           }}
         >
@@ -125,23 +125,24 @@ export default function StoryBridgeSection() {
             fontSize: 'clamp(14px, 1.73vw, 25px)',
             fontWeight: 400,
             color: 'rgba(255,255,255,0.70)',
-            marginBottom: '24px',
-            lineHeight: 1.75,
+            margin: 0,
+            lineHeight: 1.7,
             whiteSpace: 'pre-line',
           }}
         >
-          {`복잡한 인프라와 운영의 기준이 흔들릴 때,\nSpharos 등대가 방향을 밝히고\nOne이 모든 것을 하나로 연결합니다.`}
+          {`Spharos 등대는 흔들리지 않는 기준이 되고,\nOne은 모든 것을 하나로 잇습니다.`}
         </p>
         <p
-          className="acc"
           style={{
             fontSize: '33px',
             fontWeight: 400,
-            lineHeight: 1.75,
+            color: '#a8d4ff',
+            lineHeight: 1.7,
+            margin: 0,
             whiteSpace: 'pre-line',
           }}
         >
-          {`스파로스원은 설계부터 보안, 운영까지\n하나로 연결한 완성형 프라이빗 클라우드입니다.`}
+          {`스파로스 원은 설계 · 운영 · 보안을 하나로 이은\n구독형 프라이빗 클라우드입니다.\n따로 구축하고 운영할 필요 없이, 초기 투자 없이 시작하세요.`}
         </p>
       </div>
 

@@ -17,15 +17,20 @@ export default function HomePage() {
   const bridgeRef = useRef<HTMLDivElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
 
-  // 히어로(100vh) 영역 벗어나면 브릿지로 즉시 스냅
+  // 히어로(100vh) 영역 벗어나면 브릿지로 즉시 스냅 (아래 방향 스크롤 시에만)
   useEffect(() => {
     let snapLocked = false;
+    let prevScrollY = window.scrollY;
     const checkDeadZone = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > prevScrollY;
+      prevScrollY = currentScrollY;
+      if (!scrollingDown) return; // 위로 스크롤 시 스냅 안 함
       if (snapLocked) return;
       const bridge = bridgeRef.current;
       if (!bridge) return;
       const bridgeTop = bridge.getBoundingClientRect().top + window.scrollY;
-      if (window.scrollY > 5 && window.scrollY < bridgeTop) {
+      if (currentScrollY > 5 && currentScrollY < bridgeTop) {
         snapLocked = true;
         window.scrollTo({ top: bridgeTop, behavior: 'smooth' });
         setTimeout(() => { snapLocked = false; }, 1500);

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 const COMPARISON_ROWS = [
   { label: '초기 비용', capex: '대규모 하드웨어 구매', opex: '선납금 0원' },
@@ -12,11 +12,11 @@ const COMPARISON_ROWS = [
 const CASH_FLOW = [
   { period: '초기',    capex: 75,  opex: 12, diff: -63 },
   { period: '6개월',  capex: 78,  opex: 24, diff: -54 },
-  { period: '1년',    capex: 82,  opex: 36, diff: -46 },
+  { period: '12개월', capex: 82,  opex: 36, diff: -46 },
   { period: '18개월', capex: 86,  opex: 48, diff: -38 },
-  { period: '2년',    capex: 90,  opex: 56, diff: -34 },
+  { period: '24개월', capex: 90,  opex: 56, diff: -34 },
   { period: '30개월', capex: 95,  opex: 64, diff: -31 },
-  { period: '3년',    capex: 100, opex: 72, diff: -28 },
+  { period: '36개월', capex: 100, opex: 72, diff: -28 },
 ];
 
 const TCO_DATA = [
@@ -30,22 +30,22 @@ const CONTRACT_OPTIONS = [
   {
     tag: '구독',
     title: '월 단위 구독',
-    period: '필요한 만큼, 원하는 기간으로',
+    period: '월 단위부터 장기 계약까지',
     desc: '기본 월 단위 구독에서 12/24/36개월 장기 옵션까지 비즈니스 계획에 맞는 다양한 계약 기간을 선택할 수 있습니다.',
     bg: '#1a1a1a',
   },
   {
     tag: '혜택',
     title: '자체 프로모션',
-    period: '스파로스원 고객은 특별하게',
-    desc: '초기 도입 프로모션, 계약 기간별 차등 할인, 서비스 추가 시 결합 할인 등 다양한 비용 절감 혜택을 누릴 수 있습니다.',
+    period: '스파로스 원 고객은 특별하게',
+    desc: '초기 도입 프로모션, 계약 기간별 할인, 서비스 결합 할인 등 다양한 할인 프로모션을 제공합니다.',
     bg: '#1a1a1a',
   },
   {
-    tag: '편의',
+    tag: '관리',
     title: '간소화된 관리',
-    period: '변경 · 연장 · 해지',
-    desc: '서비스 변경, 계약 연장, 해지 프로세스가 간소화되어 복잡한 절차 없이 계약 조건을 관리할 수 있습니다.',
+    period: '변경 · 연장 · 해지까지 간편하게',
+    desc: '서비스 변경, 계약 연장, 해지까지 복잡한 절차 없이 간소하게 계약을 관리할 수 있습니다.',
     bg: '#1a1a1a',
   },
 ];
@@ -80,51 +80,49 @@ function CheckIcon({ pass }: { pass: boolean }) {
 
 /* ── 슬라이드1: CAPEX vs OPEX 카드 비교 ── */
 function CompareSlide() {
+  const COL = '26% 37% 37%';
+  const cellBase: React.CSSProperties = { padding: '13px 24px', display: 'flex', alignItems: 'center' };
+  const opexBorder = '3px solid #5BA4F5';
+  const lastIdx = COMPARISON_ROWS.length - 1;
+
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '24px', height: '100%' }}>
-      {/* CAPEX */}
-      <div style={{ background: '#1a1a1a', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px', border: '1px solid rgba(255,255,255,0.08)' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '13px', fontWeight: 600, color: '#888', background: 'rgba(255,255,255,0.08)', padding: '4px 12px', borderRadius: '20px' }}>기존 방식</span>
-          <span style={{ fontSize: '24px', fontWeight: 700, color: '#aaaaaa' }}>CAPEX</span>
+    <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
+
+      {/* 헤더 */}
+      <div style={{ display: 'grid', gridTemplateColumns: COL }}>
+        <div style={{ background: '#111827', padding: '22px 24px' }} />
+        {/* CAPEX 헤더 */}
+        <div style={{ background: '#1c1c1c', padding: '22px 24px', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
+          <div style={{ fontSize: '18px', fontWeight: 600, color: '#888', marginBottom: '6px' }}>기존 방식</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#aaaaaa', marginBottom: '8px' }}>CAPEX</div>
+          <div style={{ fontSize: '18px', color: '#606060', lineHeight: 1.5 }}>서버·스토리지를 직접 구매하고<br />데이터센터를 구축하는 자본 지출 방식</div>
         </div>
-        <p style={{ fontSize: 'var(--fs-body)', color: '#777777', lineHeight: 1.6, margin: 0 }}>
-          서버·스토리지를 직접 구매하고 데이터센터를 구축하는 전통적인 자본 지출 방식입니다.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {COMPARISON_ROWS.map((row) => (
-            <div key={row.label} style={{ display: 'flex', alignItems: 'center' }}>
-              <CheckIcon pass={false} />
-              <span style={{ fontSize: '20px', color: '#888888' }}>
-                <span style={{ fontWeight: 600, color: '#666666', marginRight: '6px' }}>{row.label}:</span>
-                {row.capex}
-              </span>
-            </div>
-          ))}
+        {/* OPEX 헤더 */}
+        <div style={{ background: '#1a2d45', padding: '22px 24px', borderLeft: opexBorder, borderTop: opexBorder, borderRight: opexBorder }}>
+          <div style={{ fontSize: '18px', fontWeight: 700, color: '#5BA4F5', marginBottom: '6px' }}>추천</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0', marginBottom: '8px' }}>Spharos One (OPEX)</div>
+          <div style={{ fontSize: '18px', color: '#7ab8e8', lineHeight: 1.5 }}>초기 투자 없이 사용한 만큼 지불하는<br />구독형 운영 지출 방식</div>
         </div>
       </div>
 
-      {/* OPEX */}
-      <div style={{ background: '#1f2a3a', borderRadius: '20px', padding: '36px 40px', display: 'flex', flexDirection: 'column', gap: '20px', boxShadow: '0 4px 32px rgba(91,164,245,0.25)', border: '2px solid #5BA4F5' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          <span style={{ fontSize: '13px', fontWeight: 700, color: '#fff', background: '#5BA4F5', padding: '4px 12px', borderRadius: '20px' }}>추천</span>
-          <span style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0' }}>Spharos One (OPEX)</span>
+      {/* 데이터 행 */}
+      {COMPARISON_ROWS.map((row, i) => (
+        <div key={row.label} style={{ display: 'grid', gridTemplateColumns: COL, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+          {/* 항목명 */}
+          <div style={{ ...cellBase, background: '#111827', borderTop: '1px solid rgba(255,255,255,0.12)' }}>
+            <span style={{ fontSize: 'var(--fs-body)', fontWeight: 700, color: '#7ec8f5' }}>{row.label}</span>
+          </div>
+          {/* CAPEX 값 */}
+          <div style={{ ...cellBase, background: i % 2 === 0 ? '#191919' : '#161616', borderLeft: '1px solid rgba(255,255,255,0.06)' }}>
+            <span style={{ fontSize: 'var(--fs-body)', color: '#777' }}>{row.capex}</span>
+          </div>
+          {/* OPEX 값 */}
+          <div style={{ ...cellBase, background: i % 2 === 0 ? '#1e3352' : '#192d48', borderLeft: opexBorder, borderRight: opexBorder, borderBottom: i === lastIdx ? opexBorder : undefined, gap: '10px' }}>
+            <span style={{ color: '#5BA4F5', fontWeight: 700, fontSize: '16px', flexShrink: 0 }}>✓</span>
+            <span style={{ fontSize: 'var(--fs-body)', color: '#d8eeff', fontWeight: 500 }}>{row.opex}</span>
+          </div>
         </div>
-        <p style={{ fontSize: '20px', color: '#aaaaaa', lineHeight: 1.6, margin: 0 }}>
-          초기 투자 없이 사용한 만큼 지불하는 구독형 운영 지출 방식으로 유연하게 클라우드를 운영합니다.
-        </p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          {COMPARISON_ROWS.map((row) => (
-            <div key={row.label} style={{ display: 'flex', alignItems: 'center' }}>
-              <CheckIcon pass={true} />
-              <span style={{ fontSize: 'var(--fs-body)', color: '#f0f0f0' }}>
-                <span className="acc" style={{ fontWeight: 600, marginRight: '6px' }}>{row.label}:</span>
-                {row.opex}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
@@ -249,7 +247,7 @@ function CashFlowSlide() {
                     stroke="#5BA4F5" strokeWidth="1" />
                   <text x={cx} y={tagY + 13} textAnchor="middle" fontSize="11" fontWeight="800"
                     fill="#5BA4F5">
-                    -{d.saving}% 절감
+                    {d.saving}% 절감
                   </text>
 
                   {/* CAPEX 바 */}
@@ -291,9 +289,9 @@ export default function PricingModelSection() {
 
         {/* 헤더 */}
         <div style={{ marginBottom: '64px' }}>
-          <span className="acc" style={{ fontSize: 'var(--fs-label)', fontWeight: 600 }}>비즈니스 혜택</span>
+          <span className="acc" style={{ fontSize: 'var(--fs-label)', fontWeight: 600 }}>비용 효율화</span>
           <h2 style={{ fontSize: 'var(--fs-display)', fontWeight: 800, color: '#f0f0f0', lineHeight: 1.2, margin: '8px 0 0' }}>
-            선납금 0원, 위약금 0원<br />구독으로 비즈니스 혜택을 누리세요
+            선납금 0원, 위약금 0원<br />초기 투자 없이 구독으로 시작하세요
           </h2>
         </div>
 

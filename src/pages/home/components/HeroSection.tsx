@@ -16,7 +16,7 @@ export default function HeroSection() {
   // 3.5초마다 카드 전환 (느린 자동 플레이)
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveCard(prev => (prev + 1) % 3);
+      setActiveCard(prev => (prev + 1) % 2);
     }, 3500);
     return () => clearInterval(timer);
   }, []);
@@ -103,41 +103,38 @@ export default function HeroSection() {
             color: '#000000',
             lineHeight: 1,
             letterSpacing: '-0.03em',
-            margin: 0,
+            margin: '0 0 20px',
           }}>
             Spharos One
           </h1>
+          <p style={{
+            fontSize: 'var(--fs-label)',
+            fontWeight: 600,
+            color: '#000000',
+            lineHeight: 1.6,
+            margin: 0,
+            opacity: 0.68,
+          }}>
+            스파로스 원 — 수억 원의 인프라를 월 단위 구독으로
+          </p>
         </div>
 
-        {/* 카드 2 — 슬라이드 1 */}
+        {/* 카드 2 — 구독하세요 */}
         <div style={cardStyle(activeCard === 1)}>
-          <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000000', lineHeight: 1.2, margin: '0 0 14px' }}>
-            클라우드, 이제 클릭 한 번에
-          </p>
-          <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: '#000000', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
-            가장 쉬운 프라이빗 클라우드, Spharos One
-          </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
-            복잡한 구축과 운영은 One으로 통합하고
-          </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
-            더 빠르게, 더 안정적으로
-          </p>
-        </div>
-
-        {/* 카드 3 — 슬라이드 2 */}
-        <div style={cardStyle(activeCard === 2)}>
           <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000000', lineHeight: 1.2, margin: '0 0 14px' }}>
             구축하지 마세요, 구독하세요
           </p>
           <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: '#000000', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
             선납금 0원 · 위약금 0원 · 첫 달 이후 언제든 해지
           </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.6, margin: '0 0 4px', opacity: 0.68 }}>
-            수억 원의 초기 투자도, 발목 잡는 약정도 없이
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: '0 0 4px', opacity: 0.68 }}>
+            스파로스 원 하나로
           </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.6, margin: 0, opacity: 0.68 }}>
-            프라이빗 클라우드의 새로운 기준
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: '0 0 4px', opacity: 0.68 }}>
+            수억 원의 초기 투자와 약정 없이
+          </p>
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: 0, opacity: 0.68 }}>
+            가장 쉽게 시작하는 프라이빗 클라우드
           </p>
         </div>
 

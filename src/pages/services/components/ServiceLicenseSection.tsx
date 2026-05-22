@@ -40,7 +40,7 @@ const MAIN_SERVICES: ServiceItem[] = [
     key: 'IaaS',
     label: 'IaaS',
     subtitle: 'Infrastructure as a Service',
-    definition: '서버, 스토리지, 네트워크 등의 IT 인프라를 서비스 형태로 제공하여 기업 환경에 맞춘 유연한 설계와 자원의 가변적 확장을 지원하는 서비스입니다.',
+    definition: '서버, 스토리지, 네트워크 등의 IT 인프라를 서비스 형태로 제공해 기업 환경에 맞춘 유연한 설계와 자원의 가변적 확장을 지원하는 서비스입니다.',
     features: [],
     compositions: [
       { name: 'IaaS', desc: '신세계아이앤씨 데이터센터 인프라 기반으로 가상 자원을 유연하게 제공하는 클라우드 인프라 서비스' },
@@ -72,7 +72,7 @@ const MAIN_SERVICES: ServiceItem[] = [
     key: 'DRaaS',
     label: 'DRaaS',
     subtitle: 'Disaster Recovery as a Service',
-    definition: '재해나 시스템 장애 발생 시 데이터와 시스템을 신속하게 복구할 수 있는 환경을 제공함으로써 서비스 중단을 최소화하고 비즈니스 연속성을 보장하는 서비스입니다.',
+    definition: '재해나 시스템 장애 발생 시 데이터와 시스템을 신속하게 복구할 수 있는 환경을 제공해 서비스 중단을 최소화하고 비즈니스 연속성을 보장하는 서비스입니다.',
     features: [],
     recommend: [
       '재해 복구 인프라를 별도로 구축하지 않고도 장애·재해 상황에 대비한 안정적인 복구 체계를 마련하고자 하는 기업',
@@ -84,7 +84,7 @@ const MAIN_SERVICES: ServiceItem[] = [
     key: 'DaaS',
     label: 'DaaS',
     subtitle: 'Desktop as a Service',
-    definition: '사용자가 장소나 기기에 구애받지 않고 동일한 업무 환경에 접속할 수 있도록 보안성과 안정성을 강화하여 제공하는 클라우드 기반 가상 데스크톱 서비스입니다.',
+    definition: '사용자가 장소나 기기에 구애받지 않고 동일한 업무 환경에 접속할 수 있도록 지원하여 보안성과 안정성을 강화하는 클라우드 기반 가상 데스크톱 서비스입니다.',
     features: [],
     recommend: [
       '근무 장소나 단말 환경 변화와 관계없이 일관된 업무 환경을 안정적으로 운영하고자 하는 기업',
@@ -99,7 +99,7 @@ const LICENSE_SERVICES: ServiceItem[] = [
     key: 'SCI',
     label: 'SCI',
     subtitle: 'Spharos One Cloud Infrastructure',
-    definition: '표준 아키텍처를 기반으로 서버, 스토리지, 가상화, DR을 통합 패키징하여 고객사 환경에 맞춘 최적의 설치와 유연한 인프라 확장을 지원하는 온프레미스 클라우드 구축 서비스입니다.',
+    definition: '표준 아키텍처를 기반으로 서버, 스토리지, 가상화, DR을 통합 패키징해 고객사 환경에 맞춘 최적의 설치와 유연한 인프라 확장을 지원하는 온프레미스 클라우드 구축 서비스입니다.',
     features: [],
     recommend: [
       '자체 클라우드 및 가상화 인프라를 안정적인 온프레미스에 신규 구축하여 운영 복잡도를 줄이려고 하는 기업',
@@ -110,7 +110,7 @@ const LICENSE_SERVICES: ServiceItem[] = [
     key: 'SCM',
     label: 'SCM',
     subtitle: 'Spharos One Cloud Manager',
-    definition: '인프라 상태, 비용, 보안 현황을 단일 플랫폼에서 가시화하고 온프레미스와 클라우드를 통합 운영함으로써 자원 효율성과 비용 절감을 극대화하는 관리 솔루션입니다.',
+    definition: '인프라 상태, 비용, 보안 현황을 단일 플랫폼에서 가시화하고 온프레미스와 클라우드를 통합 운영해 자원 효율성과 비용 절감을 극대화하는 관리 솔루션입니다.',
     features: [],
     recommend: [
       '클라우드 인프라를 체계적으로 운영·관리하고 표준화된 관리 체계를 구축하려는 기업',
@@ -121,7 +121,7 @@ const LICENSE_SERVICES: ServiceItem[] = [
     key: 'SUS',
     label: 'SUS',
     subtitle: 'Spharos One Unified Storage',
-    definition: '파일, 오브젝트, 블록 스토리지를 하나의 솔루션으로 통합하여 관리 및 백업을 수행하며, 재해 복구(DR) 기능을 통해 데이터 보안과 복구의 안정성을 보장하는 통합 스토리지 서비스입니다.',
+    definition: '파일, 오브젝트, 블록 스토리지를 하나의 솔루션으로 통합해 관리 및 백업을 수행하며, 재해 복구(DR) 기능을 통해 데이터 보안과 복구의 안정성을 보장하는 통합 스토리지 서비스입니다.',
     features: [],
     recommend: [
       '인프라 유지보수 인력 없이 안정적인 소프트웨어 운영 환경을 유지하고자 하는 기업',
@@ -133,7 +133,7 @@ const LICENSE_SERVICES: ServiceItem[] = [
     key: 'SKP',
     label: 'SKP',
     subtitle: 'Spharos One Kubernetes Platform',
-    definition: '클러스터 및 테넌트 환경에서 쿠버네티스의 설치부터 모니터링까지 전 단계를 통합 관리하여 컨테이너 기반 서비스의 운영 효율을 높여주는 플랫폼입니다.',
+    definition: '클러스터 및 테넌트 환경에서 쿠버네티스의 설치부터 모니터링까지 전 단계를 통합 관리해 컨테이너 기반 서비스의 운영 효율을 높여주는 플랫폼입니다.',
     features: [],
     recommend: [
       '데이터 암호화 및 보안 컴플라이언스 요건이 높은 금융·공공 기업',
@@ -182,7 +182,7 @@ const ADDON_SERVICES: ServiceItem[] = [
     key: 'Converged',
     label: '융합보안 및 관제서비스',
     subtitle: 'Converged Security & Monitoring Service',
-    definition: '물리·사이버·운영 데이터를 통합하여 시설 전반의 보안 체계를 구축하는 융합보안과, AI 및 SIEM 기반으로 침해 사고를 실시간 탐지하고 정기 분석 정보를 제공하는 보안관제가 결합된 통합 보호 서비스입니다.',
+    definition: '물리·사이버·운영 데이터를 통합해 시설 전반의 보안 체계를 구축하는 융합보안과, AI 및 SIEM 기반으로 침해 사고를 실시간 탐지하고 정기 분석 정보를 제공하는 보안관제가 결합된 통합 보호 서비스입니다.',
     features: [],
     recommend: [
       '물리·사이버 보안을 통합 관리하고 실시간 위협 대응 체계가 필요한 기업',

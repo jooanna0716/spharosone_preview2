@@ -4,71 +4,60 @@ type TabKey = 'main' | 'license' | 'addon';
 
 const STYLES = `
   @keyframes sB1 {
-    0%,100% { transform: translate(0%,    0%)    scale(1.00); }
-    20%     { transform: translate(25%,  -18%)   scale(1.14); }
-    45%     { transform: translate(-18%,  28%)   scale(0.90); }
-    70%     { transform: translate(32%,   12%)   scale(1.08); }
+    0%,100% { transform: translate(0,     0)    scale(1.00); }
+    25%     { transform: translate(3vw,  -2vh)  scale(1.08); }
+    60%     { transform: translate(-2vw,  3vh)  scale(0.94); }
   }
   @keyframes sB2 {
-    0%,100% { transform: translate(0%,    0%)    scale(1.00); }
-    30%     { transform: translate(-28%,  22%)   scale(1.12); }
-    60%     { transform: translate(18%,  -28%)   scale(0.88); }
+    0%,100% { transform: translate(0,     0)    scale(1.00); }
+    35%     { transform: translate(-3vw,  2vh)  scale(1.07); }
+    70%     { transform: translate(2vw,  -3vh)  scale(0.93); }
   }
   @keyframes sB3 {
-    0%,100% { transform: translate(0%,    0%)    scale(1.00); }
-    35%     { transform: translate(38%,   22%)   scale(1.16); }
-    65%     { transform: translate(-22%,  -18%)  scale(0.92); }
+    0%,100% { transform: translate(0,     0)    scale(1.00); }
+    40%     { transform: translate(3vw,   2vh)  scale(1.09); }
+    75%     { transform: translate(-2vw, -2vh)  scale(0.95); }
   }
   @keyframes sB4 {
-    0%,100% { transform: translate(0%,    0%)    scale(1.00); }
-    40%     { transform: translate(-32%,  18%)   scale(1.10); }
-    75%     { transform: translate(22%,  -22%)   scale(0.94); }
+    0%,100% { transform: translate(0,     0)    scale(1.00); }
+    30%     { transform: translate(-3vw,  2vh)  scale(1.06); }
+    65%     { transform: translate(2vw,  -2vh)  scale(0.94); }
   }
   @keyframes sB5 {
-    0%,100% { transform: translate(0%,    0%)    scale(1.00); }
-    50%     { transform: translate(-18%,  -28%)  scale(1.12); }
+    0%,100% { transform: translate(0,     0)    scale(1.00); }
+    50%     { transform: translate(-2vw, -3vh)  scale(1.07); }
   }
-
   @keyframes menuBounce {
     0%   { transform: translateY(0px); }
     40%  { transform: translateY(-10px); }
     100% { transform: translateY(0px); }
   }
-  .svc-menu-txt {
-    display: block;
-    cursor: default;
-  }
-  .svc-menu-txt:hover {
-    animation: menuBounce 0.42s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  @keyframes arrowFlow {
-    0%   { opacity: 0.08; }
-    35%  { opacity: 0.80; }
-    65%  { opacity: 0.80; }
-    100% { opacity: 0.08; }
-  }
-  .arr-1 { animation: arrowFlow 1.8s ease-in-out infinite; animation-delay: 0s; }
-  .arr-2 { animation: arrowFlow 1.8s ease-in-out infinite; animation-delay: 0.3s; }
-  .arr-3 { animation: arrowFlow 1.8s ease-in-out infinite; animation-delay: 0.6s; }
+  .svc-menu-txt { display: block; cursor: default; }
+  .svc-menu-txt:hover { animation: menuBounce 0.42s cubic-bezier(0.25,0.46,0.45,0.94); }
 `;
 
 const MENU_ITEMS = [
   {
     key: 'main' as TabKey,
     lines: ['Main', 'Services'],
+    underlineIdx: 1,
+    bgImage: '/images/메인서비스.png',
     slogan1: '구축 부담 제로, AX는 프로답게',
-    slogan2: '스파로스원 서비스로 더 강력한 비즈니스',
+    slogan2: '스파로스 원 서비스로 더 강력한 비즈니스',
   },
   {
     key: 'license' as TabKey,
     lines: ['Licenses'],
+    underlineIdx: 0,
+    bgImage: '/images/라이선스.png',
     slogan1: '시작부터 확장까지 AtoZ',
     slogan2: '조직규모에 맞춘 스마트 구독 라이선스',
   },
   {
     key: 'addon' as TabKey,
     lines: ['Add-on', 'Services'],
+    underlineIdx: 1,
+    bgImage: '/images/부가서비스.png',
     slogan1: '탄탄한 운영, 압도적인 경쟁력',
     slogan2: '안전과 효율을 더하는 프리미엄 부가서비스',
   },
@@ -93,25 +82,6 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
     return () => ro.disconnect();
   }, []);
 
-  // 히어로 구간에서 아래로 스크롤 시 service-detail로 즉시 앵커
-  useEffect(() => {
-    let locked = false;
-    const onWheel = (e: WheelEvent) => {
-      if (locked || e.deltaY <= 0) return;
-      const detail = document.getElementById('service-detail');
-      if (!detail) return;
-      const detailTop = detail.getBoundingClientRect().top + window.scrollY;
-      if (window.scrollY < detailTop - 10) {
-        e.preventDefault();
-        locked = true;
-        window.scrollTo({ top: detailTop, behavior: 'smooth' });
-        setTimeout(() => { locked = false; }, 1500);
-      }
-    };
-    window.addEventListener('wheel', onWheel, { passive: false });
-    return () => window.removeEventListener('wheel', onWheel);
-  }, []);
-
   const handleClick = (key: TabKey) => {
     setActive(key);
     onTabChange(key);
@@ -128,167 +98,161 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           display: 'flex',
           alignItems: 'center',
           padding: '0 120px',
-          gap: '60px',
           overflow: 'hidden',
         }}
       >
-        {/* ── 왼쪽: 그라데이션 이미지 박스 ─────────────────────────── */}
-        <div style={{ flex: '0 0 auto', width: '50%' }}>
+        {/* 배경 이미지 */}
+        {MENU_ITEMS.map(item => (
           <div
+            key={item.key}
             style={{
-              position: 'relative',
-              width: '100%',
-              height: `${imgHeight}px`,
-              borderRadius: '6px',
-              overflow: 'hidden',
-              background: '#1E0060',
-              transition: 'height 0.3s ease',
+              position: 'absolute', inset: 0, zIndex: 0,
+              backgroundImage: `url(${item.bgImage})`,
+              backgroundSize: 'cover', backgroundPosition: 'center',
+              opacity: active === item.key ? 1 : 0,
+              transition: 'opacity 0.6s ease',
             }}
-          >
-            {/* 애니메이션 그라데이션 블롭 */}
-            <div style={{ position: 'absolute', left: '-20%', top: '-20%', width: '90%', height: '140%',
-              background: 'radial-gradient(ellipse at center, #6200CC 0%, rgba(90,0,200,0.72) 35%, transparent 68%)',
-              animation: 'sB1 14s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', left: '10%', top: '-45%', width: '85%', height: '125%',
-              background: 'radial-gradient(ellipse at center, #BB3FFF 0%, rgba(160,50,250,0.65) 35%, transparent 66%)',
-              animation: 'sB2 18s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', left: '28%', top: '5%', width: '75%', height: '115%',
-              background: 'radial-gradient(ellipse at center, #3060FF 0%, rgba(50,90,255,0.60) 38%, transparent 65%)',
-              animation: 'sB3 16s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', right: '-18%', top: '-18%', width: '88%', height: '140%',
-              background: 'radial-gradient(ellipse at center, #00DDFF 0%, rgba(0,200,240,0.78) 30%, transparent 62%)',
-              animation: 'sB4 12s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', right: '0%', bottom: '-30%', width: '70%', height: '105%',
-              background: 'radial-gradient(ellipse at center, #00FFCE 0%, rgba(0,230,200,0.65) 35%, transparent 63%)',
-              animation: 'sB5 20s ease-in-out infinite' }} />
+          />
+        ))}
 
-            {/* 하단 비네트 */}
+        {/* 검정 오버레이 */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'rgba(0,0,0,0.65)', pointerEvents: 'none' }} />
+
+        {/* 콘텐츠 */}
+        <div
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            width: '100%',
+            display: 'flex',
+            alignItems: 'center',
+            gap: 'clamp(20px, 2.5vw, 48px)',
+            padding: 'clamp(20px, 2.5vw, 36px)',
+          }}
+        >
+          {/* 왼쪽: 블롭 영역 */}
+          <div style={{ flex: '0 0 auto', width: '50%', position: 'relative', height: `${imgHeight}px`, transition: 'height 0.3s ease' }}>
+
+            {/* 유동 그라디언트 블롭 */}
+            <div style={{ position: 'absolute', left: '-15%', top: '-20%', width: '110%', height: '110%',
+              background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.85) 0%, rgba(90,0,200,0.58) 38%, transparent 68%)',
+              animation: 'sB1 7s ease-in-out infinite' }} />
+            <div style={{ position: 'absolute', left: '-5%', top: '-30%', width: '100%', height: '110%',
+              background: 'radial-gradient(ellipse at center, rgba(187,63,255,0.80) 0%, rgba(160,50,250,0.52) 38%, transparent 66%)',
+              animation: 'sB2 9s ease-in-out infinite' }} />
+            <div style={{ position: 'absolute', left: '10%', top: '-5%', width: '100%', height: '115%',
+              background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.75) 0%, rgba(50,90,255,0.48) 40%, transparent 65%)',
+              animation: 'sB3 8s ease-in-out infinite' }} />
+            <div style={{ position: 'absolute', right: '-15%', top: '-20%', width: '110%', height: '110%',
+              background: 'radial-gradient(ellipse at center, rgba(0,221,255,0.80) 0%, rgba(0,200,240,0.58) 32%, transparent 62%)',
+              animation: 'sB4 6s ease-in-out infinite' }} />
+            <div style={{ position: 'absolute', left: '5%', bottom: '-20%', width: '100%', height: '100%',
+              background: 'radial-gradient(ellipse at center, rgba(0,255,206,0.70) 0%, rgba(0,230,200,0.45) 38%, transparent 63%)',
+              animation: 'sB5 10s ease-in-out infinite' }} />
+
+            {/* 슬로건 + View more */}
             <div style={{
-              position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none',
-              background: 'linear-gradient(to top, rgba(0,0,0,0.75) 0%, transparent 50%)',
-            }} />
-
-            {/* 상단 좌측 레이블 */}
-            <p style={{
-              position: 'absolute',
-              top: '24px',
-              left: '24px',
-              zIndex: 3,
-              margin: 0,
-              fontFamily: "'Poppins', sans-serif",
-              fontSize: '16px',
-              fontWeight: 400,
-              color: 'rgba(255,255,255,0.45)',
-              letterSpacing: '0.03em',
-              pointerEvents: 'none',
+              position: 'absolute', bottom: '12%',
+              left: '28px', right: '28px',
+              zIndex: 3, display: 'flex', flexDirection: 'column', gap: '12px',
             }}>
-              Spharos One Services
-            </p>
-
-            {/* 슬로건 — 클릭한 메뉴에 따라 페이드 전환 */}
-            {MENU_ITEMS.map(item => (
-              <div
-                key={item.key}
-                style={{
-                  position: 'absolute',
-                  bottom: '28px',
-                  left: '28px',
-                  zIndex: 3,
-                  opacity: active === item.key ? 1 : 0,
-                  transition: 'opacity 0.4s ease',
-                  pointerEvents: 'none',
-                }}
-              >
-                <p style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: '40px',
-                  fontWeight: 700,
-                  color: '#fff',
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}>
-                  {item.slogan1}
-                </p>
-                <p style={{
-                  fontFamily: "'Noto Sans KR', sans-serif",
-                  fontSize: 'clamp(13px, 1.7vw, 28px)',
-                  fontWeight: 400,
-                  color: 'rgba(255,255,255,0.82)',
-                  lineHeight: 1.5,
-                  margin: 0,
-                }}>
-                  {item.slogan2}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* ── 오른쪽: 메뉴 아이템 ─────────────────────────────────── */}
-        <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
-          <div
-            ref={menuRef}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: 'clamp(0.4rem, 1.2vw, 1.8rem)',
-              width: '100%',
-            }}
-          >
-            {MENU_ITEMS.map(item => {
-              const isActive = active === item.key;
-              return (
-                <div
-                  key={item.key}
-                  onClick={() => handleClick(item.key)}
-                  style={{ cursor: 'pointer', position: 'relative' }}
-                >
-                  {/* 흰 점 — 비활성 텍스트 왼쪽 기준선에 고정, 첫 글자 수직 중앙 */}
-                  <span style={{
-                    position: 'absolute',
-                    left: 0,
-                    top: 'clamp(1.4rem, 3.5vw, 4.75rem)',
-                    transform: 'translateY(-50%)',
-                    width: 'clamp(12px, 1vw, 18px)',
-                    height: 'clamp(12px, 1vw, 18px)',
-                    borderRadius: '50%',
-                    background: '#ffffff',
-                    opacity: isActive ? 1 : 0,
-                    transition: 'opacity 0.3s ease',
-                    pointerEvents: 'none',
-                  }} />
-                  <span
-                    className="svc-menu-txt"
+              <p style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontSize: '18px', fontWeight: 400,
+                color: 'rgba(255,255,255,0.45)',
+                margin: '0 0 4px',
+                letterSpacing: '0.04em',
+              }}>
+                Spharos One Services
+              </p>
+              <div style={{ position: 'relative', height: '100px', pointerEvents: 'none' }}>
+                {MENU_ITEMS.map(item => (
+                  <div
+                    key={item.key}
                     style={{
-                      display: 'block',
-                      fontFamily: "'Poppins', sans-serif",
-                      fontSize: 'clamp(2.8rem, 7vw, 9.5rem)',
-                      fontWeight: isActive ? 800 : 700,
-                      color: isActive ? '#ffffff' : 'rgba(255,255,255,0.18)',
-                      lineHeight: 1.0,
-                      paddingLeft: isActive ? 'clamp(36px, 3.5vw, 56px)' : '0',
-                      transition: 'color 0.3s, padding-left 0.3s ease',
+                      position: 'absolute', top: 0, left: 0, right: 0,
+                      opacity: active === item.key ? 1 : 0,
+                      transition: 'none',
                     }}
                   >
-                    {item.lines.map((line, i) => (
-                      <span key={i} style={{ display: 'block' }}>{line}</span>
-                    ))}
-                  </span>
-                </div>
-              );
-            })}
+                    <p style={{
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(20px, 3vw, 46px)',
+                      fontWeight: 700, color: '#fff',
+                      lineHeight: 1.5, margin: 0, whiteSpace: 'nowrap',
+                    }}>
+                      {item.slogan1}
+                    </p>
+                    <p style={{
+                      fontFamily: "'Noto Sans KR', sans-serif",
+                      fontSize: 'clamp(13px, 1.5vw, 22px)',
+                      fontWeight: 400, color: 'rgba(255,255,255,0.82)',
+                      lineHeight: 1.5, margin: 0, whiteSpace: 'nowrap',
+                    }}>
+                      {item.slogan2}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <button
+                onClick={() => document.getElementById('service-detail')?.scrollIntoView({ behavior: 'smooth' })}
+                style={{
+                  alignSelf: 'flex-start', display: 'flex', alignItems: 'center', gap: '8px',
+                  padding: '10px 20px', background: 'rgba(255,255,255,0.12)',
+                  border: '1px solid rgba(255,255,255,0.3)', borderRadius: '100px',
+                  color: '#ffffff', fontSize: '14px', fontWeight: 600,
+                  fontFamily: "'Poppins', sans-serif", cursor: 'pointer',
+                  backdropFilter: 'blur(8px)', transition: 'background 0.2s ease',
+                }}
+                onMouseEnter={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.22)')}
+                onMouseLeave={e => (e.currentTarget.style.background = 'rgba(255,255,255,0.12)')}
+              >
+                View more <span style={{ fontSize: '16px' }}>→</span>
+              </button>
+            </div>
           </div>
-        </div>
-        {/* ── 하단 흐르는 화살표 ─────────────────────────────────── */}
-        <div style={{
-          position: 'absolute', bottom: '36px', left: '50%',
-          transform: 'translateX(-50%)',
-          display: 'flex', flexDirection: 'column', alignItems: 'center',
-          gap: '4px', pointerEvents: 'none',
-        }}>
-          <div className="arr-1" style={{ width: '20px', height: '20px', borderRight: '2.5px solid rgba(255,255,255,0.85)', borderBottom: '2.5px solid rgba(255,255,255,0.85)', transform: 'rotate(45deg)' }} />
-          <div className="arr-2" style={{ width: '20px', height: '20px', borderRight: '2.5px solid rgba(255,255,255,0.85)', borderBottom: '2.5px solid rgba(255,255,255,0.85)', transform: 'rotate(45deg)' }} />
-          <div className="arr-3" style={{ width: '20px', height: '20px', borderRight: '2.5px solid rgba(255,255,255,0.85)', borderBottom: '2.5px solid rgba(255,255,255,0.85)', transform: 'rotate(45deg)' }} />
+
+          {/* 오른쪽: 메뉴 아이템 */}
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', paddingLeft: 'clamp(16px, 3vw, 48px)' }}>
+            <div
+              ref={menuRef}
+              style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.8rem, 2vw, 3rem)', width: '100%' }}
+            >
+              {MENU_ITEMS.map(item => {
+                const isActive = active === item.key;
+                return (
+                  <div key={item.key} onClick={() => handleClick(item.key)} style={{ cursor: 'pointer', position: 'relative' }}>
+                    <span style={{
+                      position: 'absolute', left: 0,
+                      top: 'clamp(1.4rem, 3.5vw, 4.75rem)',
+                      transform: 'translateY(-50%)',
+                      width: 'clamp(12px, 1vw, 18px)', height: 'clamp(12px, 1vw, 18px)',
+                      borderRadius: '50%', background: '#ffffff',
+                      opacity: isActive ? 1 : 0, transition: 'opacity 0.3s ease', pointerEvents: 'none',
+                    }} />
+                    <span
+                      className="svc-menu-txt"
+                      style={{
+                        display: 'block',
+                        fontFamily: "'Poppins', sans-serif",
+                        fontSize: 'clamp(2.8rem, 7vw, 9.5rem)',
+                        fontWeight: isActive ? 800 : 700,
+                        color: isActive ? '#ffffff' : 'rgba(255,255,255,0.50)',
+                        lineHeight: 1.0,
+                        paddingLeft: isActive ? 'clamp(36px, 3.5vw, 56px)' : '0',
+                        transition: 'color 0.3s, padding-left 0.3s ease',
+                      }}
+                    >
+                      {item.lines.map((line, i) => (
+                        <span key={i} style={{ display: 'block', textDecoration: isActive && i === item.underlineIdx ? 'underline' : 'none', textUnderlineOffset: '8px', textDecorationThickness: '3px' }}>{line}</span>
+                      ))}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
     </>

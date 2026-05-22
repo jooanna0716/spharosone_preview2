@@ -71,11 +71,8 @@ const TESTIMONIALS = [
 
 const ACTIVE_BLUE = '#5BA4F5';
 const GAP = 20;
-const CARDS_PER_PAGE = 2;
-const PAGE_COUNT = Math.ceil(TESTIMONIALS.length / CARDS_PER_PAGE); // 3
-// 카드 폭: 좌우 패딩(120px × 2) 뺀 너비를 2등분
-const CARD_W = `calc((100vw - 240px - ${GAP}px) / 2)`;
-const CARD_W_MOBILE = `calc((100vw - 48px - ${GAP}px) / 1.2)`;
+const CARDS_PER_PAGE = 3;
+const PAGE_COUNT = Math.ceil(TESTIMONIALS.length / CARDS_PER_PAGE); // 2
 
 export default function TestimonialSection() {
   const [pageIdx, setPageIdx] = useState(0);
@@ -89,13 +86,13 @@ export default function TestimonialSection() {
   };
 
   const startIdx = pageIdx * CARDS_PER_PAGE;
-  const cards = [0, 1].map(offset => ({
+  const cards = [0, 1, 2].map(offset => ({
     item: TESTIMONIALS[(startIdx + offset) % TESTIMONIALS.length],
     id: (startIdx + offset) % TESTIMONIALS.length,
   }));
 
   return (
-    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(72px, 12vh, 140px)', paddingBottom: 'clamp(72px, 12vh, 140px)' }}>
+    <section style={{ background: '#0d0d0d', height: '100vh', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(48px, 11.9vh, 120px)', paddingBottom: 'clamp(48px, 11.9vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
@@ -131,26 +128,27 @@ export default function TestimonialSection() {
       </div>
 
       {/* 카드 트랙 */}
-      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden', flex: 1, display: 'flex', flexDirection: 'column' }}>
         <div
           key={animKey}
           className="flex"
           style={{
             gap: `${GAP}px`,
+            flex: 1,
             animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
           }}
         >
           {cards.map(({ item, id }) => (
             <div
               key={id}
-              className="flex-shrink-0 flex flex-col"
+              className="flex flex-col"
               style={{
-                width: `clamp(260px, ${CARD_W}, 680px)`,
+                flex: 1,
+                minWidth: 0,
                 background: '#1c1c1c',
                 borderRadius: '16px',
                 padding: 'clamp(20px, 2vw, 32px) clamp(20px, 2vw, 32px) 50px',
                 border: '1px solid rgba(255,255,255,0.07)',
-                minHeight: 'clamp(280px, 35vh, 440px)',
               }}
             >
               {/* 원형 이미지 */}
@@ -180,7 +178,7 @@ export default function TestimonialSection() {
               </p>
 
               {/* 하이라이트 */}
-              <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+              <div style={{ marginTop: 'clamp(16px, 3vh, 36px)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
                 {item.highlights.map((h, hi) => (
                   <p
                     key={hi}

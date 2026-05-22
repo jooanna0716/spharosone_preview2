@@ -12,28 +12,28 @@ const CARDS = [
     number: '02',
     titleBlue: '균형 잡힌',
     titleBlack: '하이브리드',
-    desc: '프라이빗부터 퍼블릭까지 아우르는 하이브리드 클라우드 환경으로, 민감한 데이터는 프라이빗으로 보호하고 민첩한 확장이 필요한 기능은 퍼블릭 클라우드로 구성해 보안 수준과 운영 효율을 높입니다.',
+    desc: '프라이빗부터 퍼블릭까지 아우르는 하이브리드 클라우드 환경으로, 민감한 데이터는 안전하게 보호하고 민첩하게 확장하여 보안 수준과 운영 효율을 높입니다.',
     image: '/images/하이브리드.png',
   },
   {
     number: '03',
     titleBlue: '도입 장벽은 낮추고,',
     titleBlack: '비용 부담은 최소화',
-    desc: '초기 인프라 구축에 필요한 대규모 투자 없이 도입할 수 있어 비용 부담을 줄일 수 있습니다. 구독형 과금 체계를 통해 사용량에 맞춰 비용을 유연하게 운영하고, 예산을 보다 안정적으로 관리할 수 있습니다.',
+    desc: '초기 인프라 구축에 필요한 대규모 투자 없이 필요한 만큼 구독형으로 사용해 예산 부담을 낮추고 비용을 예측 가능하게 관리할 수 있습니다.',
     image: '/images/OPEX.png',
   },
   {
     number: '04',
-    titleBlue: '완전한 맞춤',
+    titleBlue: '기업에 딱 맞는',
     titleBlack: '서비스형 인프라',
-    desc: '단순 장비 임대가 아닌, 가상화·DR·AI 등 고객 비즈니스 환경에 꼭 필요한 기능만 고객 맞춤형으로 설계하고 필요에 따라 자유롭게 추가·조정해 비용 효율성과 최적의 운영 환경을 동시 구현합니다.',
+    desc: '단순 장비 임대가 아닌, 고객 비즈니스 환경에 맞는 가상화·DR·AI 등 인프라를 맞춤형으로 설계하고 필요에 따라 자유롭게 확장해 비용 효율성과 최적의 운영 환경을 구현합니다.',
     image: '/images/맞춤형.png',
   },
   {
     number: '05',
     titleBlue: '손쉬운',
     titleBlack: '운영·관리',
-    desc: '자원·비용·운영 현황을 통합 관리하는 클라우드 매니지먼트 플랫폼 Spharos CMP를 통해 분산된 환경을 일원화해 가시성을 확보하고 신속한 의사결정을 지원하며 운영 리소스를 효율화할 수 있습니다',
+    desc: '스파로스 CMP를 통해 분산된 클라우드 자원·비용·운영 현황을 통합 관리해 가시성을 확보하고 신속한 의사결정을 지원하며 운영 리소스를 효율화할 수 있습니다.',
     image: '/images/스파로스cmp.png',
   },
 ];
@@ -90,7 +90,7 @@ function DesktopCouponShowcase() {
         <div style={{ marginBottom: '48px' }}>
           <span className="section-label acc" style={{ fontSize: 'var(--fs-label)' }}>핵심가치</span>
           <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-display)', color: '#f0f0f0', lineHeight: 1.2 }}>
-            스파로스원을 선택해야 하는 이유
+            스파로스 원을 선택해야 하는 이유
           </h2>
         </div>
 
@@ -158,7 +158,7 @@ function MobileCouponShowcase() {
         <div style={{ marginBottom: '32px' }}>
           <span className="section-label acc" style={{ fontSize: 'var(--fs-body)' }}>핵심가치</span>
           <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-heading)', color: '#f0f0f0', lineHeight: 1.2 }}>
-            스파로스원을 선택해야 하는 이유
+            스파로스 원을 선택해야 하는 이유
           </h2>
         </div>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>

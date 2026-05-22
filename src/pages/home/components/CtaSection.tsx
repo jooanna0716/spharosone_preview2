@@ -16,7 +16,7 @@ export default function CtaSection() {
           background: '#08080c',
         }}
       >
-        {/* 멀티컬러 글로우 — 퍼플·블루·시안·티얼 */}
+        {/* 멀티컬러 글로우 */}
         <div
           style={{
             position: 'absolute',

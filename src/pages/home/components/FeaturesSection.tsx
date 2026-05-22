@@ -119,7 +119,7 @@ function DesktopFeaturesSection() {
             >
               <h2 className="font-extrabold leading-tight" style={{ fontSize: 'clamp(32px, 4.375vw, 56px)', color: '#f0f0f0', lineHeight: '1.2' }}>
                 <span style={{ display: 'block' }}>복잡한 클라우드 인프라를</span>
-                <span style={{ display: 'block' }}>스파로스원 하나로 완성하세요</span>
+                <span style={{ display: 'block' }}>스파로스 원 하나로 완성하세요</span>
               </h2>
               <p className="mt-6 leading-relaxed" style={{ fontSize: 'clamp(16px, 2.1875vw, 28px)', color: '#aaaaaa', maxWidth: '800px' }}>
                 검증된 Nutanix 솔루션 기술과 신세계의 비즈니스 운영 역량을 결합해
@@ -130,7 +130,7 @@ function DesktopFeaturesSection() {
             <div className="w-full flex flex-col" style={{ transform: `translateY(${textY}px)`, opacity: textOpacity, transition: 'transform 0.05s linear, opacity 0.05s linear' }}>
               <span className="inline-block font-bold mb-4" style={{ fontSize: 'clamp(16px, 1.875vw, 24px)', color: '#F9BB00' }}>주요구성</span>
               <h2 className="font-extrabold leading-tight" style={{ fontSize: 'clamp(24px, 3.75vw, 48px)', color: '#ffffff', lineHeight: '1.25' }}>
-                <span style={{ display: 'block' }}>스파로스원은 설계 · 운영 · 보안을 하나로 완성하는</span>
+                <span style={{ display: 'block' }}>스파로스 원은 설계 · 운영 · 보안을 하나로 완성하는</span>
                 <span style={{ display: 'block' }}>구독형 프라이빗 클라우드입니다</span>
               </h2>
               <div style={{ height: '40px', flexShrink: 0 }} />
@@ -264,7 +264,7 @@ function MobileFeaturesSection() {
         >
           <div ref={textBlockRef}>
             <h2 className="font-extrabold leading-tight" style={{ fontSize: '28px', color: '#f0f0f0', lineHeight: '1.35' }}>
-              복잡한 클라우드 인프라를<br />스파로스원 하나로 완성하세요
+              복잡한 클라우드 인프라를<br />스파로스 원 하나로 완성하세요
             </h2>
             <p className="mt-4 leading-relaxed mx-auto" style={{ fontSize: '14px', color: '#aaaaaa', maxWidth: '340px' }}>
               검증된 Nutanix 솔루션 기술과 신세계의 비즈니스 운영 역량을 결합해
@@ -280,7 +280,7 @@ function MobileFeaturesSection() {
           <div ref={phase2Ref}>
             <span className="inline-block font-bold mb-3" style={{ fontSize: '16px', color: '#F9BB00' }}>주요구성</span>
             <h2 className="font-extrabold leading-tight mb-3" style={{ fontSize: '28px', color: '#ffffff', lineHeight: '1.35' }}>
-              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>스파로스원은 설계·운영·보안을</span>
+              <span style={{ display: 'block', whiteSpace: 'nowrap' }}>스파로스 원은 설계·운영·보안을</span>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>하나로 완성하는 구독형</span>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>프라이빗 클라우드입니다</span>
             </h2>
