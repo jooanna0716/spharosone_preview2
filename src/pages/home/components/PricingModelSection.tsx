@@ -96,15 +96,15 @@ function CompareSlide() {
         <div style={{ background: '#111827', padding: '22px 24px' }} />
         {/* CAPEX 헤더 */}
         <div style={{ background: '#1c1c1c', padding: '22px 24px', borderLeft: '1px solid rgba(255,255,255,0.08)' }}>
-          <div style={{ fontSize: '18px', fontWeight: 600, color: '#888', marginBottom: '6px' }}>기존 방식</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 600, color: '#888', marginBottom: '6px' }}>기존 방식</div>
           <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#aaaaaa', marginBottom: '8px' }}>CAPEX</div>
-          <div style={{ fontSize: '18px', color: '#606060', lineHeight: 1.5 }}>서버·스토리지를 직접 구매하고<br />데이터센터를 구축하는 자본 지출 방식</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', color: '#606060', lineHeight: 1.5 }}>서버·스토리지를 직접 구매하고<br />데이터센터를 구축하는 자본 지출 방식</div>
         </div>
         {/* OPEX 헤더 */}
         <div style={{ background: '#1a2d45', padding: '22px 24px', borderLeft: opexBorder, borderTop: opexBorder, borderRight: opexBorder }}>
-          <div style={{ fontSize: '18px', fontWeight: 700, color: '#5BA4F5', marginBottom: '6px' }}>추천</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#5BA4F5', marginBottom: '6px' }}>추천</div>
           <div style={{ fontSize: 'var(--fs-subtitle)', fontWeight: 700, color: '#f0f0f0', marginBottom: '8px' }}>Spharos One (OPEX)</div>
-          <div style={{ fontSize: '18px', color: '#7ab8e8', lineHeight: 1.5 }}>초기 투자 없이 사용한 만큼 지불하는<br />구독형 운영 지출 방식</div>
+          <div style={{ fontSize: 'var(--fs-subtitle)', color: '#7ab8e8', lineHeight: 1.5 }}>초기 투자 없이 사용한 만큼 지불하는<br />구독형 운영 지출 방식</div>
         </div>
       </div>
 

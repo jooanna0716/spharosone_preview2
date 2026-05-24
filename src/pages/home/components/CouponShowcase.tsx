@@ -200,7 +200,7 @@ function MobileCouponShowcase() {
                   <br />
                   <span style={{ color: '#f0f0f0' }}>{card.titleBlack}</span>
                 </h3>
-                <p style={{ fontSize: 'var(--fs-sm)', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
+                <p style={{ fontSize: 'var(--fs-subtitle)', color: 'rgba(240,240,240,0.65)', lineHeight: 1.7, margin: 0 }}>{card.desc}</p>
               </div>
             </BouncyCard>
           ))}
