@@ -263,10 +263,10 @@ function MobileFeaturesSection() {
           style={{ top: `${textTop}px`, left: '16px', right: '16px', zIndex: 2, pointerEvents: 'none', opacity: 1 - textOut, transform: `translateY(${-(textOut * 50)}px)`, transition: 'transform 0.05s linear, opacity 0.05s linear' }}
         >
           <div ref={textBlockRef}>
-            <h2 className="font-extrabold leading-tight" style={{ fontSize: '28px', color: '#f0f0f0', lineHeight: '1.35' }}>
+            <h2 className="font-extrabold leading-tight" style={{ fontSize: 'clamp(20px, 3.65vw, 28px)', color: '#f0f0f0', lineHeight: '1.35' }}>
               복잡한 클라우드 인프라를<br />스파로스 원 하나로 완성하세요
             </h2>
-            <p className="mt-4 leading-relaxed mx-auto" style={{ fontSize: '14px', color: '#aaaaaa', maxWidth: '340px' }}>
+            <p className="mt-4 leading-relaxed mx-auto" style={{ fontSize: 'clamp(13px, 1.82vw, 14px)', color: '#aaaaaa', maxWidth: '340px' }}>
               검증된 Nutanix 솔루션 기술과 신세계의 비즈니스 운영 역량을 결합해
               최상의 안정성과 유연한 비즈니스 환경을 제공합니다
             </p>
@@ -278,8 +278,8 @@ function MobileFeaturesSection() {
           style={{ top: `${phase2Top}px`, left: '16px', right: '16px', zIndex: 2, pointerEvents: 'none', opacity: textIn, transform: `translateY(${lerp(20, 0, textIn)}px)`, transition: 'transform 0.05s linear, opacity 0.05s linear' }}
         >
           <div ref={phase2Ref}>
-            <span className="inline-block font-bold mb-3" style={{ fontSize: '16px', color: '#F9BB00' }}>주요구성</span>
-            <h2 className="font-extrabold leading-tight mb-3" style={{ fontSize: '28px', color: '#ffffff', lineHeight: '1.35' }}>
+            <span className="inline-block font-bold mb-3" style={{ fontSize: 'clamp(13px, 2.08vw, 16px)', color: '#F9BB00' }}>주요구성</span>
+            <h2 className="font-extrabold leading-tight mb-3" style={{ fontSize: 'clamp(20px, 3.65vw, 28px)', color: '#ffffff', lineHeight: '1.35' }}>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>스파로스 원은 설계·운영·보안을</span>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>하나로 완성하는 구독형</span>
               <span style={{ display: 'block', whiteSpace: 'nowrap' }}>프라이빗 클라우드입니다</span>
@@ -291,9 +291,9 @@ function MobileFeaturesSection() {
               {KEY_ITEMS.map((item) => (
                 <div key={item.title} className="rounded-xl px-4 py-2 flex items-center gap-3" style={{ background: 'rgba(255,255,255,0.18)', backdropFilter: 'blur(10px)', border: '1px solid rgba(255,255,255,0.35)' }}>
                   <div className="w-6 h-6 flex items-center justify-center flex-shrink-0">
-                    <i className={`${item.icon} text-white`} style={{ fontSize: '20px' }}></i>
+                    <i className={`${item.icon} text-white`} style={{ fontSize: 'clamp(13px, 2.6vw, 20px)' }}></i>
                   </div>
-                  <p className="leading-snug" style={{ fontSize: '15px', color: '#ffffff' }}>{item.title}</p>
+                  <p className="leading-snug" style={{ fontSize: 'clamp(13px, 1.95vw, 15px)', color: '#ffffff' }}>{item.title}</p>
                 </div>
               ))}
             </div>

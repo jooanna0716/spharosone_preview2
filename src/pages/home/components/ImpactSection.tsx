@@ -238,7 +238,7 @@ function DesktopImpactSection() {
 /* ─── 모바일 ─── */
 function MobileImpactSection() {
   return (
-    <section style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)), url('/images/도입 효과.png')`, backgroundSize: 'cover', backgroundPosition: 'center', padding: '64px 24px' }}>
+    <section style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.78), rgba(0,0,0,0.78)), url('/images/도입 효과.png')`, backgroundSize: 'cover', backgroundPosition: 'center', padding: '64px clamp(24px, 8.33vw, 120px)' }}>
       <span
         className="acc"
         style={{
@@ -271,22 +271,22 @@ function MobileImpactSection() {
               <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', marginBottom: '16px' }}>
                 {is247 ? (
                   <>
-                    <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>24</span>
-                    <span className="acc" style={{ fontSize: '44px', fontWeight: 900, lineHeight: 1, marginBottom: '8px' }}>/</span>
-                    <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>7</span>
+                    <span style={{ fontSize: 'clamp(48px, 6.25vw, 80px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>24</span>
+                    <span className="acc" style={{ fontSize: 'clamp(26px, 3.44vw, 44px)', fontWeight: 900, lineHeight: 1, marginBottom: '8px' }}>/</span>
+                    <span style={{ fontSize: 'clamp(48px, 6.25vw, 80px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>7</span>
                   </>
                 ) : (
                   <>
-                    <span style={{ fontSize: '80px', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>{slide.number}</span>
+                    <span style={{ fontSize: 'clamp(48px, 6.25vw, 80px)', fontWeight: 900, color: '#FFFFFF', lineHeight: 1 }}>{slide.number}</span>
                     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginLeft: '4px', marginBottom: '8px' }}>
-                      <span className="acc" style={{ fontSize: '32px', fontWeight: 700, lineHeight: 1 }}>{slide.arrow}</span>
-                      <span style={{ fontSize: '36px', fontWeight: 700, lineHeight: 1, color: '#FFFFFF' }}>{slide.symbol}</span>
+                      <span className="acc" style={{ fontSize: 'clamp(20px, 2.5vw, 32px)', fontWeight: 700, lineHeight: 1 }}>{slide.arrow}</span>
+                      <span style={{ fontSize: 'clamp(22px, 2.81vw, 36px)', fontWeight: 700, lineHeight: 1, color: '#FFFFFF' }}>{slide.symbol}</span>
                     </div>
                   </>
                 )}
               </div>
-              <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px' }}>{slide.title}</h3>
-              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, margin: 0 }}>{slide.desc}</p>
+              <h3 style={{ fontSize: 'clamp(16px, 1.56vw, 20px)', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px' }}>{slide.title}</h3>
+              <p style={{ fontSize: 'clamp(13px, 1.25vw, 16px)', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, margin: 0 }}>{slide.desc}</p>
             </div>
           );
         })}
@@ -300,7 +300,7 @@ export default function ImpactSection() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1280);
     check();
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);

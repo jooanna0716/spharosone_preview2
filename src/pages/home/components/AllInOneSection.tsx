@@ -9,7 +9,7 @@ export default function AllInOneSection() {
     >
       <p
         style={{
-          fontSize: '24px',
+          fontSize: 'var(--fs-subtitle)',
           fontWeight: 600,
           letterSpacing: '0.05em',
           color: 'rgba(255,255,255,0.45)',
@@ -31,7 +31,7 @@ export default function AllInOneSection() {
       </h2>
       <p
         style={{
-          fontSize: '30px',
+          fontSize: 'var(--fs-label)',
           color: 'rgba(255,255,255,0.55)',
           fontWeight: 400,
         }}

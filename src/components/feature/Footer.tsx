@@ -27,10 +27,10 @@ export default function Footer() {
               type="button"
               onClick={() => setOpen(!open)}
               className="flex items-center gap-2 px-3 py-1 cursor-pointer whitespace-nowrap"
-              style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: '#777777', fontSize: '12px' }}
+              style={{ border: '1px solid rgba(255,255,255,0.15)', background: 'transparent', color: '#777777', fontSize: '13px' }}
             >
               <span>Family Site</span>
-              <span style={{ fontSize: '10px', color: '#555555' }}>{open ? '▲' : '▼'}</span>
+              <span style={{ fontSize: '13px', color: '#555555' }}>{open ? '▲' : '▼'}</span>
             </button>
             {open && (
               <div className="absolute right-0 bottom-full mb-1 w-[210px] z-50" style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.1)' }}>
@@ -40,8 +40,8 @@ export default function Footer() {
                     href={site.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block px-3 py-2 text-xs cursor-pointer transition-colors"
-                    style={{ color: '#aaaaaa' }}
+                    className="block px-3 py-2 cursor-pointer transition-colors"
+                    style={{ color: '#aaaaaa', fontSize: '13px' }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = '#2a2a2a')}
                     onMouseLeave={(e) => (e.currentTarget.style.background = 'transparent')}
                   >
