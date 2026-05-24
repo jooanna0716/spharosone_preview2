@@ -207,6 +207,17 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
         {/* 검정 오버레이 */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'rgba(0,0,0,0.65)', pointerEvents: 'none' }} />
 
+        {/* 블롭 — 데스크탑/태블릿: 섹션 레벨에서 좌측 절반 커버 */}
+        {!isMobile && (
+          <div style={{
+            position: 'absolute', left: 0, top: 0,
+            width: '55%', height: '100%',
+            zIndex: 2, pointerEvents: 'none', overflow: 'hidden',
+          }}>
+            <Blobs />
+          </div>
+        )}
+
         {/* ── 모바일 레이아웃 ── */}
         {isMobile ? (
           <div style={{
@@ -254,7 +265,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           /* ── 데스크탑 / 태블릿 레이아웃 ── */
           <div
             style={{
-              position: 'relative', zIndex: 2,
+              position: 'relative', zIndex: 3,
               width: '100%',
               display: 'flex', alignItems: 'center',
               flexDirection: 'row',
@@ -262,14 +273,13 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
               padding: 'clamp(20px, 2.5vw, 36px)',
             }}
           >
-            {/* 왼쪽: 블롭 + 슬로건 */}
+            {/* 왼쪽: 슬로건 */}
             <div style={{
               flex: '0 0 auto', width: '50%',
               position: 'relative',
               height: `${imgHeight}px`,
               transition: 'height 0.3s ease',
             }}>
-              <Blobs />
               <Slogan align="bottom-left" />
             </div>
 
