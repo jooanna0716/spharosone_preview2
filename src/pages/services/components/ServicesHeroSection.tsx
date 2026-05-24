@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 
 type TabKey = 'main' | 'license' | 'addon';
@@ -67,8 +67,6 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
     onTabChange(key);
   };
 
-  const activeItem = MENU_ITEMS.find(m => m.key === active)!;
-
   const hPad = isMobile ? '0 16px' : isTablet ? '0 clamp(24px, 4vw, 60px)' : '0 120px';
 
   return (
@@ -79,8 +77,6 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           position: 'relative',
           height: '100vh',
           background: '#000',
-          display: 'flex',
-          flexDirection: 'column',
           overflow: 'hidden',
         }}
       >
@@ -101,15 +97,33 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
         {/* 검정 오버레이 */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'rgba(0,0,0,0.65)', pointerEvents: 'none' }} />
 
-        {/* 콘텐츠 wrapper */}
+        {/* 유동 그라디언트 블롭 — 섹션 전체 */}
+        <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
+          <div style={{ position: 'absolute', left: '-15%', top: '-20%', width: '110%', height: '110%',
+            background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.85) 0%, rgba(90,0,200,0.58) 38%, transparent 68%)',
+            animation: 'sB1 7s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', left: '-5%', top: '-30%', width: '100%', height: '110%',
+            background: 'radial-gradient(ellipse at center, rgba(187,63,255,0.80) 0%, rgba(160,50,250,0.52) 38%, transparent 66%)',
+            animation: 'sB2 9s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', left: '10%', top: '-5%', width: '100%', height: '115%',
+            background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.75) 0%, rgba(50,90,255,0.48) 40%, transparent 65%)',
+            animation: 'sB3 8s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', right: '-15%', top: '-20%', width: '110%', height: '110%',
+            background: 'radial-gradient(ellipse at center, rgba(0,221,255,0.80) 0%, rgba(0,200,240,0.58) 32%, transparent 62%)',
+            animation: 'sB4 6s ease-in-out infinite' }} />
+          <div style={{ position: 'absolute', left: '5%', bottom: '-20%', width: '100%', height: '100%',
+            background: 'radial-gradient(ellipse at center, rgba(0,255,206,0.70) 0%, rgba(0,230,200,0.45) 38%, transparent 63%)',
+            animation: 'sB5 10s ease-in-out infinite' }} />
+        </div>
+
+        {/* 콘텐츠 — 블롭 위에 올라가는 레이어 */}
         <div
           style={{
-            position: 'relative',
-            zIndex: 2,
-            width: '100%',
-            height: '100%',
+            position: 'absolute', inset: 0,
+            zIndex: 3,
             display: 'flex',
             flexDirection: 'column',
+            justifyContent: 'space-between',
             padding: hPad,
           }}
         >
@@ -118,9 +132,8 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             style={{
               display: 'flex',
               alignItems: 'flex-end',
-              gap: isMobile ? 'clamp(16px, 5vw, 28px)' : 'clamp(24px, 4vw, 56px)',
-              paddingTop: isMobile ? '100px' : '110px',
-              flexShrink: 0,
+              gap: isMobile ? 'clamp(14px, 4.5vw, 24px)' : 'clamp(24px, 4vw, 56px)',
+              paddingTop: isMobile ? '88px' : '100px',
             }}
           >
             {MENU_ITEMS.map(item => {
@@ -132,22 +145,20 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
                   style={{
                     background: 'none',
                     border: 'none',
-                    padding: 0,
+                    borderBottom: isActive ? '2px solid #ffffff' : '2px solid transparent',
+                    padding: '0 0 6px',
                     cursor: 'pointer',
                     fontFamily: "'Poppins', sans-serif",
                     fontSize: isMobile
-                      ? 'clamp(1.1rem, 4.5vw, 1.6rem)'
+                      ? 'clamp(0.95rem, 3.8vw, 1.4rem)'
                       : isTablet
-                      ? 'clamp(1.4rem, 3.5vw, 2.2rem)'
-                      : 'clamp(1.6rem, 2.8vw, 2.8rem)',
+                      ? 'clamp(1.2rem, 2.8vw, 1.8rem)'
+                      : 'clamp(1.4rem, 2.2vw, 2.2rem)',
                     fontWeight: isActive ? 800 : 600,
                     color: isActive ? '#ffffff' : 'rgba(255,255,255,0.45)',
                     lineHeight: 1,
-                    letterSpacing: '-0.01em',
-                    transition: 'color 0.3s, font-weight 0.15s',
-                    borderBottom: isActive ? '3px solid #ffffff' : '3px solid transparent',
-                    paddingBottom: '8px',
                     whiteSpace: 'nowrap',
+                    transition: 'color 0.3s ease',
                   }}
                 >
                   {item.label}
@@ -156,44 +167,61 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             })}
           </div>
 
-          {/* ── 슬로건 + View more (탭 아래) ── */}
+          {/* ── 하단 슬로건 + View more (블롭 위, 하단 왼쪽) ── */}
           <div
             style={{
-              marginTop: isMobile ? '32px' : '48px',
-              flexShrink: 0,
+              paddingBottom: isMobile ? '48px' : '64px',
               display: 'flex',
               flexDirection: 'column',
-              gap: '12px',
+              gap: '16px',
+              maxWidth: isMobile ? '100%' : '55%',
             }}
           >
-            <p style={{
-              fontFamily: "'Noto Sans KR', sans-serif",
-              fontSize: isMobile ? 'clamp(1.4rem, 5.5vw, 2rem)' : isTablet ? 'clamp(1.6rem, 4vw, 2.6rem)' : 'clamp(2rem, 3.5vw, 3.2rem)',
-              fontWeight: 700,
-              color: '#ffffff',
-              lineHeight: 1.3,
-              margin: 0,
-              transition: 'opacity 0.4s ease',
-            }}>
-              {activeItem.slogan1}
+            <p style={{ fontSize: '14px', fontWeight: 400, color: 'rgba(255,255,255,0.45)', margin: 0, letterSpacing: '0.04em', fontFamily: "'Poppins', sans-serif" }}>
+              Spharos One Services
             </p>
-            <p style={{
-              fontFamily: "'Noto Sans KR', sans-serif",
-              fontSize: isMobile ? 'clamp(0.85rem, 3.2vw, 1.1rem)' : isTablet ? 'clamp(0.9rem, 2vw, 1.3rem)' : 'clamp(1rem, 1.5vw, 1.4rem)',
-              fontWeight: 400,
-              color: 'rgba(255,255,255,0.80)',
-              lineHeight: 1.5,
-              margin: 0,
-              transition: 'opacity 0.4s ease',
-            }}>
-              {activeItem.slogan2}
-            </p>
+
+            {/* 슬로건 — 탭 전환 시 fade */}
+            <div style={{ position: 'relative', minHeight: isMobile ? '80px' : '120px' }}>
+              {MENU_ITEMS.map(item => (
+                <div
+                  key={item.key}
+                  style={{
+                    position: 'absolute', top: 0, left: 0, right: 0,
+                    opacity: active === item.key ? 1 : 0,
+                    transition: 'opacity 0.4s ease',
+                    pointerEvents: active === item.key ? 'auto' : 'none',
+                  }}
+                >
+                  <p style={{
+                    fontFamily: "'Noto Sans KR', sans-serif",
+                    fontSize: isMobile ? 'clamp(1.4rem, 5.5vw, 2rem)' : isTablet ? 'clamp(1.6rem, 4vw, 2.6rem)' : 'clamp(1.8rem, 3vw, 3rem)',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    lineHeight: 1.3,
+                    margin: '0 0 8px',
+                    whiteSpace: isMobile ? 'normal' : 'nowrap',
+                  }}>
+                    {item.slogan1}
+                  </p>
+                  <p style={{
+                    fontFamily: "'Noto Sans KR', sans-serif",
+                    fontSize: isMobile ? 'clamp(0.8rem, 3vw, 1rem)' : isTablet ? 'clamp(0.9rem, 2vw, 1.3rem)' : 'clamp(0.95rem, 1.4vw, 1.4rem)',
+                    fontWeight: 400,
+                    color: 'rgba(255,255,255,0.80)',
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}>
+                    {item.slogan2}
+                  </p>
+                </div>
+              ))}
+            </div>
 
             <button
               onClick={() => document.getElementById('service-detail')?.scrollIntoView({ behavior: 'smooth' })}
               style={{
                 alignSelf: 'flex-start',
-                marginTop: '8px',
                 display: 'flex', alignItems: 'center', gap: '8px',
                 padding: '10px 20px',
                 background: 'rgba(255,255,255,0.12)',
@@ -211,26 +239,6 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             >
               View more <span style={{ fontSize: '16px' }}>→</span>
             </button>
-          </div>
-
-          {/* ── 하단 블롭 영역 ── */}
-          <div style={{ flex: 1, position: 'relative', overflow: 'hidden', minHeight: 0 }}>
-            {/* 유동 그라디언트 블롭 */}
-            <div style={{ position: 'absolute', left: '-15%', top: '-20%', width: '110%', height: '110%',
-              background: 'radial-gradient(ellipse at center, rgba(98,0,204,0.85) 0%, rgba(90,0,200,0.58) 38%, transparent 68%)',
-              animation: 'sB1 7s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', left: '-5%', top: '-30%', width: '100%', height: '110%',
-              background: 'radial-gradient(ellipse at center, rgba(187,63,255,0.80) 0%, rgba(160,50,250,0.52) 38%, transparent 66%)',
-              animation: 'sB2 9s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', left: '10%', top: '-5%', width: '100%', height: '115%',
-              background: 'radial-gradient(ellipse at center, rgba(48,96,255,0.75) 0%, rgba(50,90,255,0.48) 40%, transparent 65%)',
-              animation: 'sB3 8s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', right: '-15%', top: '-20%', width: '110%', height: '110%',
-              background: 'radial-gradient(ellipse at center, rgba(0,221,255,0.80) 0%, rgba(0,200,240,0.58) 32%, transparent 62%)',
-              animation: 'sB4 6s ease-in-out infinite' }} />
-            <div style={{ position: 'absolute', left: '5%', bottom: '-20%', width: '100%', height: '100%',
-              background: 'radial-gradient(ellipse at center, rgba(0,255,206,0.70) 0%, rgba(0,230,200,0.45) 38%, transparent 63%)',
-              animation: 'sB5 10s ease-in-out infinite' }} />
           </div>
         </div>
       </section>

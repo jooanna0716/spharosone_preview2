@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const TESTIMONIALS = [
   {
@@ -71,33 +71,117 @@ const TESTIMONIALS = [
 
 const ACTIVE_BLUE = '#5BA4F5';
 const GAP = 20;
-const CARDS_PER_PAGE = 3;
-const PAGE_COUNT = Math.ceil(TESTIMONIALS.length / CARDS_PER_PAGE); // 2
+const TOTAL = TESTIMONIALS.length;
 
 export default function TestimonialSection() {
-  const [pageIdx, setPageIdx] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [cardIdx, setCardIdx] = useState(0);       // 모바일: 1장씩
+  const [pageIdx, setPageIdx] = useState(0);       // 데스크탑: 3장씩
+  const PAGE_COUNT = Math.ceil(TOTAL / 3);
   const [slideDir, setSlideDir] = useState<1 | -1>(1);
   const [animKey, setAnimKey] = useState(0);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   const navigate = (dir: 1 | -1) => {
     setSlideDir(dir);
     setAnimKey(k => k + 1);
-    setPageIdx(p => (p + dir + PAGE_COUNT) % PAGE_COUNT);
+    if (isMobile) {
+      setCardIdx(p => (p + dir + TOTAL) % TOTAL);
+    } else {
+      setPageIdx(p => (p + dir + PAGE_COUNT) % PAGE_COUNT);
+    }
   };
 
-  const startIdx = pageIdx * CARDS_PER_PAGE;
-  const cards = [0, 1, 2].map(offset => ({
-    item: TESTIMONIALS[(startIdx + offset) % TESTIMONIALS.length],
-    id: (startIdx + offset) % TESTIMONIALS.length,
+  // 데스크탑: 3장씩
+  const startIdx = pageIdx * 3;
+  const desktopCards = [0, 1, 2].map(offset => ({
+    item: TESTIMONIALS[(startIdx + offset) % TOTAL],
+    id: (startIdx + offset) % TOTAL,
   }));
+
+  const Card = ({ item }: { item: typeof TESTIMONIALS[0] }) => (
+    <div
+      style={{
+        flex: 1,
+        minWidth: 0,
+        background: '#1c1c1c',
+        borderRadius: '16px',
+        padding: 'clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px) clamp(16px, 4vh, 50px)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+    >
+      <div
+        style={{
+          width: 'clamp(44px, 6vh, 64px)', height: 'clamp(44px, 6vh, 64px)', borderRadius: '50%',
+          overflow: 'hidden', marginBottom: 'clamp(10px, 1.5vh, 20px)', flexShrink: 0,
+          border: '2px solid rgba(91,164,245,0.35)',
+          boxShadow: '0 0 0 4px rgba(91,164,245,0.08)',
+        }}
+      >
+        <img src={item.image} alt={item.company} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+      </div>
+      <p style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-body)', marginBottom: '6px', letterSpacing: '0.04em' }}>
+        {item.company}
+      </p>
+      <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: 'clamp(8px, 1.5vh, 20px)' }}>
+        {item.quote}
+      </p>
+      <div style={{ marginTop: 'clamp(16px, 3vh, 36px)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+        {item.highlights.map((h, hi) => (
+          <p
+            key={hi}
+            style={{
+              fontSize: 'var(--fs-subtitle)',
+              fontWeight: h.mark ? 700 : 400,
+              color: '#f0f0f0',
+              lineHeight: 1.4,
+              margin: 0,
+            }}
+          >
+            {h.text}
+          </p>
+        ))}
+      </div>
+    </div>
+  );
+
+  const ArrowButtons = () => (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+      {([{ dir: -1 as const, icon: 'ri-arrow-left-s-line' }, { dir: 1 as const, icon: 'ri-arrow-right-s-line' }] as const).map(({ dir, icon }) => (
+        <button
+          key={dir}
+          onClick={() => navigate(dir)}
+          style={{
+            width: '40px', height: '40px', borderRadius: '50%',
+            border: '1px solid rgba(255,255,255,0.25)',
+            background: 'transparent', color: 'rgba(255,255,255,0.8)',
+            cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
+          }}
+        >
+          <i className={`${icon} text-xl`} />
+        </button>
+      ))}
+    </div>
+  );
 
   return (
     <section style={{ background: '#0d0d0d', minHeight: '100vh', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(32px, 6vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
-        className="flex items-end justify-between"
-        style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', marginBottom: 'clamp(16px, 3vh, 36px)' }}
+        style={{
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+          paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)',
+          marginBottom: 'clamp(16px, 3vh, 36px)',
+        }}
       >
         <div>
           <span style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-label)', display: 'block', marginBottom: '10px', letterSpacing: '0.05em' }}>
@@ -107,111 +191,38 @@ export default function TestimonialSection() {
             현장의 고민을 확신으로
           </h2>
         </div>
-
-        {/* 화살표 */}
-        <div className="flex items-center gap-2">
-          {[{ dir: -1 as const, icon: 'ri-arrow-left-s-line' }, { dir: 1 as const, icon: 'ri-arrow-right-s-line' }].map(({ dir, icon }) => (
-            <button
-              key={dir}
-              onClick={() => navigate(dir)}
-              className="flex items-center justify-center cursor-pointer transition-all hover:bg-white/10"
-              style={{
-                width: '40px', height: '40px', borderRadius: '50%',
-                border: '1px solid rgba(255,255,255,0.25)',
-                background: 'transparent', color: 'rgba(255,255,255,0.8)',
-              }}
-            >
-              <i className={`${icon} text-xl`} />
-            </button>
-          ))}
-        </div>
+        <ArrowButtons />
       </div>
 
       {/* 카드 트랙 */}
       <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden', flex: 1, display: 'flex', flexDirection: 'column' }}>
-        <div
-          key={animKey}
-          className="flex"
-          style={{
-            gap: `${GAP}px`,
-            flex: 1,
-            animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
-          }}
-        >
-          {cards.map(({ item, id }) => (
-            <div
-              key={id}
-              className="flex flex-col"
-              style={{
-                flex: 1,
-                minWidth: 0,
-                background: '#1c1c1c',
-                borderRadius: '16px',
-                padding: 'clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px) clamp(16px, 4vh, 50px)',
-                border: '1px solid rgba(255,255,255,0.07)',
-              }}
-            >
-              {/* 원형 이미지 */}
-              <div
-                style={{
-                  width: 'clamp(44px, 6vh, 64px)', height: 'clamp(44px, 6vh, 64px)', borderRadius: '50%',
-                  overflow: 'hidden', marginBottom: 'clamp(10px, 1.5vh, 20px)', flexShrink: 0,
-                  border: '2px solid rgba(91,164,245,0.35)',
-                  boxShadow: '0 0 0 4px rgba(91,164,245,0.08)',
-                }}
-              >
-                <img
-                  src={item.image}
-                  alt={item.company}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                />
-              </div>
-
-              {/* 회사명 */}
-              <p style={{ color: ACTIVE_BLUE, fontWeight: 700, fontSize: 'var(--fs-body)', marginBottom: '6px', letterSpacing: '0.04em' }}>
-                {item.company}
-              </p>
-
-              {/* 인용 */}
-              <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: 'clamp(8px, 1.5vh, 20px)' }}>
-                {item.quote}
-              </p>
-
-              {/* 하이라이트 */}
-              <div style={{ marginTop: 'clamp(16px, 3vh, 36px)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
-                {item.highlights.map((h, hi) => (
-                  <p
-                    key={hi}
-                    style={{
-                      fontSize: 'var(--fs-subtitle)',
-                      fontWeight: h.mark ? 700 : 400,
-                      color: '#f0f0f0',
-                      lineHeight: 1.4,
-                      margin: 0,
-                    }}
-                  >
-                    {h.text}
-                  </p>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* 모바일용 도트 (페이지 기준) */}
-      <div className="flex md:hidden justify-center gap-1.5 mt-6">
-        {Array.from({ length: PAGE_COUNT }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => { setSlideDir(i > pageIdx ? 1 : -1); setAnimKey(k => k + 1); setPageIdx(i); }}
+        {isMobile ? (
+          /* ── 모바일: 1장씩 ── */
+          <div
+            key={animKey}
             style={{
-              width: i === pageIdx ? '28px' : '8px', height: '3px',
-              borderRadius: '2px', background: i === pageIdx ? ACTIVE_BLUE : 'rgba(255,255,255,0.2)',
-              transition: 'all 0.3s', border: 'none', cursor: 'pointer', padding: 0,
+              flex: 1,
+              animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
             }}
-          />
-        ))}
+          >
+            <Card item={TESTIMONIALS[cardIdx]} />
+          </div>
+        ) : (
+          /* ── 데스크탑: 3장씩 ── */
+          <div
+            key={animKey}
+            style={{
+              display: 'flex',
+              gap: `${GAP}px`,
+              flex: 1,
+              animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
+            }}
+          >
+            {desktopCards.map(({ item, id }) => (
+              <Card key={id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
 
       <style>{`
