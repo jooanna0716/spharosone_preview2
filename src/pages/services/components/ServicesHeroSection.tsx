@@ -230,7 +230,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
                       borderBottom: isActive ? '2px solid #ffffff' : '2px solid transparent',
                       padding: '0 0 6px', cursor: 'pointer',
                       fontFamily: "'Poppins', sans-serif",
-                      fontSize: 'clamp(0.9rem, 3.5vw, 1.2rem)',
+                      fontSize: '28px',
                       fontWeight: isActive ? 800 : 600,
                       color: isActive ? '#ffffff' : 'rgba(255,255,255,0.45)',
                       lineHeight: 1, whiteSpace: 'nowrap',
