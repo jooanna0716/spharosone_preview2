@@ -149,7 +149,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             </p>
             <p style={{
               fontFamily: "'Noto Sans KR', sans-serif",
-              fontSize: align === 'center' ? 'clamp(12px, 2.8vw, 16px)' : 'clamp(13px, 1.5vw, 22px)',
+              fontSize: align === 'center' ? 'clamp(13px, 2.8vw, 16px)' : 'clamp(13px, 1.5vw, 22px)',
               fontWeight: 400, color: 'rgba(255,255,255,0.82)',
               lineHeight: 1.5, margin: 0,
             }}>

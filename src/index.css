@@ -17,7 +17,7 @@
     --fs-label:    clamp(16px,  2.1vw,   30px); /* 30px  섹션 라벨 */
     --fs-subtitle: clamp(14px,  1.7vw,   24px); /* 24px  소제목 */
     --fs-body:     clamp(13px,  1.4vw,   20px); /* 20px  본문 */
-    --fs-sm:       clamp(11px,  1vw,     14px); /* 14px  소형 텍스트 */
+    --fs-sm:       clamp(13px,  1vw,     14px); /* 14px  소형 텍스트 */
   }
 
   * {

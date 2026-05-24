@@ -137,11 +137,11 @@ function ChartLegend() {
     <div style={{ display: 'flex', gap: '16px', margin: '8px 0 10px' }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         <div style={{ width: '20px', height: '3px', background: '#AAAAAA', borderRadius: '2px' }} />
-        <span style={{ fontSize: '12px', color: '#888', fontWeight: 600 }}>CAPEX</span>
+        <span style={{ fontSize: '13px', color: '#888', fontWeight: 600 }}>CAPEX</span>
       </div>
       <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
         <div style={{ width: '20px', height: '3px', background: '#5BA4F5', borderRadius: '2px' }} />
-        <span className="acc" style={{ fontSize: '12px', fontWeight: 600 }}>OPEX (Spharos One)</span>
+        <span className="acc" style={{ fontSize: '13px', fontWeight: 600 }}>OPEX (Spharos One)</span>
       </div>
     </div>
   );

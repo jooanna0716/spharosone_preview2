@@ -462,7 +462,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               <div className="flex items-center gap-2">
                 <h3 className="font-bold text-2xl" style={{ color: '#f0f0f0' }}>{item.label}</h3>
                 {item.badge && (
-                  <span style={{ fontSize: '11px', fontWeight: 600, color: '#ffffff', background: '#5BA4F5', padding: '2px 8px', borderRadius: '20px' }}>
+                  <span style={{ fontSize: '13px', fontWeight: 600, color: '#ffffff', background: '#5BA4F5', padding: '2px 8px', borderRadius: '20px' }}>
                     {item.badge}
                   </span>
                 )}
