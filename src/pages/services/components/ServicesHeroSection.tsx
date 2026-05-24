@@ -184,10 +184,10 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           position: 'relative',
           height: '100vh',
           background: '#000',
-          display: 'flex',
-          alignItems: 'center',
-          padding: isMobile ? '0 16px' : isTablet ? '0 clamp(24px, 4vw, 60px)' : '0 120px',
           overflow: 'hidden',
+          display: isMobile ? 'block' : 'flex',
+          alignItems: isMobile ? undefined : 'center',
+          padding: isMobile ? '0' : isTablet ? '0 clamp(24px, 4vw, 60px)' : '0 120px',
         }}
       >
         {/* 배경 이미지 */}
@@ -210,9 +210,9 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
         {/* ── 모바일 레이아웃 ── */}
         {isMobile ? (
           <div style={{
-            position: 'relative', zIndex: 2,
-            width: '100%', height: '100%',
+            position: 'absolute', inset: 0, zIndex: 2,
             display: 'flex', flexDirection: 'column',
+            padding: '0 16px',
           }}>
             {/* 상단: 컴팩트 탭 바 */}
             <div style={{
