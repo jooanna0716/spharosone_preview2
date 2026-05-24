@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { useBreakpoint } from '@/hooks/useBreakpoint';
 import Navbar from '@/components/feature/Navbar';
 import ServicesHeroSection from '@/pages/services/components/ServicesHeroSection';
 import ServiceLicenseSection from '@/pages/services/components/ServiceLicenseSection';
@@ -77,7 +78,7 @@ function RevealText({ tab }: { tab: TabKey }) {
       ref={ref}
       style={{
         fontFamily: "'Noto Sans KR', sans-serif",
-        fontSize: '35px',
+        fontSize: 'clamp(16px, 3vw, 35px)',
         lineHeight: 1.6,
         margin: 0,
       }}
@@ -89,6 +90,7 @@ function RevealText({ tab }: { tab: TabKey }) {
 
 export default function ServicesPage() {
   const [activeTab, setActiveTab] = useState<TabKey>('main');
+  const { isMobile, isTablet } = useBreakpoint();
 
   return (
     <main className="min-h-screen" style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#0d0d0d' }}>
@@ -98,7 +100,7 @@ export default function ServicesPage() {
       <ServicesHeroSection onTabChange={setActiveTab} />
 
       {/* 서비스 설명 — View More 스크롤 타깃 */}
-      <section id="service-detail" style={{ background: '#0d0d0d', padding: '140px 120px 10px' }}>
+      <section id="service-detail" style={{ background: '#0d0d0d', padding: isMobile ? '60px 16px 10px' : isTablet ? '80px clamp(24px, 4vw, 60px) 10px' : '140px 120px 10px' }}>
         <RevealText key={activeTab} tab={activeTab} />
       </section>
 

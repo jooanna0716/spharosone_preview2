@@ -590,7 +590,7 @@ export default function ServiceLicenseSection({ activeTab }: Props) {
 
   return (
     <section style={{ background: '#0d0d0d', padding: '80px 0 80px' }}>
-      <div style={{ width: '100%', padding: isMd ? '0 120px' : '0 24px' }}>
+      <div style={{ width: '100%', padding: isMd ? '0 clamp(24px, 5vw, 120px)' : '0 16px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {services.map((s) => (
             <ServiceDetailRow key={s.key} item={s} />

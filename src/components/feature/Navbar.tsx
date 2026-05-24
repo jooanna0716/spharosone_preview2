@@ -146,7 +146,7 @@ export default function Navbar() {
           onClick={() => setPopupOpen(false)}
         >
           <div
-            className="rounded-2xl p-8 w-[440px] flex flex-col gap-5 shadow-xl"
+            className="rounded-2xl p-8 w-[calc(100vw-32px)] max-w-[440px] flex flex-col gap-5 shadow-xl"
             style={{ background: '#1a1a1a', border: '1px solid rgba(255,255,255,0.08)' }}
             onClick={(e) => e.stopPropagation()}
           >

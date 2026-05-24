@@ -22,6 +22,7 @@ export default function HomePage() {
     let snapLocked = false;
     let prevScrollY = window.scrollY;
     const checkDeadZone = () => {
+      if (window.innerWidth < 768) return;
       const currentScrollY = window.scrollY;
       const scrollingDown = currentScrollY > prevScrollY;
       prevScrollY = currentScrollY;
@@ -51,6 +52,7 @@ export default function HomePage() {
     };
 
     const handleWheel = (e: WheelEvent) => {
+      if (window.innerWidth < 768) return;
       if (locked || e.deltaY <= 0) return;
 
       const showcase = showcaseRef.current;

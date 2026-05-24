@@ -134,7 +134,7 @@ export default function StoryBridgeSection() {
         </p>
         <p
           style={{
-            fontSize: '33px',
+            fontSize: 'clamp(16px, 4.2vw, 33px)',
             fontWeight: 400,
             color: '#a8d4ff',
             lineHeight: 1.7,

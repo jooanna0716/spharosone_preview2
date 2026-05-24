@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { useBreakpoint } from '@/hooks/useBreakpoint';
 
 type TabKey = 'main' | 'license' | 'addon';
 
@@ -71,6 +72,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
   const [active, setActive] = useState<TabKey>('main');
   const menuRef = useRef<HTMLDivElement>(null);
   const [imgHeight, setImgHeight] = useState(500);
+  const { isMobile, isTablet } = useBreakpoint();
 
   useEffect(() => {
     const el = menuRef.current;
@@ -97,7 +99,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           background: '#000',
           display: 'flex',
           alignItems: 'center',
-          padding: '0 120px',
+          padding: isMobile ? '0 16px' : isTablet ? '0 clamp(24px, 4vw, 60px)' : '0 120px',
           overflow: 'hidden',
         }}
       >
@@ -126,12 +128,13 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             width: '100%',
             display: 'flex',
             alignItems: 'center',
-            gap: 'clamp(20px, 2.5vw, 48px)',
+            flexDirection: isMobile ? 'column' : 'row' as const,
+            gap: isMobile ? '0' : 'clamp(20px, 2.5vw, 48px)',
             padding: 'clamp(20px, 2.5vw, 36px)',
           }}
         >
           {/* 왼쪽: 블롭 영역 */}
-          <div style={{ flex: '0 0 auto', width: '50%', position: 'relative', height: `${imgHeight}px`, transition: 'height 0.3s ease' }}>
+          <div style={{ flex: '0 0 auto', width: isMobile ? '100%' : '50%', position: 'relative', height: isMobile ? '35vh' : `${imgHeight}px`, transition: 'height 0.3s ease' }}>
 
             {/* 유동 그라디언트 블롭 */}
             <div style={{ position: 'absolute', left: '-15%', top: '-20%', width: '110%', height: '110%',
@@ -152,7 +155,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
 
             {/* 슬로건 + View more */}
             <div style={{
-              position: 'absolute', bottom: '12%',
+              position: 'absolute', bottom: isMobile ? '8%' : '12%',
               left: '28px', right: '28px',
               zIndex: 3, display: 'flex', flexDirection: 'column', gap: '24px',
             }}>
@@ -214,7 +217,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           </div>
 
           {/* 오른쪽: 메뉴 아이템 */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center', paddingLeft: 'clamp(16px, 3vw, 48px)' }}>
+          <div style={{ flex: 1, display: 'flex', alignItems: 'center', paddingLeft: isMobile ? '0' : 'clamp(16px, 3vw, 48px)' }}>
             <div
               ref={menuRef}
               style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(0.8rem, 2vw, 3rem)', width: '100%' }}
@@ -236,7 +239,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
                       style={{
                         display: 'block',
                         fontFamily: "'Poppins', sans-serif",
-                        fontSize: 'clamp(2.8rem, 7vw, 9.5rem)',
+                        fontSize: isMobile ? 'clamp(1.8rem, 8vw, 3.2rem)' : 'clamp(2.8rem, 7vw, 9.5rem)',
                         fontWeight: isActive ? 800 : 700,
                         color: isActive ? '#ffffff' : 'rgba(255,255,255,0.50)',
                         lineHeight: 1.0,

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useBreakpoint } from '@/hooks/useBreakpoint';
 
 const COMPARISON_ROWS = [
   { label: '초기 비용', capex: '대규모 하드웨어 구매', opex: '선납금 0원' },
@@ -80,13 +81,15 @@ function CheckIcon({ pass }: { pass: boolean }) {
 
 /* ── 슬라이드1: CAPEX vs OPEX 카드 비교 ── */
 function CompareSlide() {
+  const { isMobile } = useBreakpoint();
   const COL = '26% 37% 37%';
   const cellBase: React.CSSProperties = { padding: '13px 24px', display: 'flex', alignItems: 'center' };
   const opexBorder = '3px solid #5BA4F5';
   const lastIdx = COMPARISON_ROWS.length - 1;
 
   return (
-    <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
+    <div style={{ overflowX: isMobile ? 'auto' : 'visible' }}>
+    <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', minWidth: isMobile ? '600px' : undefined }}>
 
       {/* 헤더 */}
       <div style={{ display: 'grid', gridTemplateColumns: COL }}>
@@ -124,6 +127,7 @@ function CompareSlide() {
         </div>
       ))}
     </div>
+    </div>
   );
 }
 
@@ -145,6 +149,7 @@ function ChartLegend() {
 
 /* ── 슬라이드2: 왼쪽 라인 차트 + 오른쪽 막대 그래프 ── */
 function CashFlowSlide() {
+  const { isMobile } = useBreakpoint();
   const SVG_H = 200; // 양쪽 공통 SVG 높이
 
   // ── 왼쪽 라인 차트 ──
@@ -192,7 +197,7 @@ function CashFlowSlide() {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', alignItems: 'stretch' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '32px' : '24px', alignItems: 'stretch' }}>
 
       {/* 왼쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -282,10 +287,11 @@ function CashFlowSlide() {
 /* ── 메인 컴포넌트 ── */
 export default function PricingModelSection() {
   const [slide, setSlide] = useState(0);
+  const { isMobile, isTablet } = useBreakpoint();
 
   return (
     <section style={{ background: '#0d0d0d', padding: 'clamp(60px, 10vh, 160px) 0' }}>
-      <div style={{ width: '100%', padding: '0 120px' }}>
+      <div style={{ width: '100%', padding: isMobile ? '0 16px' : isTablet ? '0 clamp(24px, 4vw, 60px)' : '0 120px' }}>
 
         {/* 헤더 */}
         <div style={{ marginBottom: '64px' }}>

@@ -286,7 +286,7 @@ function MobileImpactSection() {
                 )}
               </div>
               <h3 style={{ fontSize: '20px', fontWeight: 700, color: '#FFFFFF', margin: '0 0 10px' }}>{slide.title}</h3>
-              <p style={{ fontSize: '30px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, margin: 0 }}>{slide.desc}</p>
+              <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, margin: 0 }}>{slide.desc}</p>
             </div>
           );
         })}
