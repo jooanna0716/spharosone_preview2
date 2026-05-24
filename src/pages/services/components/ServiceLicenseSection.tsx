@@ -502,36 +502,21 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
                       서비스 구성
                     </span>
                     {item.serviceTable && (
-                      <div style={{ position: 'relative', display: 'inline-block' }}>
-                        <button
-                          onClick={() => setPopupOpen(true)}
-                          style={{
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                            fontSize: '13px',
-                            fontWeight: 700,
-                            color: '#ffffff',
-                            background: '#5BA4F5',
-                            padding: '5px 12px',
-                            borderRadius: '8px',
-                            border: 'none',
-                            cursor: 'pointer',
-                            lineHeight: 1,
-                          }}
-                        >
-                          상세 →
-                        </button>
-                        <div style={{
-                          position: 'absolute',
-                          bottom: '-7px',
-                          left: '12px',
-                          width: 0,
-                          height: 0,
-                          borderLeft: '6px solid transparent',
-                          borderRight: '6px solid transparent',
-                          borderTop: '7px solid #5BA4F5',
-                        }} />
-                      </div>
+                      <button
+                        onClick={() => setPopupOpen(true)}
+                        className="acc"
+                        style={{
+                          fontSize: '13px',
+                          fontWeight: 600,
+                          background: 'none',
+                          border: 'none',
+                          cursor: 'pointer',
+                          padding: 0,
+                          textDecoration: 'underline',
+                        }}
+                      >
+                        상세 보기
+                      </button>
                     )}
                   </div>
                   <div className="leading-relaxed space-y-2" style={{ fontSize: '14px', color: 'rgba(240,240,240,0.8)' }}>
