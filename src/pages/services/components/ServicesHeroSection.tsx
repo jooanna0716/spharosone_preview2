@@ -250,6 +250,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
                         fontWeight: isActive ? 800 : 700,
                         color: isActive ? '#ffffff' : 'rgba(255,255,255,0.50)',
                         lineHeight: 1.0,
+                        textAlign: 'left',
                         paddingLeft: isActive ? 'clamp(36px, 3.5vw, 56px)' : '0',
                         transition: 'color 0.3s, padding-left 0.3s ease',
                       }}
@@ -261,6 +262,16 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
                   </div>
                 );
               })}
+
+              {/* 모바일 전용: 메뉴와 슬로건 구분선 */}
+              {isMobile && (
+                <div style={{
+                  width: '100%',
+                  height: '1px',
+                  background: 'rgba(255,255,255,0.25)',
+                  marginTop: '4px',
+                }} />
+              )}
             </div>
           </div>
         </div>
