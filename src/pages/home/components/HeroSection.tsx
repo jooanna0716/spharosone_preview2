@@ -100,7 +100,7 @@ export default function HeroSection() {
           <h1 style={{
             fontSize: 'var(--fs-hero)',
             fontWeight: 900,
-            color: isMdUp ? '#000000' : '#ffffff',
+            color: '#000000',
             lineHeight: 1,
             letterSpacing: '-0.03em',
             margin: '0 0 20px',
@@ -110,10 +110,10 @@ export default function HeroSection() {
           <p style={{
             fontSize: 'var(--fs-label)',
             fontWeight: 600,
-            color: isMdUp ? '#000000' : 'rgba(255,255,255,0.85)',
+            color: '#000000',
             lineHeight: 1.6,
             margin: 0,
-            opacity: isMdUp ? 0.68 : 1,
+            opacity: 0.68,
           }}>
             스파로스 원 — 수억 원의 인프라를 월 단위 구독으로
           </p>
@@ -121,19 +121,19 @@ export default function HeroSection() {
 
         {/* 카드 2 — 구독하세요 */}
         <div style={cardStyle(activeCard === 1)}>
-          <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: isMdUp ? '#000000' : '#ffffff', lineHeight: 1.2, margin: '0 0 14px' }}>
+          <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000000', lineHeight: 1.2, margin: '0 0 14px' }}>
             구축하지 마세요, 구독하세요
           </p>
-          <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: isMdUp ? '#000000' : '#ffffff', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
+          <p style={{ fontSize: 'var(--fs-large)', fontWeight: 600, color: '#000000', lineHeight: 1.4, margin: '0 0 16px', opacity: 0.85 }}>
             선납금 0원 · 위약금 0원 · 첫 달 이후 언제든 해지
           </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: isMdUp ? '#000000' : 'rgba(255,255,255,0.75)', lineHeight: 1.3, margin: '0 0 4px', opacity: isMdUp ? 0.68 : 1 }}>
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: '0 0 4px', opacity: 0.68 }}>
             스파로스 원 하나로
           </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: isMdUp ? '#000000' : 'rgba(255,255,255,0.75)', lineHeight: 1.3, margin: '0 0 4px', opacity: isMdUp ? 0.68 : 1 }}>
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: '0 0 4px', opacity: 0.68 }}>
             복잡함 없이, 부담 없이
           </p>
-          <p style={{ fontSize: 'var(--fs-label)', color: isMdUp ? '#000000' : 'rgba(255,255,255,0.75)', lineHeight: 1.3, margin: 0, opacity: isMdUp ? 0.68 : 1 }}>
+          <p style={{ fontSize: 'var(--fs-label)', color: '#000000', lineHeight: 1.3, margin: 0, opacity: 0.68 }}>
             가장 쉽게 시작하는 프라이빗 클라우드
           </p>
         </div>

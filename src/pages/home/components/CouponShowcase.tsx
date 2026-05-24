@@ -156,8 +156,8 @@ function MobileCouponShowcase() {
     <section style={{ background: '#0d0d0d', padding: '80px 0' }}>
       <div style={{ width: '100%', padding: '0 24px' }}>
         <div style={{ marginBottom: '32px' }}>
-          <span className="section-label acc" style={{ fontSize: 'var(--fs-body)' }}>핵심가치</span>
-          <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-heading)', color: '#f0f0f0', lineHeight: 1.2 }}>
+          <span className="section-label acc" style={{ fontSize: 'var(--fs-label)' }}>핵심가치</span>
+          <h2 className="font-extrabold" style={{ fontSize: 'var(--fs-display)', color: '#f0f0f0', lineHeight: 1.2 }}>
             스파로스 원을 선택해야 하는 이유
           </h2>
         </div>
@@ -169,21 +169,22 @@ function MobileCouponShowcase() {
               style={{
                 borderRadius: '16px',
                 overflow: 'hidden',
-                display: 'grid',
-                gridTemplateColumns: '120px 1fr',
-                alignItems: 'stretch',
+                display: 'flex',
+                flexDirection: 'column',
                 background: '#1a1a1a',
                 boxShadow: '0 2px 20px rgba(0,0,0,0.3)',
                 border: '1px solid rgba(255,255,255,0.06)',
-                minHeight: '160px',
               }}
             >
               <div
                 style={{
+                  width: '100%',
+                  height: '180px',
                   backgroundImage: card.image ? `url('${card.image}')` : 'none',
                   backgroundColor: card.image ? undefined : '#F0F0F0',
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  flexShrink: 0,
                 }}
               />
               <div
@@ -191,11 +192,10 @@ function MobileCouponShowcase() {
                   padding: '20px',
                   display: 'flex',
                   flexDirection: 'column',
-                  justifyContent: 'center',
                   gap: '10px',
                 }}
               >
-                <h3 className="font-bold" style={{ fontSize: 'var(--fs-body)', lineHeight: 1.35, margin: 0 }}>
+                <h3 className="font-bold" style={{ fontSize: 'var(--fs-label)', lineHeight: 1.35, margin: 0 }}>
                   <span className="acc">{card.titleBlue}</span>
                   <br />
                   <span style={{ color: '#f0f0f0' }}>{card.titleBlack}</span>

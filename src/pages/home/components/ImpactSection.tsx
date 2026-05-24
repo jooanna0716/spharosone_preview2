@@ -242,7 +242,7 @@ function MobileImpactSection() {
       <span
         className="acc"
         style={{
-          fontSize: '30px',
+          fontSize: 'var(--fs-label)',
           fontWeight: 700,
           letterSpacing: '0.12em',
           display: 'block',
@@ -253,7 +253,7 @@ function MobileImpactSection() {
       </span>
       <h2
         style={{
-          fontSize: '28px',
+          fontSize: 'var(--fs-display)',
           fontWeight: 800,
           color: '#FFFFFF',
           lineHeight: 1.3,

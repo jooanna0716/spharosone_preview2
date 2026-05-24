@@ -100,7 +100,7 @@ export default function ServicesPage() {
       <ServicesHeroSection onTabChange={setActiveTab} />
 
       {/* 서비스 설명 — View More 스크롤 타깃 */}
-      <section id="service-detail" style={{ background: '#0d0d0d', padding: isMobile ? '60px 16px 10px' : isTablet ? '80px clamp(24px, 4vw, 60px) 10px' : '140px 120px 10px' }}>
+      <section id="service-detail" style={{ background: '#0d0d0d', padding: isMobile ? '40px 16px 0' : isTablet ? '60px clamp(24px, 4vw, 60px) 0' : '140px 120px 10px' }}>
         <RevealText key={activeTab} tab={activeTab} />
       </section>
 
