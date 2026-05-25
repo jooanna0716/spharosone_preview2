@@ -129,7 +129,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
       }}>
         Spharos One Services
       </p>
-      <div style={{ position: 'relative', height: align === 'center' ? '80px' : '100px', pointerEvents: 'none' }}>
+      <div style={{ position: 'relative', height: align === 'center' ? '80px' : 'clamp(100px, 11vw, 140px)', pointerEvents: 'none' }}>
         {MENU_ITEMS.map(item => (
           <div
             key={item.key}
@@ -207,12 +207,14 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
         {/* 검정 오버레이 */}
         <div style={{ position: 'absolute', inset: 0, zIndex: 1, background: 'rgba(0,0,0,0.65)', pointerEvents: 'none' }} />
 
-        {/* 블롭 — 데스크탑/태블릿: 섹션 레벨에서 좌측 절반 커버 */}
+        {/* 블롭 — 데스크탑/태블릿: 섹션 전체에서 좌측으로 페이드 */}
         {!isMobile && (
           <div style={{
             position: 'absolute', left: 0, top: 0,
-            width: '55%', height: '100%',
-            zIndex: 2, pointerEvents: 'none', overflow: 'hidden',
+            width: '100%', height: '100%',
+            zIndex: 2, pointerEvents: 'none',
+            maskImage: 'linear-gradient(to right, black 0%, black 40%, transparent 68%)',
+            WebkitMaskImage: 'linear-gradient(to right, black 0%, black 40%, transparent 68%)',
           }}>
             <Blobs />
           </div>
