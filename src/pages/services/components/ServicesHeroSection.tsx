@@ -115,7 +115,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
     <div style={{
       position: 'absolute',
       ...(align === 'bottom-left'
-        ? { bottom: '12%', left: '28px', right: '28px' }
+        ? { bottom: '12%', left: 0, right: 0 }
         : { top: '50%', left: '16px', right: '16px', transform: 'translateY(-50%)' }
       ),
       zIndex: 3,
@@ -141,7 +141,8 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
           >
             <p style={{
               fontFamily: "'Noto Sans KR', sans-serif",
-              fontSize: align === 'center' ? 'clamp(18px, 4.5vw, 28px)' : 'clamp(20px, 3vw, 46px)',
+              fontSize: align === 'center' ? 'clamp(18px, 4.5vw, 28px)' : 'clamp(18px, 2.6vw, 38px)',
+              whiteSpace: align === 'bottom-left' ? 'nowrap' : undefined,
               fontWeight: 700, color: '#fff',
               lineHeight: 1.4, margin: 0,
             }}>
@@ -263,7 +264,7 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
               display: 'flex', alignItems: 'center',
               flexDirection: 'row',
               gap: 'clamp(20px, 2.5vw, 48px)',
-              padding: 'clamp(20px, 2.5vw, 36px)',
+              padding: 'clamp(20px, 2.5vw, 36px) 0',
             }}
           >
             {/* 왼쪽: 블롭 + 슬로건 */}
