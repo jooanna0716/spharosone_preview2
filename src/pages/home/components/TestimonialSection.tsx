@@ -182,7 +182,7 @@ export default function TestimonialSection() {
   );
 
   return (
-    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(60px, 8vh, 120px)', paddingBottom: 'clamp(60px, 8vh, 120px)' }}>
+    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(60px, 8vh, 120px)', paddingBottom: isMobile ? '40px' : 'clamp(60px, 8vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
