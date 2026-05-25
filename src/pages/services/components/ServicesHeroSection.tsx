@@ -219,6 +219,9 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
             <div style={{
               display: 'flex', alignItems: 'flex-end', gap: '20px',
               paddingTop: '88px', flexShrink: 0,
+              overflowX: 'auto', WebkitOverflowScrolling: 'touch' as never,
+              scrollbarWidth: 'none', msOverflowStyle: 'none' as never,
+              paddingBottom: '2px',
             }}>
               {MENU_ITEMS.map(item => {
                 const isActive = active === item.key;
