@@ -130,7 +130,7 @@ export default function StoryBridgeSection() {
             whiteSpace: 'pre-line',
           }}
         >
-          {`Spharos 등대는 흔들리지 않는 기준이 되고,\nOne은 모든 것을 하나로 잇습니다.`}
+          {`Spharos 등대는 흔들리지 않는 기준이 되고,\nOne은 그 위의 모든 것을 하나로 잇습니다.`}
         </p>
         <p
           style={{
