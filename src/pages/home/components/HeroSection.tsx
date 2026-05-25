@@ -3,6 +3,7 @@ import React from 'react';
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(0);
+  const [visible, setVisible] = useState(true);
   const [isMdUp, setIsMdUp]         = useState(true);
 
   useEffect(() => {
@@ -13,10 +14,13 @@ export default function HeroSection() {
     return () => mql.removeEventListener('change', h);
   }, []);
 
-  // 3.5초마다 카드 전환 (느린 자동 플레이)
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveCard(prev => (prev + 1) % 2);
+      setVisible(false);
+      setTimeout(() => {
+        setActiveCard(prev => (prev + 1) % 2);
+        setVisible(true);
+      }, 350);
     }, 4000);
     return () => clearInterval(timer);
   }, []);
@@ -28,8 +32,8 @@ export default function HeroSection() {
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    opacity: isActive ? 1 : 0,
-    transition: 'opacity 0.2s ease-in',
+    opacity: isActive && visible ? 1 : 0,
+    transition: 'opacity 0.35s ease',
     padding: isMdUp ? '0 80px' : '0 24px',
     textAlign: 'center',
     pointerEvents: isActive ? 'auto' : 'none',
