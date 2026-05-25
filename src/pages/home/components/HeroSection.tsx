@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
-import React from 'react';
+
+const TRANSITION_MS = 700;
+const INTERVAL_MS = 4500;
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(0);
-  const [visible, setVisible] = useState(true);
-  const [isMdUp, setIsMdUp]         = useState(true);
+  const [prevCard, setPrevCard] = useState<number | null>(null);
+  const [animKey, setAnimKey] = useState(0);
+  const [isMdUp, setIsMdUp] = useState(true);
 
   useEffect(() => {
     const mql = window.matchMedia('(min-width: 768px)');
@@ -16,62 +19,68 @@ export default function HeroSection() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setVisible(false);
-      setTimeout(() => {
-        setActiveCard(prev => (prev + 1) % 2);
-        setVisible(true);
-      }, 350);
-    }, 4000);
+      setActiveCard(prev => {
+        const next = (prev + 1) % 2;
+        setPrevCard(prev);
+        setAnimKey(k => k + 1);
+        setTimeout(() => setPrevCard(null), TRANSITION_MS + 100);
+        return next;
+      });
+    }, INTERVAL_MS);
     return () => clearInterval(timer);
   }, []);
 
-  const cardStyle = (isActive: boolean): React.CSSProperties => ({
+  const baseStyle = (pad: boolean): React.CSSProperties => ({
     position: 'absolute',
     inset: 0,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    opacity: isActive && visible ? 1 : 0,
-    transition: 'opacity 0.35s ease',
-    padding: isMdUp ? '0 80px' : '0 24px',
+    padding: pad ? '0 80px' : '0 24px',
     textAlign: 'center',
-    pointerEvents: isActive ? 'auto' : 'none',
   });
 
   return (
     <div style={{ height: '100vh', position: 'relative', background: '#1E0060', overflow: 'hidden' }}>
 
-      {/* ── 키프레임 ─────────────────────────────────────────────── */}
       <style>{`
         @keyframes hB1 {
-          0%,100% { transform: translate(0,     0)    scale(1.00); }
-          20%     { transform: translate(18vw, -14vh) scale(1.14); }
-          45%     { transform: translate(-12vw, 20vh) scale(0.90); }
-          70%     { transform: translate(22vw,  10vh) scale(1.08); }
+          0%,100% { transform: translate(0,0) scale(1.00); }
+          20%     { transform: translate(18vw,-14vh) scale(1.14); }
+          45%     { transform: translate(-12vw,20vh) scale(0.90); }
+          70%     { transform: translate(22vw,10vh) scale(1.08); }
         }
         @keyframes hB2 {
-          0%,100% { transform: translate(0,     0)    scale(1.00); }
-          30%     { transform: translate(-20vw, 16vh) scale(1.12); }
-          60%     { transform: translate(14vw, -22vh) scale(0.88); }
+          0%,100% { transform: translate(0,0) scale(1.00); }
+          30%     { transform: translate(-20vw,16vh) scale(1.12); }
+          60%     { transform: translate(14vw,-22vh) scale(0.88); }
         }
         @keyframes hB3 {
-          0%,100% { transform: translate(0,     0)    scale(1.00); }
-          35%     { transform: translate(24vw,  18vh) scale(1.16); }
+          0%,100% { transform: translate(0,0) scale(1.00); }
+          35%     { transform: translate(24vw,18vh) scale(1.16); }
           65%     { transform: translate(-16vw,-14vh) scale(0.92); }
         }
         @keyframes hB4 {
-          0%,100% { transform: translate(0,     0)    scale(1.00); }
-          40%     { transform: translate(-22vw, 12vh) scale(1.10); }
-          75%     { transform: translate(16vw, -18vh) scale(0.94); }
+          0%,100% { transform: translate(0,0) scale(1.00); }
+          40%     { transform: translate(-22vw,12vh) scale(1.10); }
+          75%     { transform: translate(16vw,-18vh) scale(0.94); }
         }
         @keyframes hB5 {
-          0%,100% { transform: translate(0,     0)    scale(1.00); }
+          0%,100% { transform: translate(0,0) scale(1.00); }
           50%     { transform: translate(-14vw,-20vh) scale(1.12); }
+        }
+        @keyframes heroSlideIn {
+          from { opacity: 0; transform: translateY(26px); filter: blur(6px); }
+          to   { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+        }
+        @keyframes heroSlideOut {
+          from { opacity: 1; transform: translateY(0);     filter: blur(0px); }
+          to   { opacity: 0; transform: translateY(-20px); filter: blur(5px); }
         }
       `}</style>
 
-      {/* ── 유영하는 그라디언트 배경 ────────────────────────────────── */}
+      {/* 배경 블롭 */}
       <div style={{ position: 'absolute', inset: 0, background: '#1E0060' }} />
       <div style={{ position: 'absolute', left: '-15%', top: '-15%', width: '80vw', height: '130vh',
         background: 'radial-gradient(ellipse at center, #6200CC 0%, rgba(90,0,200,0.72) 35%, transparent 68%)',
@@ -89,18 +98,30 @@ export default function HeroSection() {
         background: 'radial-gradient(ellipse at center, #00FFCE 0%, rgba(0,230,200,0.65) 35%, transparent 63%)',
         animation: 'hB5 20s ease-in-out infinite' }} />
 
-      {/* ── 하단 그라데이션 — 다음 섹션과 자연스럽게 연결 */}
+      {/* 하단 그라데이션 */}
       <div style={{
         position: 'absolute', bottom: 0, left: 0, right: 0, height: '28%',
         background: 'linear-gradient(to top, #0d0d0d 0%, transparent 100%)',
         pointerEvents: 'none', zIndex: 9,
       }} />
 
-      {/* ── 카드 레이어 ──────────────────────────────────────────── */}
+      {/* 카드 레이어 */}
       <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 5 }}>
 
         {/* 카드 1 — Spharos ONE */}
-        <div style={cardStyle(activeCard === 0)}>
+        <div
+          style={{
+            ...baseStyle(isMdUp),
+            animation: activeCard === 0
+              ? `heroSlideIn ${TRANSITION_MS}ms cubic-bezier(0.25,0.46,0.45,0.94) forwards`
+              : prevCard === 0
+              ? `heroSlideOut ${TRANSITION_MS * 0.85}ms ease forwards`
+              : undefined,
+            opacity: activeCard === 0 ? undefined : prevCard === 0 ? undefined : 0,
+            pointerEvents: activeCard === 0 ? 'auto' : 'none',
+          }}
+          key={activeCard === 0 ? `active-0-${animKey}` : `prev-0-${animKey}`}
+        >
           <h1 style={{
             fontSize: 'var(--fs-hero)',
             fontWeight: 900,
@@ -124,7 +145,19 @@ export default function HeroSection() {
         </div>
 
         {/* 카드 2 — 구독하세요 */}
-        <div style={cardStyle(activeCard === 1)}>
+        <div
+          style={{
+            ...baseStyle(isMdUp),
+            animation: activeCard === 1
+              ? `heroSlideIn ${TRANSITION_MS}ms cubic-bezier(0.25,0.46,0.45,0.94) forwards`
+              : prevCard === 1
+              ? `heroSlideOut ${TRANSITION_MS * 0.85}ms ease forwards`
+              : undefined,
+            opacity: activeCard === 1 ? undefined : prevCard === 1 ? undefined : 0,
+            pointerEvents: activeCard === 1 ? 'auto' : 'none',
+          }}
+          key={activeCard === 1 ? `active-1-${animKey}` : `prev-1-${animKey}`}
+        >
           <p style={{ fontSize: 'var(--fs-giant)', fontWeight: 800, color: '#000000', lineHeight: 1.2, margin: '0 0 14px' }}>
             구축하지 마세요, 구독하세요
           </p>
