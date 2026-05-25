@@ -202,7 +202,7 @@ function ChartLegend() {
 /* ── 슬라이드2: 왼쪽 라인 차트 + 오른쪽 막대 그래프 ── */
 function CashFlowSlide() {
   const { isMobile } = useBreakpoint();
-  const SVG_H = 270; // 양쪽 공통 SVG 높이
+  const SVG_H = isMobile ? 180 : 270; // 양쪽 공통 SVG 높이
 
   // ── 왼쪽 라인 차트 ──
   const LW = 420;

@@ -124,6 +124,7 @@ export default function TestimonialSection() {
         border: '1px solid rgba(255,255,255,0.07)',
         display: 'flex',
         flexDirection: 'column',
+        ...(isMobile && mobileCardHeight ? { minHeight: `${mobileCardHeight}px` } : {}),
       }}
     >
       <div
@@ -199,26 +200,23 @@ export default function TestimonialSection() {
             현장의 고민을 확신으로
           </h2>
         </div>
-        <ArrowButtons />
+        {!isMobile && <ArrowButtons />}
       </div>
 
       {/* 카드 트랙 */}
-      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden', position: 'relative' }}>
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
         {isMobile ? (
           /* ── 모바일: 1장씩 ── */
           <>
-            {/* 높이 측정용 숨김 컨테이너 */}
-            <div
-              ref={measureRef}
-              style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none', width: '100%', left: 0 }}
-              aria-hidden="true"
-            >
-              {TESTIMONIALS.map((item, i) => <Card key={i} item={item} />)}
-            </div>
+            {/* 높이 측정용: normal flow, 측정 완료 후 사라짐 */}
+            {mobileCardHeight === undefined && (
+              <div ref={measureRef} style={{ visibility: 'hidden', pointerEvents: 'none' }} aria-hidden="true">
+                {TESTIMONIALS.map((item, i) => <Card key={i} item={item} />)}
+              </div>
+            )}
             <div
               key={animKey}
               style={{
-                height: mobileCardHeight ? `${mobileCardHeight}px` : undefined,
                 animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
               }}
             >
@@ -241,6 +239,13 @@ export default function TestimonialSection() {
           </div>
         )}
       </div>
+
+      {/* 모바일 화살표: 카드 아래 중앙 */}
+      {isMobile && (
+        <div style={{ display: 'flex', justifyContent: 'center', marginTop: '16px' }}>
+          <ArrowButtons />
+        </div>
+      )}
 
       <style>{`
         @keyframes slideCardsLeft {
