@@ -173,7 +173,7 @@ export default function TestimonialSection() {
   );
 
   return (
-    <section style={{ background: '#0d0d0d', minHeight: isMobile ? 'auto' : '100vh', display: 'flex', flexDirection: 'column', paddingTop: 'clamp(32px, 6vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 120px)' }}>
+    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(32px, 6vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
@@ -195,7 +195,7 @@ export default function TestimonialSection() {
       </div>
 
       {/* 카드 트랙 */}
-      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden', flex: isMobile ? 'none' : 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
         {isMobile ? (
           /* ── 모바일: 1장씩 ── */
           <div
