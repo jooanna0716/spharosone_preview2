@@ -197,7 +197,7 @@ function CashFlowSlide() {
   };
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '32px' : '24px', alignItems: 'stretch' }}>
+    <div style={{ display: 'grid', gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr', gap: isMobile ? '32px' : '24px', alignItems: 'stretch', flex: 1 }}>
 
       {/* 왼쪽 */}
       <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -315,7 +315,7 @@ export default function PricingModelSection() {
               <CompareSlide />
             </div>
             {/* 슬라이드 2 */}
-            <div style={{ minWidth: '100%', padding: '4px' }}>
+            <div style={{ minWidth: '100%', padding: '4px', display: 'flex', flexDirection: 'column' }}>
               <CashFlowSlide />
             </div>
           </div>
