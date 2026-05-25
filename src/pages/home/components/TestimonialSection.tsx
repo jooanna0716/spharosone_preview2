@@ -112,7 +112,7 @@ export default function TestimonialSection() {
         minWidth: 0,
         background: '#1c1c1c',
         borderRadius: '16px',
-        padding: 'clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px) clamp(16px, 4vh, 50px)',
+        padding: 'clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px) clamp(16px, 2vw, 32px)',
         border: '1px solid rgba(255,255,255,0.07)',
         display: 'flex',
         flexDirection: 'column',
@@ -134,7 +134,7 @@ export default function TestimonialSection() {
       <p style={{ color: '#777777', fontSize: 'var(--fs-body)', lineHeight: 1.55, marginBottom: 'clamp(8px, 1.5vh, 20px)' }}>
         {item.quote}
       </p>
-      <div style={{ marginTop: 'clamp(16px, 3vh, 36px)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
+      <div style={{ marginTop: 'clamp(12px, 2vh, 24px)', display: 'flex', flexDirection: 'column', gap: '3px' }}>
         {item.highlights.map((h, hi) => (
           <p
             key={hi}
@@ -173,7 +173,7 @@ export default function TestimonialSection() {
   );
 
   return (
-    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(32px, 6vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 120px)' }}>
+    <section style={{ background: '#0d0d0d', paddingTop: 'clamp(60px, 8vh, 120px)', paddingBottom: 'clamp(60px, 8vh, 120px)' }}>
 
       {/* 헤더 */}
       <div
