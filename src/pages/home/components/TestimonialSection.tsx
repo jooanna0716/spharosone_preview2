@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const TESTIMONIALS = [
   {
@@ -80,6 +80,8 @@ export default function TestimonialSection() {
   const PAGE_COUNT = Math.ceil(TOTAL / 3);
   const [slideDir, setSlideDir] = useState<1 | -1>(1);
   const [animKey, setAnimKey] = useState(0);
+  const [mobileCardHeight, setMobileCardHeight] = useState<number | undefined>(undefined);
+  const measureRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -87,6 +89,12 @@ export default function TestimonialSection() {
     window.addEventListener('resize', check);
     return () => window.removeEventListener('resize', check);
   }, []);
+
+  useEffect(() => {
+    if (!isMobile || !measureRef.current) return;
+    const heights = Array.from(measureRef.current.children).map(el => (el as HTMLElement).offsetHeight);
+    if (heights.length > 0) setMobileCardHeight(Math.max(...heights));
+  }, [isMobile]);
 
   const navigate = (dir: 1 | -1) => {
     setSlideDir(dir);
@@ -198,14 +206,25 @@ export default function TestimonialSection() {
       <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
         {isMobile ? (
           /* ── 모바일: 1장씩 ── */
-          <div
-            key={animKey}
-            style={{
-              animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
-            }}
-          >
-            <Card item={TESTIMONIALS[cardIdx]} />
-          </div>
+          <>
+            {/* 높이 측정용 숨김 컨테이너 */}
+            <div
+              ref={measureRef}
+              style={{ position: 'absolute', visibility: 'hidden', pointerEvents: 'none', width: '100%', left: 0 }}
+              aria-hidden="true"
+            >
+              {TESTIMONIALS.map((item, i) => <Card key={i} item={item} />)}
+            </div>
+            <div
+              key={animKey}
+              style={{
+                height: mobileCardHeight ? `${mobileCardHeight}px` : undefined,
+                animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
+              }}
+            >
+              <Card item={TESTIMONIALS[cardIdx]} />
+            </div>
+          </>
         ) : (
           /* ── 데스크탑: 3장씩 ── */
           <div
