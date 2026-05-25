@@ -273,7 +273,6 @@ export default function ServicesHeroSection({ onTabChange }: Props) {
               height: `${imgHeight}px`,
               minHeight: '400px',
               transition: 'height 0.3s ease',
-              background: 'radial-gradient(ellipse 90% 80% at 45% 50%, rgba(8,0,35,0.88) 0%, rgba(8,0,35,0.45) 52%, transparent 78%)',
             }}>
               <Blobs />
               <Slogan align="bottom-left" />
