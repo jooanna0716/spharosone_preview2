@@ -15,9 +15,9 @@ function MobileCompareSlide() {
           <p style={{ fontSize: '13px', color: '#7ab8e8', margin: '6px 0 0', lineHeight: 1.5 }}>초기 투자 없이 사용한 만큼 지불하는 구독형 운영 지출 방식</p>
         </div>
         {COMPARISON_ROWS.map((row, i) => (
-          <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#1e3352' : '#192d48', borderTop: '1px solid rgba(91,164,245,0.1)' }}>
+          <div key={row.label} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#1e3352' : '#192d48', borderTop: '1px solid rgba(91,164,245,0.1)' }}>
             <span style={{ fontSize: '14px', color: '#7ec8f5', fontWeight: 700 }}>{row.label}</span>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <span style={{ color: '#5BA4F5', fontWeight: 700 }}>✓</span>
               <span style={{ fontSize: '14px', color: '#d8eeff' }}>{row.opex}</span>
             </div>
@@ -38,7 +38,7 @@ function MobileCompareSlide() {
         </button>
         <div style={{ maxHeight: capexOpen ? '600px' : '0', overflow: 'hidden', transition: 'max-height 0.35s ease' }}>
           {COMPARISON_ROWS.map((row, i) => (
-            <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#191919' : '#161616', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+            <div key={row.label} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#191919' : '#161616', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
               <span style={{ fontSize: '14px', color: '#888', fontWeight: 600 }}>{row.label}</span>
               <span style={{ fontSize: '14px', color: '#666' }}>{row.capex}</span>
             </div>

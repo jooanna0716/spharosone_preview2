@@ -213,7 +213,6 @@ export default function TestimonialSection() {
             style={{
               display: 'flex',
               gap: `${GAP}px`,
-              flex: 1,
               animation: `slideCards${slideDir > 0 ? 'Left' : 'Right'} 0.35s cubic-bezier(0.25,0.46,0.45,0.94) both`,
             }}
           >
