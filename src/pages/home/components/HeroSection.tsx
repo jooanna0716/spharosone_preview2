@@ -17,7 +17,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveCard(prev => (prev + 1) % 2);
-    }, 3500);
+    }, 3000);
     return () => clearInterval(timer);
   }, []);
 
@@ -29,7 +29,7 @@ export default function HeroSection() {
     alignItems: 'center',
     justifyContent: 'center',
     opacity: isActive ? 1 : 0,
-    transition: 'opacity 1.4s ease',
+    transition: 'opacity 0s',
     padding: isMdUp ? '0 80px' : '0 24px',
     textAlign: 'center',
     pointerEvents: isActive ? 'auto' : 'none',
@@ -115,7 +115,7 @@ export default function HeroSection() {
             margin: 0,
             opacity: 0.68,
           }}>
-            스파로스 원 — 수억 원의 인프라를 월 단위 구독으로
+            스파로스 원ㅡ구독형 프라이빗 클라우드
           </p>
         </div>
 

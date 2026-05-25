@@ -327,8 +327,7 @@ function ServiceTableModal({ table, onClose }: { table: NonNullable<ServiceItem[
   );
 }
 
-function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
-  const [open, setOpen] = useState(false);
+function ServiceDetailRow({ item, isOpen, onToggle }: { item: ServiceItem; isFirst?: boolean; isOpen: boolean; onToggle: () => void }) {
   const [popupOpen, setPopupOpen] = useState(false);
   const [btnHovered, setBtnHovered] = useState(false);
 
@@ -455,7 +454,7 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
         {/* 모바일 아코디언 */}
         <div className="md:hidden">
           <button
-            onClick={() => setOpen(!open)}
+            onClick={onToggle}
             className="w-full flex items-center justify-between py-5 cursor-pointer"
           >
             <div className="text-left">
@@ -470,11 +469,11 @@ function ServiceDetailRow({ item }: { item: ServiceItem; isFirst?: boolean }) {
               <p className="text-sm mt-1" style={{ color: '#aaaaaa' }}>{item.subtitle}</p>
             </div>
             <span className="w-8 h-8 flex items-center justify-center text-xl" style={{ color: '#aaaaaa' }}>
-              {open ? '−' : '+'}
+              {isOpen ? '−' : '+'}
             </span>
           </button>
 
-          {open && (
+          {isOpen && (
             <div className="pb-6 space-y-6">
               {item.definition ? (
                 <p className="text-sm leading-relaxed" style={{ color: 'rgba(240,240,240,0.8)' }}>{item.definition}</p>
@@ -557,6 +556,7 @@ interface Props {
 }
 
 export default function ServiceLicenseSection({ activeTab }: Props) {
+  const [openKey, setOpenKey] = useState<string | null>(null);
   const [isMd, setIsMd] = useState(true);
   useEffect(() => {
     const mql = window.matchMedia('(min-width: 768px)');
@@ -565,6 +565,8 @@ export default function ServiceLicenseSection({ activeTab }: Props) {
     mql.addEventListener('change', h);
     return () => mql.removeEventListener('change', h);
   }, []);
+
+  useEffect(() => { setOpenKey(null); }, [activeTab]);
 
   const services =
     activeTab === 'main'
@@ -578,7 +580,12 @@ export default function ServiceLicenseSection({ activeTab }: Props) {
       <div style={{ width: '100%', padding: isMd ? '0 clamp(24px, 5vw, 120px)' : '0 16px' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
           {services.map((s) => (
-            <ServiceDetailRow key={s.key} item={s} />
+            <ServiceDetailRow
+              key={s.key}
+              item={s}
+              isOpen={openKey === s.key}
+              onToggle={() => setOpenKey(openKey === s.key ? null : s.key)}
+            />
           ))}
         </div>
       </div>
