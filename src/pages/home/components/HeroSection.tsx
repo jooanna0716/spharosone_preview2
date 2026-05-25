@@ -17,7 +17,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveCard(prev => (prev + 1) % 2);
-    }, 3000);
+    }, 4000);
     return () => clearInterval(timer);
   }, []);
 
@@ -29,7 +29,7 @@ export default function HeroSection() {
     alignItems: 'center',
     justifyContent: 'center',
     opacity: isActive ? 1 : 0,
-    transition: 'opacity 0s',
+    transition: 'opacity 0.2s ease-in',
     padding: isMdUp ? '0 80px' : '0 24px',
     textAlign: 'center',
     pointerEvents: isActive ? 'auto' : 'none',
