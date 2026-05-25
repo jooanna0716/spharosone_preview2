@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 
 const TESTIMONIALS = [
   {
@@ -90,7 +90,7 @@ export default function TestimonialSection() {
     return () => window.removeEventListener('resize', check);
   }, []);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isMobile || !measureRef.current) return;
     const heights = Array.from(measureRef.current.children).map(el => (el as HTMLElement).offsetHeight);
     if (heights.length > 0) setMobileCardHeight(Math.max(...heights));
@@ -203,7 +203,7 @@ export default function TestimonialSection() {
       </div>
 
       {/* 카드 트랙 */}
-      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden' }}>
+      <div style={{ paddingLeft: 'clamp(24px, 8.33vw, 120px)', paddingRight: 'clamp(24px, 8.33vw, 120px)', overflow: 'hidden', position: 'relative' }}>
         {isMobile ? (
           /* ── 모바일: 1장씩 ── */
           <>
