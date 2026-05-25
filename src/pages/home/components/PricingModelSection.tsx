@@ -1,6 +1,55 @@
 import React, { useState } from 'react';
 import { useBreakpoint } from '@/hooks/useBreakpoint';
 
+/* ── 모바일 전용 슬라이드1 ── */
+function MobileCompareSlide() {
+  const [capexOpen, setCapexOpen] = useState(false);
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+      {/* Spharos One — 항상 펼침 */}
+      <div style={{ background: '#1a2d45', borderRadius: '16px', border: '2px solid #5BA4F5', overflow: 'hidden' }}>
+        <div style={{ padding: '20px 20px 16px', borderBottom: '1px solid rgba(91,164,245,0.2)' }}>
+          <span style={{ fontSize: '12px', fontWeight: 700, color: '#5BA4F5', background: 'rgba(91,164,245,0.15)', padding: '4px 10px', borderRadius: '20px' }}>추천</span>
+          <p style={{ fontSize: '18px', fontWeight: 700, color: '#f0f0f0', margin: '10px 0 0' }}>Spharos One (OPEX)</p>
+          <p style={{ fontSize: '13px', color: '#7ab8e8', margin: '6px 0 0', lineHeight: 1.5 }}>초기 투자 없이 사용한 만큼 지불하는 구독형 운영 지출 방식</p>
+        </div>
+        {COMPARISON_ROWS.map((row, i) => (
+          <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#1e3352' : '#192d48', borderTop: '1px solid rgba(91,164,245,0.1)' }}>
+            <span style={{ fontSize: '14px', color: '#7ec8f5', fontWeight: 700 }}>{row.label}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <span style={{ color: '#5BA4F5', fontWeight: 700 }}>✓</span>
+              <span style={{ fontSize: '14px', color: '#d8eeff' }}>{row.opex}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* CAPEX — 아코디언 */}
+      <div style={{ background: '#1c1c1c', borderRadius: '16px', border: '1px solid rgba(255,255,255,0.08)', overflow: 'hidden' }}>
+        <button
+          onClick={() => setCapexOpen(p => !p)}
+          style={{ width: '100%', background: 'none', border: 'none', cursor: 'pointer', padding: '16px 20px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+        >
+          <div style={{ textAlign: 'left' }}>
+            <p style={{ fontSize: '13px', color: '#666', fontWeight: 600, margin: 0 }}>기존 방식 (CAPEX) 보기</p>
+          </div>
+          <span style={{ color: '#666', fontSize: '14px', display: 'inline-block', transform: capexOpen ? 'rotate(180deg)' : 'rotate(0deg)', transition: 'transform 0.3s ease' }}>▼</span>
+        </button>
+        <div style={{ maxHeight: capexOpen ? '600px' : '0', overflow: 'hidden', transition: 'max-height 0.35s ease' }}>
+          {COMPARISON_ROWS.map((row, i) => (
+            <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 20px', background: i % 2 === 0 ? '#191919' : '#161616', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
+              <span style={{ fontSize: '14px', color: '#888', fontWeight: 600 }}>{row.label}</span>
+              <span style={{ fontSize: '14px', color: '#666' }}>{row.capex}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  );
+}
+
 const COMPARISON_ROWS = [
   { label: '초기 비용', capex: '대규모 하드웨어 구매', opex: '선납금 0원' },
   { label: '도입 기간', capex: '수개월 구축 소요', opex: '빠른 도입 시작' },
@@ -82,14 +131,17 @@ function CheckIcon({ pass }: { pass: boolean }) {
 /* ── 슬라이드1: CAPEX vs OPEX 카드 비교 ── */
 function CompareSlide() {
   const { isMobile } = useBreakpoint();
+
+  if (isMobile) return <MobileCompareSlide />;
+
   const COL = '26% 37% 37%';
   const cellBase: React.CSSProperties = { padding: '13px 24px', display: 'flex', alignItems: 'center' };
   const opexBorder = '3px solid #5BA4F5';
   const lastIdx = COMPARISON_ROWS.length - 1;
 
   return (
-    <div style={{ overflowX: isMobile ? 'auto' : 'visible' }}>
-    <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', minWidth: isMobile ? '600px' : undefined }}>
+    <div>
+    <div style={{ width: '100%', borderRadius: '14px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)' }}>
 
       {/* 헤더 */}
       <div style={{ display: 'grid', gridTemplateColumns: COL }}>
@@ -150,7 +202,7 @@ function ChartLegend() {
 /* ── 슬라이드2: 왼쪽 라인 차트 + 오른쪽 막대 그래프 ── */
 function CashFlowSlide() {
   const { isMobile } = useBreakpoint();
-  const SVG_H = 200; // 양쪽 공통 SVG 높이
+  const SVG_H = 270; // 양쪽 공통 SVG 높이
 
   // ── 왼쪽 라인 차트 ──
   const LW = 420;
@@ -187,6 +239,7 @@ function CashFlowSlide() {
 
   const containerStyle: React.CSSProperties = {
     flex: 1,
+    minHeight: '260px',
     background: '#161b25',
     borderRadius: '16px',
     padding: '16px 14px 10px',
