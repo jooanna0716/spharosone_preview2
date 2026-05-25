@@ -1,11 +1,1 @@
-﻿{
-  "version": "0.0.1",
-  "configurations": [
-    {
-      "name": "스파로스원_v2.1",
-      "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev"],
-      "port": 3000
-    }
-  ]
-}
+﻿{"version":"0.0.1","configurations":[{"name":"스파로스원_v2.2","runtimeExecutable":"npm","runtimeArgs":["run","dev","--","--port","3004"],"port":3004}]}
